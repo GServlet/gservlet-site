@@ -403,9 +403,6 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
         display: inline-block;
     }
 }
-#body .nav:hover {
-    background: #F6F6F6;
-}
 #body .nav.nav-pref {
     left: 0;
 }
@@ -433,8 +430,9 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 }
 #chapter h1 {
     font-size: 5rem;
-    border-bottom: 4px solid #F0F2F4;
+    border-bottom: 4px solid #eb6b6a;
 }
+
 #chapter p {
     text-align: center;
     font-size: 1.2rem;
@@ -465,7 +463,7 @@ h1 {
     font-family: "Novacento Sans Wide", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     text-align: center;
     text-transform: uppercase;
-    color: #222;
+    color: #1da1f2;
     font-weight: 200;
 }
 blockquote {
