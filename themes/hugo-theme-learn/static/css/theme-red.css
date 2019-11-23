@@ -70,7 +70,7 @@ a:hover {
 	background-color: #eb6b6a;
 }
 #sidebar #header-wrapper {
-    background: var(--MENU-HEADER-BG-color);
+    background: #f7efef;
     color: var(--MENU-SEARCH-BOX-color);
     border-color: var(--MENU-HEADER-BORDER-color);
 }
