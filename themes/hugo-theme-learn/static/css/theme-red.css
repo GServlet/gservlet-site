@@ -67,7 +67,7 @@ a:hover {
     background-color: var(--MAIN-LINK-HOVER-color);
 }
 #sidebar {
-	background-color: var(--MENU-SECTIONS-BG-color);
+	background-color: #eb6b6a;
 }
 #sidebar #header-wrapper {
     background: var(--MENU-HEADER-BG-color);
@@ -79,22 +79,25 @@ a:hover {
     background: var(--MENU-SEARCH-BG-color);
 }
 #sidebar ul.topics > li.parent, #sidebar ul.topics > li.active {
-    background: var(--MENU-SECTIONS-ACTIVE-BG-color);
+    background: #de5655;
 }
 #sidebar .searchbox * {
     color: white;
 }
 
 #sidebar a {
-    color: var(--MENU-SECTIONS-LINK-color);
+    color: white;
 }
 
+#sidebar a b {
+	color : #f7db77;
+}
 #sidebar a:hover {
     color: var(--MENU-SECTIONS-LINK-HOVER-color);
 }
 
 #sidebar ul li.active > a {
-    background: var(--MENU-SECTION-ACTIVE-CATEGORY-BG-color);
+    background: #f6f6f6;
     color: var(--MENU-SECTION-ACTIVE-CATEGORY-color) !important;
 }
 
