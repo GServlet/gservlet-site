@@ -7,7 +7,7 @@
     --MAIN-LINK-HOVER-color:#d01616; /* Color of hovered links */
     --MAIN-ANCHOR-color: #f31c1c; /* color of anchors on titles */
 
-    --MENU-HEADER-BG-color:#dc1010; /* Background color of menu header */
+    --MENU-HEADER-BG-color:#f6f6f6; /* Background color of menu header */
     --MENU-HEADER-BORDER-color:#e23131; /*Color of menu header border */ 
 
     --MENU-SEARCH-BG-color:#b90000; /* Search field background color (by default borders + icons) */
@@ -82,7 +82,7 @@ a:hover {
     background: var(--MENU-SECTIONS-ACTIVE-BG-color);
 }
 #sidebar .searchbox * {
-    color: var(--MENU-SEARCH-BOX-ICONS-color);
+    color: white;
 }
 
 #sidebar a {

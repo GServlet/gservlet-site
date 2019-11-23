@@ -119,7 +119,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     fill: #fff;
 }
 .searchbox {
-    margin-top: 1rem;
+    margin-top: -1rem;
     position: relative;
     border: 1px solid #915eae;
     background: #764890;
@@ -446,6 +446,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 }
 #footer p {
     margin: 0;
+    font-size: 87%;
 }
 body {
     font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
