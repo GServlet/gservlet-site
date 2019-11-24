@@ -453,14 +453,14 @@ body {
     font-size: 18px !important;
 }
 h2, h3, h4, h5, h6 {
-    font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-family: "Tahoma", "Work Sans", "Helvetica", "Geneva", "Arial", sans-serif;
     text-rendering: optimizeLegibility;
     color: #5e5e5e;
     font-weight: 400;
     letter-spacing: -1px;
 }
 h1 {
-    font-family: "Novacento Sans Wide", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-family: "Tahoma", "Novacento Sans Wide", "Helvetica", "Geneva", "Arial", sans-serif;
     text-align: center;
     text-transform: uppercase;
     color: #1da1f2;
@@ -645,13 +645,13 @@ code + .copy-to-clipboard {
 pre {
     padding: 1rem;
     margin: 2rem 0;
-    background: #282c34;
+    background: #f6f8fa;
     border: 0;
     border-radius: 2px;
     line-height: 1.15;
 }
 pre code {
-    color: whitesmoke;
+    color: #565252;
     background: inherit;
     white-space: inherit;
     border: 0;

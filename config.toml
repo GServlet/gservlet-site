@@ -4,3 +4,4 @@ title = "GServlet"
 theme = "hugo-theme-learn"
 [params]
   themeVariant = "red"
+  disableSearch = true
