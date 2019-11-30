@@ -453,6 +453,11 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     font-size: 87%;
     background : #d43e3d;
 }
+#body-inner ul {
+	background: #fefff8;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
 body {
     font-family: "Arial", "Work Sans", "Helvetica", "Tahoma", "Geneva", sans-serif;
     font-weight: 300;
