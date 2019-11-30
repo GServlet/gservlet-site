@@ -335,6 +335,10 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     display: block;
     text-align: center;
 }
+#body img {
+	display : inline-block;
+	 margin: 0rem auto;
+}
 #body img.border, #body .video-container.border {
     border: 2px solid #e6e6e6 !important;
     padding: 2px;
@@ -449,7 +453,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     font-size: 87%;
 }
 body {
-    font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-family: "Arial", "Work Sans", "Helvetica", "Tahoma", "Geneva", sans-serif;
     font-weight: 300;
     line-height: 1.6;
     font-size: 18px !important;
