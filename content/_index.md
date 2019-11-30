@@ -73,15 +73,15 @@ Get ready to get started and running in less than 5 minutes. We provide in our g
 
 ## Documentation
 
-In our documentation page, you'll find all the documentation and tutorials for in-depth knowledge. The javadoc APIs for a particular version of GServlet can be found as well.  
+In our documentation page, you'll find all the documentation and tutorials for in-depth knowledge of this project. The javadoc APIs for a particular version can be found as well.  
 
 ## Download
 
-if you want to download the artifact without a dependency management tool or want to build it from the source, we cover how to achieve it in our download page.
+If you want to download the artifact without a dependency management tool or want to build it from the source, we cover how to achieve it in our download page.
 
 ## Support
 
-There are numerous ways to get help with GServlet. Find how in our support page.
+There are numerous ways to get help with GServlet. Find out how in our support page.
 
 ## Contribute
 
