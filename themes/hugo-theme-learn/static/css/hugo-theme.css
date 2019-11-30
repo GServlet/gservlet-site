@@ -193,6 +193,8 @@ h6 {
 
 p {
     margin: 1rem 0;
+    background: #fefff8;
+    padding: 4px;
 }
 
 figcaption h4 {

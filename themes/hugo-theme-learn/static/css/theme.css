@@ -451,6 +451,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 #footer p {
     margin: 0;
     font-size: 87%;
+    background : #d43e3d;
 }
 body {
     font-family: "Arial", "Work Sans", "Helvetica", "Tahoma", "Geneva", sans-serif;
