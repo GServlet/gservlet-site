@@ -14,6 +14,17 @@ title: "GServlet API"
 [![Coverage Status](https://coveralls.io/repos/github/GServlet/gservlet-api/badge.png?branch=master)](https://coveralls.io/github/GServlet/gservlet-api?branch=master)
 [![License](http://img.shields.io/:license-apache-blue.png)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
+## Table of Contents
+
+* [Introduction](#introduction)
+* [Main Features](#main-features)
+* [Requirements](#requirements)
+* [Getting Started](#getting-started)
+* [Documentation](#documentation)
+* [Download](#download)
+* [Support](#support)
+* [Contribute](#contribute)
+
 ## Introduction
 
 GServlet is an open source project inspired from the [Groovlets](http://docs.groovy-lang.org/latest/html/documentation/servlet-userguide.html), which aims to use the Groovy language and its provided modules to simplify Servlet API web development.
@@ -58,20 +69,20 @@ session.counter = session.counter + 1
 
 ## Getting Started
 
-to know how to get started, click on this link. 
+Get ready to get started and running in less than 5 minutes. We provide in our getting started page a step-by-step guide. 
 
 ## Documentation
 
-to read the documentation, click on this link.
+In our documentation page, you'll find all the documentation and tutorials for in-depth knowledge. The javadoc APIs for a particular version of GServlet can be found as well.  
 
 ## Download
 
-to know how to download the artifacts, click on this link.
+if you want to download the artifact without a dependency management tool or want to build it from the source, we cover how to achieve it in our download page.
 
 ## Support
 
-to get a support, click on this link.
+There are numerous ways to get help with GServlet.
 
 ## Contribute
 
-to know how to contribute, click on this link.
+Would you like to contribute to the GServlet project? There are many ways in which you can bring your participation. We provide more information about how to get involved in our contribute page. 
