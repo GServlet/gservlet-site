@@ -37,10 +37,6 @@ dependencies {
 
 ```
     
-## Your First GServlet Project
-
-In this section, we will guide through the steps of creating your first project with the Eclipse IDE. It is highly recommended to install through the Eclipse Marketplace, the Groovy Development Tools (GDT) which adds full-featured IDE support including editors, wizards, content assist, debugging, refactoring and searching to make the development with Groovy more enjoyable. 
-
 ## Your First Groovy Servlet
 
 ```java 
@@ -122,4 +118,4 @@ class ServletRequestListener {
 }
 ```
 
-For more information, please read the complete documentation. 
+For more information about how to set up your project, please read the complete documentation. 
