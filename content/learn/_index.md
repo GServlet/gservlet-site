@@ -7,7 +7,7 @@ pre : "<b>1. </b>"
 
 # Getting Started
 
-To get started with GServlet, you may want to begin by creating your first project. This section shows you how to get up and running quickly. It is highly recommended to consume the GServlet API through a dependency management tool and the artifact can be found in Maven's central repository. it is named _gservlet-api_ and you just need to name a dependency on it in your project.
+To get started with GServlet, you may want to begin by creating your first project. This section shows you how to get up and running quickly. It is highly recommended to consume the GServlet API through a dependency management tool and the artifact can be found in Maven's central repository. it is named _gservlet-api_ and you just need to name a dependency on it in your project. We version GServlet by following [Semantic Versioning](https://semver.org), which is a general template that everyone uses and understands and the current release is 1.0.0.
 
 ## Installation
 
@@ -36,9 +36,90 @@ dependencies {
 }
 
 ```
+    
+## Your First GServlet Project
 
-### Building from source
+In this section, we will guide through the steps of creating your first project with the Eclipse IDE. It is highly recommended to install through the Eclipse Marketplace, the Groovy Development Tools (GDT) which adds full-featured IDE support including editors, wizards, content assist, debugging, refactoring and searching to make the development with Groovy more enjoyable. 
 
-    > git clone git@github.com:gservlet/gservlet-api.git
-    > cd gservlet-api
-    > mvn clean install
+## Your First Groovy Servlet
+
+```java 
+
+import org.gservlet.annotation.Servlet
+
+@Servlet("/customers")
+class CustomerServlet {
+
+    void get() {
+      def customers = []
+      customers << [FirstName : "John", lastName : "Doe"]
+      customers << [FirstName : "Kate", lastName : "Martinez"]
+      customers << [FirstName : "Allisson", lastName : "Becker"]
+      json(customers)
+    }
+
+    void post() {
+      def customer = request.body // get the json request payload as object
+      json(customer)
+    }
+
+    void put() {
+      def customer = request.body // get the json request payload as object
+      json(customer)
+    }
+
+    void delete() {
+      def param = request.param // shortcut to request.getParameter("param")
+      def attribute = request.attribute // shortcut to request.getAttribute("attribute")
+    }
+
+}
+
+```
+
+
+## Your First Groovy Filter
+
+```java 
+
+import org.gservlet.annotation.Filter
+
+@Filter("/*")
+class CorsFilter {
+
+    void filter() {
+      response.addHeader("Access-Control-Allow-Origin", "*")
+      response.addHeader("Access-Control-Allow-Methods","GET, OPTIONS, HEAD, PUT, POST, DELETE")
+      if (request.method == "OPTIONS") {
+        response.status = response.SC_ACCEPTED
+        return
+      }
+      next()
+    }
+
+}
+
+```
+
+
+## Your First Groovy Listener
+
+```java 
+
+import org.gservlet.annotation.RequestListener
+
+@RequestListener
+class ServletRequestListener {
+
+   void init() {
+     println "request initialized"
+   }
+
+   void destroy() {
+     println "request destroyed"
+   }
+
+}
+```
+
+For more information, please read the complete documentation. 
