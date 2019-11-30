@@ -81,8 +81,8 @@ if you want to download the artifact without a dependency management tool or wan
 
 ## Support
 
-There are numerous ways to get help with GServlet.
+There are numerous ways to get help with GServlet. Find how in our support page.
 
 ## Contribute
 
-Would you like to contribute to the GServlet project? There are many ways in which you can bring your participation. We provide more information about how to get involved in our contribute page. 
+Would you like to contribute to the GServlet project? There are many ways in which you can bring your participation. We provide more information about how to get involved in our contribute page. The project is an Open Source software released under the [Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0.html) and can be found on Github.
