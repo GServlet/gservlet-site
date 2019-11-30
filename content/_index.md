@@ -16,14 +16,14 @@ title: "GServlet API"
 
 ## Table of Contents
 
-* [Introduction](#introduction)
-* [Main Features](#main-features)
-* [Requirements](#requirements)
-* [Getting Started](#getting-started)
-* [Documentation](#documentation)
-* [Download](#download)
-* [Support](#support)
-* [Contribute](#contribute)
+1. [Introduction](#introduction)
+1. [Main Features](#main-features)
+1. [Requirements](#requirements)
+1. [Getting Started](#getting-started)
+1. [Documentation](#documentation)
+1. [Download](#download)
+1. [Support](#support)
+1. [Contribute](#contribute)
 
 ## Introduction
 
