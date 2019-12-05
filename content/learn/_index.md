@@ -7,7 +7,8 @@ pre : "<b>1. </b>"
 
 # Getting Started
 
-To get started with GServlet, you may want to begin by creating your first project. This section shows you how to get up and running quickly. It is highly recommended to consume the GServlet API through a dependency management tool and the artifact can be found in Maven's central repository. it is named _gservlet-api_ and you just need to name a dependency on it in your project. We version GServlet by following [Semantic Versioning](https://semver.org), which is a general template that everyone uses and understands and the current release is 1.0.0.
+To get started with GServlet, you may want to begin by creating your first project. This section shows you how to get up and running quickly. It is highly recommended to consume the API through a dependency management tool and the artifact can be found in Maven's central repository. it is named _gservlet-api_ and you just need to name a dependency on it in your project. We version the project by following [Semantic Versioning](https://semver.org), which is a general template that everyone uses and understands and the current release is 1.0.0.
+If you are a prior experience with the Servlet API, creating your first web application with GServlet will feel like a breeze.  
 
 ## Installation
 
@@ -36,8 +37,25 @@ dependencies {
 }
 
 ```
+
+## Five Steps to Running Your First Groovy Servlet
+
+Once your Java web server is installed and configured, you can put it to work. Six steps take you from writing your first Groovy servlet to running it. These steps are as follows:
+
+* Create a directory structure for your application.
+
+* Create the scripts folder inside your web content directory.
+
+* Write the servlet source code. 
+
+* Run your Java web server.
+
+* Call your servlet from a web browser.
+
+
+You can find below some examples that you can try out. 
     
-## Your First Groovy Servlet
+#### CustomerServlet.groovy
 
 ```java 
 
@@ -73,8 +91,7 @@ class CustomerServlet {
 
 ```
 
-
-## Your First Groovy Filter
+#### CorsFilter.groovy
 
 ```java 
 
@@ -97,8 +114,7 @@ class CorsFilter {
 
 ```
 
-
-## Your First Groovy Listener
+#### ServletRequestListener.groovy
 
 ```java 
 
@@ -118,4 +134,4 @@ class ServletRequestListener {
 }
 ```
 
-For more information about how to set up your project, please read the complete documentation. 
+For a deep insight, please read the complete [documentation](/documentation). 

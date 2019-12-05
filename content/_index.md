@@ -2,7 +2,7 @@
 title: "GServlet API"
 ---
 
-# GServlet
+# GServlet API
 
 [![Build Status @ Travis](https://api.travis-ci.com/GServlet/gservlet-api.png?branch=master)](https://travis-ci.com/GServlet/gservlet-api)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=GServlet_gservlet-api&metric=alert_status)](https://sonarcloud.io/dashboard?id=GServlet_gservlet-api)
@@ -69,20 +69,20 @@ session.counter = session.counter + 1
 
 ## Getting Started
 
-Get ready to get started and running in less than 5 minutes. We provide in our getting started page a step-by-step guide. 
+Get ready to get started and running in less than 5 minutes. We provide in our [getting started](/learn) page a step-by-step guide. 
 
 ## Documentation
 
-In our documentation page, you'll find all the documentation and tutorials for in-depth knowledge of this project. The javadoc APIs for a particular version can be found as well.  
+In our [documentation](/documentation) page, you'll find all the documentation for in-depth knowledge of this project. The javadocs for a particular version can be found as well.  
 
 ## Download
 
-If you want to download the artifact without a dependency management tool or want to build it from the source, we cover how to achieve it in our download page.
+If you want to download the artifact without a dependency management tool or want to build it from the source, we cover how to achieve it in our [download](/download) page.
 
 ## Support
 
-There are numerous ways to get help with GServlet. Find out how in our support page.
+There are numerous ways to get help with GServlet. Find out how in our [support](/support) page.
 
 ## Contribute
 
-Would you like to contribute to the GServlet project? There are many ways in which you can bring your participation. We provide more information about how to get involved in our contribute page. The project is an Open Source software released under the [Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0.html) and it can be found on [GitHub](https://github.com/GServlet/gservlet-api).
+Would you like to contribute to the project? There are many ways in which you can bring your participation. We provide more information about how to get involved in our [contribute](/contribute) page. GServlet is an Open Source software released under the [Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0.html) and it can be found on [GitHub](https://github.com/GServlet/gservlet-api).

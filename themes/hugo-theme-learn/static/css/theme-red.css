@@ -39,6 +39,10 @@ h2, h3, h4, h5 {
     color: var(--MAIN-TITLES-TEXT-color) !important;
 }
 
+h2 {
+	color : #1da1f2!important;
+}
+
 a {
     color: var(--MAIN-LINK-color);
 }
@@ -68,6 +72,7 @@ a:hover {
 }
 #sidebar {
 	background-color: #e65251;
+	background: linear-gradient(90deg, rgb(202, 108, 72) 0%, #e65251 35%, rgb(218, 70, 91) 100%);
 }
 #sidebar #header-wrapper {
     background: var(--MENU-HEADER-BG-color);
@@ -97,7 +102,7 @@ a:hover {
 }
 
 #sidebar ul li.active > a {
-    background: #f6f6f6;
+    background: #fdfdfd;
     color: var(--MENU-SECTION-ACTIVE-CATEGORY-color) !important;
 }
 
