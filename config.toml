@@ -1,4 +1,4 @@
-baseURL = "http://gservlet.netlify.com/"
+baseURL = "https://gservlet.org"
 languageCode = "en-us"
 title = "GServlet"
 theme = "hugo-theme-learn"
