@@ -102,7 +102,7 @@ a:hover {
 }
 
 #sidebar ul li.active > a {
-    background: #fdfdfd;
+    background: #fff;
     color: var(--MENU-SECTION-ACTIVE-CATEGORY-color) !important;
 }
 
