@@ -1,2 +1,11 @@
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
 {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+<meta property="og:type" content="website">
+<meta name="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}"> 
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@gservlet">
+<meta name="twitter:domain" property="og:site_name" content="gservlet.org">
+<meta name="twitter:url" property="og:url" content="https://gservlet.org">
+<meta name="twitter:title" property="og:title" content="GServlet API"> 
+<meta name="twitter:description" property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}"> 
+<meta name="twitter:image" property="og:image" content="https://gservlet.org/images/banner.png">
