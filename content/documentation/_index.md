@@ -19,9 +19,9 @@ The documentation is split into two categories for each release:
 
 ## Reference Guide
 
-* [1.0.0](/docs/1.0.0) 
+* [GServlet 1.0.0](/docs/1.0.0) 
 
 
 ## Javadocs
 
-* [1.0.0](/javadocs/1.0.0) 
+* [GServlet 1.0.0](/javadocs/1.0.0) 
