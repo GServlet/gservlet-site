@@ -18,7 +18,7 @@ There are many ways in which you can get involved to help us make this project e
 
 You can search for existing issues in order to fix them or to raise a new one. We use the [GitHub's issue tracker](https://github.com/GServlet/gservlet-api/issues) to keep a track of all our current issues.
 
-## Improving the documentation
+## Improving the Documentation
 
 The documentation comes in various forms:
 
@@ -28,7 +28,7 @@ The documentation comes in various forms:
 
 You can find all the materials in our code repositories on [Github](https://github.com/GServlet).
 
-## Contributing code
+## Contributing Code
 
 If you have a great idea and want to contribute it to our codebase. You can follow these instructions on your journey to become a GServlet committer.
 
