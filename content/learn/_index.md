@@ -8,7 +8,7 @@ pre : "<b>1. </b>"
 # Getting Started
 
 To get started with GServlet, you may want to begin by creating your first project. This section shows you how to get up and running quickly. It is highly recommended to consume the API through a dependency management tool and the artifact can be found in Maven's central repository. it is named _gservlet-api_ and you just need to name a dependency on it in your project. We version the project by following [Semantic Versioning](https://semver.org), which is a general template that everyone uses and understands and the current release is 1.0.0.
-If you are a prior experience with the Servlet API, creating your first web application with GServlet will feel like a breeze.  
+If you have a prior experience with the Servlet API, creating your first web application with GServlet will feel like a breeze.  
 
 ## Installation
 
