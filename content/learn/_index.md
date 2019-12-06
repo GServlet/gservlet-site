@@ -17,39 +17,31 @@ If you are a prior experience with the Servlet API, creating your first web appl
 #### pom.xml
 
 ```xml
-
 <dependency>
 	<groupId>org.gservlet</groupId>
 	<artifactId>gservlet-api</artifactId>
 	<version>1.0.0</version>
 </dependency>
-
 ```
 
 ### From Gradle
 
 #### build.gradle
 
-```java
-
+```
 dependencies {
     implementation 'org.gservlet:gservlet-api:1.0.0'
 }
-
 ```
 
 ## Five Steps to Running Your First Groovy Servlet
 
 Once your Java web server is installed and configured, you can put it to work. Six steps take you from writing your first Groovy servlet to running it. These steps are as follows:
 
-* Create a directory structure for your application.
-
+1. Create a directory structure for your application.
 * Create the scripts folder inside your web content directory.
-
 * Write the servlet source code. 
-
 * Run your Java web server.
-
 * Call your servlet from a web browser.
 
 
@@ -57,8 +49,7 @@ You can find below some examples that you can try out.
     
 #### CustomerServlet.groovy
 
-```java 
-
+``` java
 import org.gservlet.annotation.Servlet
 
 @Servlet("/customers")
@@ -88,13 +79,11 @@ class CustomerServlet {
     }
 
 }
-
 ```
 
 #### CorsFilter.groovy
 
-```java 
-
+``` java
 import org.gservlet.annotation.Filter
 
 @Filter("/*")
@@ -111,13 +100,11 @@ class CorsFilter {
     }
 
 }
-
 ```
 
 #### ServletRequestListener.groovy
 
-```java 
-
+``` java 
 import org.gservlet.annotation.RequestListener
 
 @RequestListener

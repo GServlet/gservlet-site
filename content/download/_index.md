@@ -7,10 +7,64 @@ pre : "<b>3. </b>"
 
 # Download
 
+The recommended way of getting GServlet is to declare a dependency on "gservlet-api" library using your favorite build tools but we provide other ways.
 
-### Building from source
+1. Download a source or binary distribution.
+* Refer to the appropriate jar from your build tools.
+* Donwload the latest source code in the GitHub repository.
+
+
+## Distributions
+
+Distributions are bundles of source or class files needed to build or use GServlet. We also provide binary, downloadable documentation and SDK (combines src, binary and docs) convenience artifacts.
+
+### GServlet 1.0.0
+
+* [binary](/)
+* [source](/)
+* [documentation](/)
+* [SDK bundle](/)
+
+## From your build tools
+
+#### Maven
+
+```xml
+<dependency>
+	<groupId>org.gservlet</groupId>
+	<artifactId>gservlet-api</artifactId>
+	<version>1.0.0</version>
+</dependency>
+```
+
+#### Gradle
+
+```
+dependencies {
+    implementation 'org.gservlet:gservlet-api:1.0.0'
+}
+
+```
+
+
+## Building from source
 
     > git clone git@github.com:gservlet/gservlet-api.git
     > cd gservlet-api
     > mvn clean install
+
+
+### Documentation
+
+The documentation generated with Maven is based on [Asciidoctor](http://asciidoctor.org/). By default only the HTML output is enabled.
+
+    > mvn clean install -Pdocumentation
+
+The built documentation can then be found in the following location:
+  
+    > ./target/generated-docs
+    
+On the other hand, the javadocs can be found in the folder:
+
+    > ./target/site/apidocs    
 

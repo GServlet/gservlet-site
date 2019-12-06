@@ -34,7 +34,6 @@ Compared to Java Servlets, coding in Groovy can be much simpler. It has a couple
 #### Groovlet
 
 ```java
-
 if (!session) {
     session = request.getSession(true)
 }
@@ -50,7 +49,6 @@ html.html { // html is implicitly bound to new MarkupBuilder(out)
   }
 }
 session.counter = session.counter + 1
-
 ```
 
 ## Main Features
