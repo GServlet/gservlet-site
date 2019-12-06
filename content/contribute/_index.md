@@ -26,7 +26,7 @@ The documentation comes in various forms:
 * The Javadocs APIs documenting the classes of the code base
 * This website
 
-All the above is stored in our code repositories on [Github](https://github.com/GServlet).
+You can find all the materials in our code repositories on [Github](https://github.com/GServlet).
 
 ## Contributing code
 
@@ -36,7 +36,7 @@ Fork the [project](https://github.com/GServlet/gservlet-api) and create a local 
 
 ### Create a pull request
 
-* test your code
+* write and test your code
 * commit your changes in your local branch
 * push your changes to your remote branch on Github
 * send us a pull request 
