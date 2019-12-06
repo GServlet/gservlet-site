@@ -10,13 +10,13 @@ pre : "<b>5. </b>"
 There are many ways in which you can get involved to help us make this project even better. We really appreciate and welcome contributions and you can help us by:
 
 * Reporting or fixing issues
-* Documenting various aspects of the API
+* Improving the documentation
+* Contributing code
 * Covering the code base with more tests
-* Contributing new features
 
-## Reporting issues
+## Reporting or fixing issues
 
-You can search for existing issues, raise a new one or fix them. We use [GitHub's issue tracker](https://github.com/GServlet/gservlet-api/issues) to keep a track of all our issues.
+You can search for existing issues in order to fix them or to raise a new one. We use the [GitHub's issue tracker](https://github.com/GServlet/gservlet-api/issues) to keep a track of all our current issues.
 
 ## Improving the documentation
 
@@ -30,7 +30,16 @@ All the above is stored in our code repositories on [Github](https://github.com/
 
 ## Contributing code
 
-If you know the area you want to contribute to, this is great, but if you are looking for some first contributions, we try to maintain a list of tickets of possible easy contributions that could get you started on your journey to become a committer. 
+If you have a great idea and want to contribute it to our codebase. You can follow these instructions on your journey to become a GServlet committer.
+
+Fork the [project](https://github.com/GServlet/gservlet-api) and create a local clone.
+
+### Create a pull request
+
+* test your code
+* commit your changes in your local branch
+* push your changes to your remote branch on Github
+* send us a pull request 
 
 ## Continuous Integration
 As a continuous integration platform, [Travis CI](https://travis-ci.com/GServlet/gservlet-api) supports our development process by automatically building and testing code changes, providing immediate feedback on the success of the change.
