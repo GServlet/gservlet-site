@@ -451,10 +451,11 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     font-size: 87%;
     background : #d43e3d;
 }
-#body-inner ul {
+#body-inner ul, #body-inner ol {
 	background: #fefff8;
     padding-top: 5px;
     padding-bottom: 5px;
+    font-family: "Work Sans","Helvetica", "Tahoma", "Geneva", sans-serif;
 }
 body {
     font-family: "Arial", "Work Sans", "Helvetica", "Tahoma", "Geneva", sans-serif;
