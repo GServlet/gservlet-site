@@ -9,7 +9,8 @@ pre : "<b>4. </b>"
 
 There are numerous ways to get help with GServlet:
 
-* ask a question on Stack Overflow
-* find known issues (or create new ones) in our bug tracker
+* Ask a question on Stack Overflow
+* Find known issues (or create new ones) in our issue tracker
 * Share your experience with others
+* Write articles and tutorials
 

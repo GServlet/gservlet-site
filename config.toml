@@ -2,6 +2,13 @@ baseURL = "https://gservlet.org"
 languageCode = "en-us"
 title = "GServlet"
 theme = "hugo-theme-learn"
+
 [params]
+  editURL = "https://github.com/GServlet/gservlet-site/tree/develop/content/"
+  description = "GServlet is an open source project which aims to use the Groovy language and its provided modules to simplify Servlet API web development."
+  author = "Mamadou Lamine Ba"
   themeVariant = "red"
   disableSearch = true
+  
+[outputs]
+home = [ "HTML", "RSS", "JSON"]

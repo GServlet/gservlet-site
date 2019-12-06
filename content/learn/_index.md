@@ -12,9 +12,7 @@ If you are a prior experience with the Servlet API, creating your first web appl
 
 ## Installation
 
-### From Maven
-
-#### pom.xml
+### Maven
 
 ```xml
 <dependency>
@@ -24,9 +22,7 @@ If you are a prior experience with the Servlet API, creating your first web appl
 </dependency>
 ```
 
-### From Gradle
-
-#### build.gradle
+### Gradle
 
 ```
 dependencies {

@@ -11,7 +11,7 @@ The recommended way of getting GServlet is to declare a dependency on "gservlet-
 
 1. Download a source or binary distribution.
 * Refer to the appropriate jar from your build tools.
-* Donwload the latest source code in the GitHub repository.
+* Download the latest source code in the GitHub repository.
 
 
 ## Distributions

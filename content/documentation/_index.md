@@ -14,10 +14,10 @@ The documentation  is designed for beginners who want to get started with a GSer
 
 The documentation is split into two categories for each release:
 
-* The _Main guide_ for those wanting to know how to develop applications with the API
-* The _Javadocs_ for those wanting to grasp the design of the API
+* The _Reference guide_ for those who want to know how to develop applications with the API
+* The _Javadocs_ for those who want to grasp the design of the API
 
-## Main Guide
+## Reference Guide
 
 * [1.0.0](/docs/1.0.0) 
 
