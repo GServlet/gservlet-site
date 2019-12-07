@@ -7,7 +7,7 @@ pre : "<b>3. </b>"
 
 # Download
 
-The recommended way of getting GServlet is to declare a dependency on "gservlet-api" library using your favorite build tools but we provide other ways.
+The recommended way of getting GServlet is to declare a dependency on the _gservlet-api_ library using your favorite build tools but we provide other ways.
 
 1. Download a source or binary distribution.
 * Refer to the appropriate jar from your build tools.
