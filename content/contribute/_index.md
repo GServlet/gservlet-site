@@ -38,7 +38,7 @@ Fork the [project](https://github.com/GServlet/gservlet-api) and create a local 
 
 * write and test your code
 * commit your changes in your local branch
-* push your changes to your remote branch on Github
+* push your changes to your remote branch on GitHub
 * send us a pull request 
 
 ### Continuous Integration
