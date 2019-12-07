@@ -45,10 +45,14 @@ h2 {
 
 h2:after, h3:after {
     content: "";
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: 1px solid #61aeee;
     display: block;
     width: auto;
     margin-top: 9px;
+}
+
+h3:after {
+    border-bottom: 1px solid #ccc;
 }
 
 a {
