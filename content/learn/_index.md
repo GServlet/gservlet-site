@@ -34,7 +34,7 @@ dependencies {
 }
 ```
 
-## Five Steps to Running Your First Groovy Servlet
+## Running Your First Groovy Servlet
 
 Once your Java web server is installed and configured, you can put it to work. Five steps take you from writing your first Groovy servlet to running it. These steps are as follows:
 

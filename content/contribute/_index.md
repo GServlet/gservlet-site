@@ -41,12 +41,12 @@ Fork the [project](https://github.com/GServlet/gservlet-api) and create a local 
 * push your changes to your remote branch on Github
 * send us a pull request 
 
-## Continuous Integration
+### Continuous Integration
 As a continuous integration platform, [Travis CI](https://travis-ci.com/GServlet/gservlet-api) supports our development process by automatically building and testing code changes, providing immediate feedback on success or failure.
 
-## Continuous Code Quality
+### Continuous Code Quality
 To eliminate bugs and vulnerabilities, the sources files are tested with [SonarCloud](https://sonarcloud.io/dashboard?id=GServlet_gservlet-api).
 
-## Tests Coverage
+### Tests Coverage
 We use [Coveralls](https://coveralls.io/github/GServlet/gservlet-api) to track our code coverage over time, and ensure that all our new code is fully covered.
 

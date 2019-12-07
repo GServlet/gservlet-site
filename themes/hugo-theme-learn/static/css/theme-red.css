@@ -43,7 +43,7 @@ h2 {
 	color : #1da1f2!important;
 }
 
-h2:after {
+h2:after, h3:after {
     content: "";
     border-bottom: 1px solid #e6e6e6;
     display: block;
