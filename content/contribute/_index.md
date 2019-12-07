@@ -30,7 +30,7 @@ You can find all the materials in our code repositories on [Github](https://gith
 
 ## Contributing Code
 
-If you have a great idea and want to contribute it to our codebase. You can follow these instructions on your journey to become a GServlet committer.
+If you have a great idea and want to contribute it to our code base. You can follow these instructions on your journey to become a GServlet committer.
 
 Fork the [project](https://github.com/GServlet/gservlet-api) and create a local clone.
 
@@ -42,11 +42,11 @@ Fork the [project](https://github.com/GServlet/gservlet-api) and create a local 
 * send us a pull request 
 
 ### Continuous Integration
-As a continuous integration platform, [Travis CI](https://travis-ci.com/GServlet/gservlet-api) supports our development process by automatically building and testing code changes, providing immediate feedback on success or failure.
+As a continuous integration platform, [Travis CI](https://travis-ci.com/GServlet/gservlet-api) supports our development process by automatically building and testing code changes, providing immediate feedback upon success or failure. Whenever a pull request is opened, a build will be triggered.
 
 ### Continuous Code Quality
-To eliminate bugs and vulnerabilities, the sources files are tested with [SonarCloud](https://sonarcloud.io/dashboard?id=GServlet_gservlet-api).
+To eliminate bugs and vulnerabilities, the sources files are tested with [SonarCloud](https://sonarcloud.io/dashboard?id=GServlet_gservlet-api) which is a code quality and security service.
 
 ### Tests Coverage
-We use [Coveralls](https://coveralls.io/github/GServlet/gservlet-api) to track our code coverage over time, and ensure that all our new code is fully covered.
+We use [Coveralls](https://coveralls.io/github/GServlet/gservlet-api) to track our code coverage over time, and ensure that all our new code is fully covered. You can help us covering the code base with more tests
 
