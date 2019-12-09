@@ -52,7 +52,7 @@ session.counter = session.counter + 1
 
 ## Main Features
 
-* Servlet 3.0 Support
+* Servlet 3+ Support
 * Groovy Scripting
 * Live Development
 * Hot Reloading

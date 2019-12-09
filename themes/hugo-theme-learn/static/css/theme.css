@@ -1064,6 +1064,29 @@ td {
         cursor: pointer;
     }
 }
+
+@media only all 
+  and (min-width: 320px) 
+  and (max-width: 480px) {
+
+   h1 {
+   	  line-height : 1.1em;
+   }
+   
+   p, #chapter p {
+    font-size: 1rem;
+   }
+   
+   pre code {
+    font-size: 13px;
+   }
+   
+   ul, ol {
+    font-size: 14px !important;
+   }
+	
+}
+
 .copy-to-clipboard {
     background-image: url(../images/clippy.svg);
     background-position: 50% 50%;
