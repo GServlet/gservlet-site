@@ -7,23 +7,8 @@ pre : "<b>3. </b>"
 
 # Download
 
-The recommended way of getting GServlet is to declare a dependency on the _gservlet-api_ library using your favorite build tools but we provide other ways.
+The recommended way of getting GServlet is to declare a dependency on the _gservlet-api_ library using your favorite build tools but you can build it also from the latest source code in the GitHub [repository](https://github.com/GServlet/gservlet-api).
 
-1. Download a source or binary distribution.
-* Refer to the appropriate jar from your build tools.
-* Download the latest source code in the GitHub repository.
-
-
-## Distributions
-
-Distributions are bundles of source or class files needed to build or use GServlet. We also provide binary, downloadable documentation and SDK (combines src, binary and docs) convenience artifacts.
-
-### GServlet 1.0.0
-
-* [binary](/)
-* [source](/)
-* [documentation](/)
-* [SDK bundle](/)
 
 ## From your build tools
 

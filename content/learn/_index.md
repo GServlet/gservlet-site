@@ -45,7 +45,7 @@ Once your Java web server is installed and configured, you can put it to work. F
 * Call your servlet from a web browser
 
 
-You can find below some examples that you can try out. 
+You can find below some examples that you can try out and for Live Development, set the **GSERVLET_RELOAD** environment variable to true in your IDE. 
     
 #### CustomerServlet.groovy
 

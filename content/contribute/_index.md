@@ -14,7 +14,7 @@ There are many ways in which you can get involved to help us make this project e
 * Contributing code
 * Covering the code base with more tests
 
-## Reporting or fixing issues
+## Reporting or Fixing Issues
 
 You can search for existing issues in order to fix them or to raise a new one. We use the [GitHub's issue tracker](https://github.com/GServlet/gservlet-api/issues) to keep a track of all our current issues.
 
@@ -47,6 +47,6 @@ As a continuous integration platform, [Travis CI](https://travis-ci.com/GServlet
 ### Continuous Code Quality
 To eliminate bugs and vulnerabilities, the sources files are tested with [SonarCloud](https://sonarcloud.io/dashboard?id=GServlet_gservlet-api) which is a code quality and security service.
 
-### Tests Coverage
+## Covering the Code
 We use [Coveralls](https://coveralls.io/github/GServlet/gservlet-api) to track our code coverage over time, and ensure that all our new code is fully covered. You can help us covering the code base with more tests
 

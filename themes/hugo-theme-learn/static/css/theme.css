@@ -355,7 +355,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     border: 1px solid #ccc;
 }
 #body .padding {
-    padding: 3rem 6rem;
+    padding: 1rem 6rem;
 }
 @media only all and (max-width: 59.938em) {
     #body .padding {
@@ -423,7 +423,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 #chapter {
     display: block;
     height: 100%;
-    padding: 2rem 0;
+    padding: 1rem 0;
 }
 #chapter #body-inner {
     padding-bottom: 3rem;

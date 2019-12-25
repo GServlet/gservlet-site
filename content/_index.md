@@ -52,7 +52,7 @@ session.counter = session.counter + 1
 
 ## Main Features
 
-* Servlet 3+ Support
+* Servlet 3.1+ Support
 * Groovy Scripting
 * Live Development
 * Hot Reloading
@@ -63,7 +63,7 @@ session.counter = session.counter + 1
 
 * Java 7+
 * Java IDE (Eclipse, IntelliJ IDEA, NetBeans..)
-* Java EE 6+ compliant WebServer (Tomcat, Wildfly, Glassfish, Payara..)
+* Java EE 7+ compliant WebServer (Tomcat, Wildfly, Glassfish, Payara..)
 
 ## Getting Started
 
