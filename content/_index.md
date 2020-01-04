@@ -13,6 +13,7 @@ title: "GServlet API"
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=GServlet_gservlet-api&metric=security_rating)](https://sonarcloud.io/dashboard?id=GServlet_gservlet-api)
 [![Coverage Status](https://coveralls.io/repos/github/GServlet/gservlet-api/badge.png?branch=master)](https://coveralls.io/github/GServlet/gservlet-api?branch=master)
 [![follow on Twitter](https://img.shields.io/twitter/follow/gservlet?style=social)](https://twitter.com/intent/follow?screen_name=gservlet)
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
