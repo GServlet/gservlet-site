@@ -41,7 +41,7 @@ dependencies {
 
 ### Documentation
 
-The documentation generated with Maven is based on [Asciidoctor](http://asciidoctor.org/). By default only the HTML output is enabled.
+The documentation which is generated with Maven is based on [Asciidoctor](http://asciidoctor.org/). Only the HTML output is enabled.
 
     > mvn clean install -Pdocumentation
 
