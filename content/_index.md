@@ -55,7 +55,6 @@ session.counter = session.counter + 1
 
 * Servlet 3.1+ Support
 * Groovy Scripting
-* Live Development
 * Hot Reloading
 * JSON and XML Support
 * RDMS Support

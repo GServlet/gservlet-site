@@ -3,8 +3,6 @@
 Overall document style
 */
 
-@import url('resources/fonts/dejavu.css');
-
 body {
     background-color:#ffffff;
     color:#353833;
@@ -114,15 +112,17 @@ Document title and Copyright styles
 Navigation bar styles
 */
 .bar {
-    background-color:#4D7A97;
+    background-color: #e65251;
+    background: linear-gradient(90deg, rgb(202, 108, 72) 0%, #e65251 35%, rgb(218, 70, 91) 100%);
     color:#FFFFFF;
     padding:.8em .5em .4em .8em;
     height:auto;/*height:1.8em;*/
-    font-size:11px;
+    font-size:13px;
     margin:0;
 }
 .topNav {
-    background-color:#4D7A97;
+    background-color: #e65251;
+    background: linear-gradient(90deg, rgb(202, 108, 72) 0%, #e65251 35%, rgb(218, 70, 91) 100%);
     color:#FFFFFF;
     float:left;
     padding:0;
@@ -135,7 +135,8 @@ Navigation bar styles
 }
 .bottomNav {
     margin-top:10px;
-    background-color:#4D7A97;
+    background-color: #e65251;
+    background: linear-gradient(90deg, rgb(202, 108, 72) 0%, #e65251 35%, rgb(218, 70, 91) 100%);
     color:#FFFFFF;
     float:left;
     padding:0;
@@ -147,7 +148,7 @@ Navigation bar styles
     font-size:12px;
 }
 .subNav {
-    background-color:#dee3e9;
+    background-color:#fffacd;
     float:left;
     width:100%;
     overflow:hidden;
@@ -181,11 +182,11 @@ ul.subNavList li{
 }
 .topNav a:hover, .bottomNav a:hover {
     text-decoration:none;
-    color:#bb7a2a;
+    color:#000000;
     text-transform:uppercase;
 }
 .navBarCell1Rev {
-    background-color:#F8981D;
+    background-color:#f7db77;
     color:#253441;
     margin: auto 5px;
 }
@@ -400,7 +401,7 @@ Table styles
     padding-bottom:7px;
     display:inline-block;
     float:left;
-    background-color:#F8981D;
+    background-color:#f7db77;
     border: none;
     height:16px;
 }
@@ -412,7 +413,7 @@ Table styles
     margin-right:3px;
     display:inline-block;
     float:left;
-    background-color:#F8981D;
+    background-color:#f7db77;
     height:16px;
 }
 .memberSummary caption span.tableTab span {
@@ -423,7 +424,7 @@ Table styles
     margin-right:3px;
     display:inline-block;
     float:left;
-    background-color:#4D7A97;
+    background-color:#736c51;
     height:16px;
 }
 .memberSummary caption span.tableTab, .memberSummary caption span.activeTableTab {
@@ -440,7 +441,7 @@ Table styles
     width:5px;
     position:relative;
     float:left;
-    background-color:#F8981D;
+    background-color:#dee3e9;
 }
 .memberSummary .activeTableTab .tabEnd {
     display:none;
@@ -448,14 +449,14 @@ Table styles
     margin-right:3px;
     position:relative; 
     float:left;
-    background-color:#F8981D;
+    background-color:#f7db77;
 }
 .memberSummary .tableTab .tabEnd {
     display:none;
     width:5px;
     margin-right:3px;
     position:relative;
-    background-color:#4D7A97;
+    background-color:#736c51;
     float:left;
 
 }
@@ -571,4 +572,7 @@ div.block div.block span.interfaceName {
 
 div.contentContainer ul.blockList li.blockList h2{
     padding-bottom:0px;
+}
+img {
+	max-width: 100%;
 }
