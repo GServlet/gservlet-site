@@ -57,7 +57,7 @@ session.counter = session.counter + 1
 * Groovy Scripting
 * Hot Reloading
 * JSON and XML Support
-* RDMS Support
+* JDBC Support
 
 ## Requirements
 
