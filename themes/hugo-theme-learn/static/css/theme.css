@@ -1079,11 +1079,11 @@ td {
    }
 
    h2 {
-        font-size: 1.9em !important;
+        font-size: 1.6em !important;
    }
 
-   h2 {
-        font-size: 1.6em !important;
+   h3 {
+        font-size: 1.4em !important;
    }
    
    p, #chapter p {
