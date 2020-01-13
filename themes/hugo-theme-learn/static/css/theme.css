@@ -1081,6 +1081,10 @@ td {
    h2 {
         font-size: 1.9em !important;
    }
+
+   h2 {
+        font-size: 1.6em !important;
+   }
    
    p, #chapter p {
     font-size: 0.9em;
