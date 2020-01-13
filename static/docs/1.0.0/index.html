@@ -418,7 +418,7 @@ ul, ol, dl {
 }
 
 ul, ol {
-	margin-left: 1.5em
+	margin-left: 2.1em;
 }
 
 ul li ul, ul li ol {
@@ -933,6 +933,9 @@ p a>code:hover {
 
 	p, blockquote, dt, td.content, span.alt {
     	font-size: 0.95rem !important;
+	}
+	ol>li p, ul>li p, ul dd, ol dd, .olist .olist, .ulist .ulist, .ulist .olist, .olist .ulist {
+    	font-size: 0.92em!important;
 	}
 }
 
@@ -1499,10 +1502,14 @@ td>div.verse {
 	white-space: pre
 }
 
-ol {
-	margin-left: 1.75em
+ul, ol {
+	margin-left: 2.1em;
 }
 
+.ulist, .olist {
+	background : #fefff8;
+	padding : 5px;
+}
 ul li ol {
 	margin-left: 1.5em
 }
@@ -1517,7 +1524,7 @@ dl dd:last-child, dl dd:last-child>:last-child {
 
 ol>li p, ul>li p, ul dd, ol dd, .olist .olist, .ulist .ulist, .ulist .olist,
 	.olist .ulist {
-	margin-bottom: .625em
+	margin-bottom: .625em;
 }
 
 ul.checklist, ul.none, ol.none, ul.no-bullet, ol.no-bullet, ol.unnumbered,
@@ -2294,8 +2301,7 @@ dependencies {
 <ol class="arabic">
 <li>
 <p>Create a dynamic web project</p>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>Create the scripts folder inside your web content directory</p>
 </li>
@@ -2307,9 +2313,6 @@ dependencies {
 </li>
 <li>
 <p>Call your servlet from a web browser</p>
-</li>
-</ul>
-</div>
 </li>
 </ol>
 </div>
