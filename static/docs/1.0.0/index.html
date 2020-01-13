@@ -2777,17 +2777,14 @@ public class MyServletContextAttributeListener implements ServletContextAttribut
 @ContextAttributeListener
 public class MyServletContextAttributeListener {
 
-    @Override
     public void attributeAdded() {
         println "attr $name added with value $value"
     }
 
-    @Override
     public void attributeRemoved() {
         println "attr $name removed with value $value"
     }
 
-    @Override
     public void attributeReplaced() {
         println "attr $name replaced with value $value"
     }
@@ -2846,10 +2843,12 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class MyServletRequestListener implements ServletRequestListener {
 
+	 @Override
     public void requestInitialized(ServletRequestEvent event) {
         System.out.println("request initialized");
     }
 
+    @Override
     public void requestDestroyed(ServletRequestEvent event) {
         System.out.println("request destroyed");
     }
@@ -3053,7 +3052,6 @@ public class MyHttpSessionListener {
 		println "session created"
 	}
 
-	@Override
 	public void sessionDestroyed() {
 		println "session destroyed"
 	}
@@ -3370,7 +3368,6 @@ public class MyHttpSessionIdListener implements HttpSessionIdListener {
 @WebListener
 public class MyHttpSessionIdListener {
 
-    @Override
     public void sessionIdChanged() {
         println "the session id was $oldSessionId"
     }
@@ -3473,7 +3470,7 @@ public class MyHttpSessionIdListener {
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2020-01-13 15:04:00 WET
+Last updated 2020-01-13 15:42:52 WET
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
