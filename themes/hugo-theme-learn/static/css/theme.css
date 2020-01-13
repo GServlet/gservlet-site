@@ -1085,9 +1085,13 @@ td {
    p, #chapter p {
     font-size: 0.9em;
    }
+
+   pre {
+    padding: 0.1rem;
+   }
    
    pre code {
-    font-size: 11px;
+    font-size: 10.5px;
    }
    
    ul, ol {
