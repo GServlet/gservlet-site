@@ -1070,19 +1070,28 @@ td {
   and (max-width: 480px) {
 
    h1 {
-   	  line-height : 1.1em;
+         line-height : 1.1em;
+         font-size: 2.3em;
+   }
+
+   body #chapter h1 {
+    padding-bottom: 5px;
+   }
+
+   h2 {
+        font-size: 1.9em !important;
    }
    
    p, #chapter p {
-    font-size: 1rem;
+    font-size: 0.9em;
    }
    
    pre code {
-    font-size: 13px;
+    font-size: 11px;
    }
    
    ul, ol {
-    font-size: 14px !important;
+    font-size: 0.9em !important;
    }
 	
 }

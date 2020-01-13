@@ -53,3 +53,4 @@ On the other hand, the javadocs can be found in the folder:
 
     > ./target/site/apidocs    
 
+We use [UMLGraph](https://www.spinellis.gr/umlgraph/index.html) to generate UML class diagrams which are embedded in the javadocs, therefore you must have [Graphviz](https://www.graphviz.org/) installed in your computer and the **GraphvizX.XX\bin** directory added to your system PATH.

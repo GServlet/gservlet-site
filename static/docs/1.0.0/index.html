@@ -341,7 +341,7 @@ p aside {
 }
 
 h1, h2, h3, #toctitle, .sidebarblock>.content>.title, h4, h5, h6 {
-	font-family: "Open Sans", "DejaVu Sans", sans-serif;
+	font-family: "Tahoma","Open Sans", "DejaVu Sans", sans-serif;
 	font-weight: 300;
 	font-style: normal;
 	color: #e65251;
@@ -497,10 +497,11 @@ blockquote, blockquote p {
 		line-height: 1.2
 	}
 	h1 {
-		font-size: 2.75em
+		font-size: 2.75em;
+		font-weight: 600;
 	}
 	h2 {
-		font-size: 2.3125em
+		font-size: 1.7em
 	}
 	h3, #toctitle, .sidebarblock>.content>.title {
 		font-size: 1.6875em
@@ -688,7 +689,6 @@ p a>code:hover {
 	*zoom: 1;
 	position: relative;
 	padding-left: .9375em;
-	padding-right: .9375em
 }
 
 #content {
@@ -791,6 +791,10 @@ p a>code:hover {
 	padding-bottom: .5em
 }
 
+#toc.toc2 {
+	background-color: #fffacd;
+}
+
 #toc>ul {
 	margin-left: .125em
 }
@@ -837,7 +841,6 @@ p a>code:hover {
 	}
 	#toc.toc2 {
 		margin-top: 0 !important;
-		background-color: #fffacd;
 		position: fixed;
 		width: 15em;
 		left: 0;
@@ -900,6 +903,30 @@ p a>code:hover {
 	body.toc2.toc-right {
 		padding-left: 0;
 		padding-right: 20em
+	}
+}
+
+@media only all 
+  and (min-width: 320px) 
+  and (max-width: 480px) {
+	  #toc {
+    	padding: 0.4em;
+	}
+	#header, #content, #footnotes, #footer {
+		width: 98%;
+		padding-left: 0.2em;
+   	    padding-right: 0.2em;
+	}
+
+	.sidebarblock p, .sidebarblock dt, .sidebarblock td.content, p.tableblock {
+    	font-size: 0.8em !important;
+	}
+	h2, h3, #toctitle, .sidebarblock>.content>.title {
+    	font-size: 1.2em;
+	}
+
+	p, blockquote, dt, td.content, span.alt {
+    	font-size: 0.95rem !important;
 	}
 }
 
@@ -2113,7 +2140,7 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2020-01-12</span>
+<span id="revdate">2020-01-13</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2375,20 +2402,18 @@ public class MyFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        // invoked when an instance of this filter is created
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        // invoked for a matching request
         chain.doFilter(request, response);
     }
 
     @Override
     public void destroy() {
-        // invoked when an instance of this filter is destroyed
     }
+
 }</code></pre>
 </div>
 </div>
@@ -2404,17 +2429,15 @@ public class MyFilter implements Filter {
 class MyFilter {
 
     void init() {
-        // invoked when an instance of this filter is created
     }
 
     void filter() {
-        // invoked for a matching request
         next()
     }
 
     void destroy() {
-        // invoked when an instance of this filter is destroyed
     }
+
 }</code></pre>
 </div>
 </div>
@@ -2562,11 +2585,11 @@ public class MyServletContextListener implements ServletContextListener {
 public class MyServletContextListener {
 
 	public void contextInitialized() {
-		System.out.println("context started")
+		println "context started"
 	}
 
 	public void contextDestroyed() {
-		System.out.println("context destroyed")
+		println "context destroyed"
 	}
 
 }</code></pre>
@@ -2617,17 +2640,17 @@ public class MyServletContextAttributeListener implements ServletContextAttribut
 
     @Override
     public void attributeAdded(ServletContextAttributeEvent event) {
-        System.out.println("attr : " + event.getName() + " added with value: " + event.getValue());
+        System.out.println("attr " + event.getName() + " added with value " + event.getValue());
     }
 
     @Override
     public void attributeRemoved(ServletContextAttributeEvent event) {
-        System.out.println("attr : " + event.getName() + " removed with value: " + event.getValue());
+        System.out.println("attr " + event.getName() + " removed with value " + event.getValue());
     }
 
     @Override
     public void attributeReplaced(ServletContextAttributeEvent event) {
-        System.out.println("attr : " + event.getName() + " replaced with value: " + event.getValue());
+        System.out.println("attr " + event.getName() + " replaced with value " + event.getValue());
     }
 
 }</code></pre>
@@ -2643,17 +2666,17 @@ public class MyServletContextAttributeListener {
 
     @Override
     public void attributeAdded() {
-        System.out.println("attr : " + name + " added with value: " + value)
+        println "attr $name added with value $value"
     }
 
     @Override
     public void attributeRemoved() {
-        System.out.println("attr : " + name + " removed with value: " + value)
+        println "attr $name removed with value $value"
     }
 
     @Override
     public void attributeReplaced() {
-        System.out.println("attr : " + name + " replaced with value: " + value)
+        println "attr $name replaced with value $value"
     }
 
 }</code></pre>
@@ -2698,7 +2721,7 @@ public class MyServletContextAttributeListener {
 <div class="sect2">
 <h3 id="_servletrequestlistener"><a class="anchor" href="#_servletrequestlistener"></a><a class="link" href="#_servletrequestlistener">4.3. ServletRequestListener</a></h3>
 <div class="paragraph">
-<p>This interface is for receiving notification events about requests coming into and going out of scope of a web application. A ServletRequest is defined as coming into scope of a web application when it is about to enter the first servlet or filter of the web application, and as going out of scope as it exits the last servlet or the first filter in the chain. Implementations of this interface are invoked at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequestListener.html#requestInitialized-javax.servlet.ServletRequestEvent">requestInitialized</a> method in the order in which they have been declared, and at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequestListener.html#requestDestroyed-javax.servlet.ServletRequestEvent-">requestDestroyed</a> method in reverse order.</p>
+<p>This interface is for receiving notification events about requests coming into and going out of scope of a web application. A request is defined as coming into scope of a web application when it is about to enter the first servlet or filter of the web application, and as going out of scope as it exits the last servlet or the first filter in the chain. Implementations of this interface are invoked at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequestListener.html#requestInitialized-javax.servlet.ServletRequestEvent">requestInitialized</a> method in the order in which they have been declared, and at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequestListener.html#requestDestroyed-javax.servlet.ServletRequestEvent-">requestDestroyed</a> method in reverse order.</p>
 </div>
 <div class="listingblock">
 <div class="title">MyServletRequestListener.java</div>
@@ -2730,11 +2753,11 @@ public class MyServletRequestListener implements ServletRequestListener {
 public class MyServletRequestListener {
 
     public void requestInitialized() {
-        System.out.println("request initialized")
+        println "request initialized"
     }
 
     public void requestDestroyed() {
-        System.out.println("request destroyed")
+        println "request destroyed"
     }
 
 }</code></pre>
@@ -2794,17 +2817,17 @@ public class MyServletRequestAttributeListener implements ServletRequestAttribut
 
     @Override
     public void attributeAdded(ServletRequestAttributeEvent event) {
-        System.out.println("attr : " + event.getName() + " added with value: " + event.getValue());
+        System.out.println("attr " + event.getName() + " added with value " + event.getValue());
     }
 
     @Override
     public void attributeRemoved(ServletRequestAttributeEvent event) {
-        System.out.println("attr : " + event.getName() + " removed with value: " + event.getValue());
+        System.out.println("attr " + event.getName() + " removed with value " + event.getValue());
     }
 
     @Override
     public void attributeReplaced(ServletRequestAttributeEvent event) {
-        System.out.println("attr : " + event.getName() + " replaced with value: " + event.getValue());
+        System.out.println("attr " + event.getName() + " replaced with value " + event.getValue());
     }
 
 }</code></pre>
@@ -2819,15 +2842,15 @@ public class MyServletRequestAttributeListener implements ServletRequestAttribut
 public class MyServletRequestAttributeListener {
 
     public void attributeAdded() {
-        System.out.println("attr : " + name + " added with value: " + value)
+        println "attr $name added with value $value"
     }
 
     public void attributeRemoved() {
-        System.out.println("attr : " + name + " removed with value: " + value)
+        println "attr $name removed with value $value"
     }
 
     public void attributeReplaced() {
-        System.out.println("attr : " + name + " replaced with value: " + value)
+        println "attr $name replaced with value $value"
     }
 
 }</code></pre>
@@ -2914,12 +2937,12 @@ public class MyHttpSessionListener implements HttpSessionListener {
 public class MyHttpSessionListener {
 
 	public void sessionCreated() {
-		System.out.println("session created")
+		println "session created"
 	}
 
 	@Override
 	public void sessionDestroyed() {
-		System.out.println("session destroyed")
+		println "session destroyed"
 	}
 
 }</code></pre>
@@ -2970,17 +2993,17 @@ public class MyHttpSessionAttributeListener implements HttpSessionAttributeListe
 
     @Override
     public void attributeAdded(HttpSessionBindingEvent event) {
-        System.out.println("attr : " + event.getName() + " added with value: " + event.getValue());
+        System.out.println("attr " + event.getName() + " added with value " + event.getValue());
     }
 
     @Override
     public void attributeRemoved(HttpSessionBindingEvent event) {
-        System.out.println("attr : " + event.getName() + " removed with value: " + event.getValue());
+        System.out.println("attr " + event.getName() + " removed with value " + event.getValue());
     }
 
     @Override
     public void attributeReplaced(HttpSessionBindingEvent event) {
-        System.out.println("attr : " + event.getName() + " replaced with value: " + event.getValue());
+        System.out.println("attr " + event.getName() + " replaced with value " + event.getValue());
     }
 
 }</code></pre>
@@ -2995,15 +3018,15 @@ public class MyHttpSessionAttributeListener implements HttpSessionAttributeListe
 public class MyHttpSessionAttributeListener {
 
     public void attributeAdded() {
-        System.out.println("attr : " + name + " added with value: " + value)
+        println "attr $name added with value $value"
     }
 
     public void attributeRemoved() {
-        System.out.println("attr : " + name + " removed with value: " + value)
+        println "attr $name removed with value $value"
     }
 
     public void attributeReplaced() {
-        System.out.println("attr : " + name + " replaced with value: " + value)
+        println "attr $name replaced with value $value"
     }
 
 }</code></pre>
@@ -3062,12 +3085,12 @@ public class MyHttpSessionBindingListener implements HttpSessionBindingListener 
 
     @Override
     public void valueBound(HttpSessionBindingEvent event) {
-        System.out.println("attr : " + event.getName() + " bounded with value: " + event.getValue());
+        System.out.println("attr " + event.getName() + " bounded with value " + event.getValue());
     }
 
     @Override
     public void valueUnbound(HttpSessionBindingEvent event) {
-        System.out.println("attr : " + event.getName() + " unbounded with value: " + event.getValue());
+        System.out.println("attr " + event.getName() + " unbounded with value " + event.getValue());
     }
 
 }</code></pre>
@@ -3082,11 +3105,11 @@ public class MyHttpSessionBindingListener implements HttpSessionBindingListener 
 public class MyHttpSessionBindingListener {
 
     public void valueBound() {
-        System.out.println("attr : " + name + " bounded with value: " + value)
+        println "attr $name bounded with value $value"
     }
 
     public void valueUnbound() {
-        System.out.println("attr : " + name + " unbounded with value: " + value)
+        println "attr $name unbounded with value $value"
     }
 
 }</code></pre>
@@ -3165,11 +3188,11 @@ public class MyHttpSessionActivationListener implements HttpSessionActivationLis
 public class MyHttpSessionActivationListener {
 
     public void sessionDidActivate() {
-        System.out.println("session activated")
+        println "session activated"
     }
 
     public void sessionWillPassivate() {
-        System.out.println("session passivated")
+        println "session passivated"
     }
 
 }</code></pre>
@@ -3220,7 +3243,7 @@ public class MyHttpSessionIdListener implements HttpSessionIdListener {
 
     @Override
     public void sessionIdChanged(HttpSessionEvent event, String oldSessionId) {
-        System.out.println("session id changed : "+oldSessionId);
+        System.out.println("the session id was "+oldSessionId);
     }
 
 }</code></pre>
@@ -3236,7 +3259,7 @@ public class MyHttpSessionIdListener {
 
     @Override
     public void sessionIdChanged() {
-        System.out.println("session id changed : "+oldSessionId)
+        println "the session id was $oldSessionId"
     }
 
 }</code></pre>
@@ -3329,7 +3352,7 @@ public class MyHttpSessionIdListener {
 <h2 id="_contributing"><a class="anchor" href="#_contributing"></a><a class="link" href="#_contributing">12. Contributing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>GServlet is an open source project and contributions, of any type or any scope, drive the project forward. There are lot of ways to contribute, not just writing/fixing code.</p>
+<p>GServlet is an open source project and contributions, of any type or any scope, drive the project forward. There are lot of ways to contribute, not just writing/fixing code.  We provide more information about how to get involved in our <a href="/contribute">contribute</a> page.</p>
 </div>
 </div>
 </div>
@@ -3337,7 +3360,7 @@ public class MyHttpSessionIdListener {
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2020-01-12 19:49:02 WET
+Last updated 2020-01-12 21:22:25 WET
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
