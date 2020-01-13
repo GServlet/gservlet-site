@@ -177,7 +177,7 @@ h3 {
 h4 {
   font-size: 1.5rem;
   line-height: 110% !important;
-  margin: 1.5rem 0 0.75rem 0;
+  margin: 1.5rem 0 0rem 0;
 }
 
 h5 {
@@ -255,4 +255,15 @@ figcaption h4 {
 
 .is-sticky #top-bar {
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.1); 
+}
+
+@media only all 
+  and (min-width: 320px) 
+  and (max-width: 480px) {
+
+  h4 {
+   	 font-size: 1.2rem;
+     line-height: 0% !important;
+     margin: 1.5rem 0 0rem 0;
+  }
 }
