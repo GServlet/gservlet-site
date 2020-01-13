@@ -11,7 +11,9 @@
 <title>GServlet Reference Guide</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+
 @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+
 article, aside, details, figcaption, figure, footer, header, hgroup,
 	main, nav, section, summary {
 	display: block
@@ -410,7 +412,7 @@ code {
 ul, ol, dl {
 	font-size: 1em;
 	line-height: 1.6;
-	margin-bottom: 1.25em;
+	margin-bottom: 0;
 	list-style-position: outside;
 	font-family: inherit
 }
@@ -966,12 +968,12 @@ p a>code:hover {
 }
 
 .sect1 {
-	padding-bottom: .625em
+	padding-bottom: 0em
 }
 
 @media only screen and (min-width:768px) {
 	.sect1 {
-		padding-bottom: 1.25em
+		padding-bottom: 0em
 	}
 }
 
@@ -2149,48 +2151,111 @@ p {
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_installation">1. Installation</a>
+<li><a href="#_introduction_to_gservlet">1. Introduction to GServlet</a></li>
+<li><a href="#_main_features">2. Main Features</a></li>
+<li><a href="#_requirements">3. Requirements</a></li>
+<li><a href="#_installation">4. Installation</a>
 <ul class="sectlevel2">
-<li><a href="#_from_maven">1.1. From Maven</a></li>
-<li><a href="#_from_gradle">1.2. From Gradle</a></li>
+<li><a href="#_from_maven">4.1. From Maven</a></li>
+<li><a href="#_from_gradle">4.2. From Gradle</a></li>
 </ul>
 </li>
-<li><a href="#_getting_started">2. Getting Started</a></li>
-<li><a href="#_creating_servlets">3. Creating Servlets</a></li>
-<li><a href="#_creating_filters">4. Creating Filters</a></li>
-<li><a href="#_creating_listeners">5. Creating Listeners</a>
+<li><a href="#_getting_started">5. Getting Started</a></li>
+<li><a href="#_creating_servlets">6. Creating Servlets</a></li>
+<li><a href="#_creating_filters">7. Creating Filters</a></li>
+<li><a href="#_creating_listeners">8. Creating Listeners</a>
 <ul class="sectlevel2">
-<li><a href="#_servletcontextlistener">5.1. ServletContextListener</a></li>
-<li><a href="#_servletcontextattributelistener">5.2. ServletContextAttributeListener</a></li>
-<li><a href="#_servletrequestlistener">5.3. ServletRequestListener</a></li>
-<li><a href="#_servletrequestattributelistener">5.4. ServletRequestAttributeListener</a></li>
-<li><a href="#_httpsessionlistener">5.5. HttpSessionListener</a></li>
-<li><a href="#_httpsessionattributelistener">5.6. HttpSessionAttributeListener</a></li>
-<li><a href="#_httpsessionbindinglistener">5.7. HttpSessionBindingListener</a></li>
-<li><a href="#_httpsessionactivationlistener">5.8. HttpSessionActivationListener</a></li>
-<li><a href="#_httpsessionidlistener">5.9. HttpSessionIdListener</a></li>
+<li><a href="#_servletcontextlistener">8.1. ServletContextListener</a></li>
+<li><a href="#_servletcontextattributelistener">8.2. ServletContextAttributeListener</a></li>
+<li><a href="#_servletrequestlistener">8.3. ServletRequestListener</a></li>
+<li><a href="#_servletrequestattributelistener">8.4. ServletRequestAttributeListener</a></li>
+<li><a href="#_httpsessionlistener">8.5. HttpSessionListener</a></li>
+<li><a href="#_httpsessionattributelistener">8.6. HttpSessionAttributeListener</a></li>
+<li><a href="#_httpsessionbindinglistener">8.7. HttpSessionBindingListener</a></li>
+<li><a href="#_httpsessionactivationlistener">8.8. HttpSessionActivationListener</a></li>
+<li><a href="#_httpsessionidlistener">8.9. HttpSessionIdListener</a></li>
 </ul>
 </li>
-<li><a href="#_parsing_and_producing_json">6. Parsing and Producing JSON</a></li>
-<li><a href="#_working_with_a_database">7. Working With a Database</a></li>
-<li><a href="#_servlets_examples">8. Servlets Examples</a></li>
-<li><a href="#_filters_examples">9. Filters Examples</a></li>
-<li><a href="#_listeners_examples">10. Listeners Examples</a></li>
-<li><a href="#_copyright_and_license">11. Copyright and License</a></li>
-<li><a href="#_authors">12. Authors</a></li>
-<li><a href="#_contributing">13. Contributing</a></li>
+<li><a href="#_parsing_and_producing_json">9. Parsing and Producing JSON</a></li>
+<li><a href="#_working_with_a_database">10. Working With a Database</a></li>
+<li><a href="#_servlets_examples">11. Servlets Examples</a></li>
+<li><a href="#_filters_examples">12. Filters Examples</a></li>
+<li><a href="#_listeners_examples">13. Listeners Examples</a></li>
+<li><a href="#_copyright_and_license">14. Copyright and License</a></li>
+<li><a href="#_authors">15. Authors</a></li>
+<li><a href="#_contributing">16. Contributing</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_installation"><a class="anchor" href="#_installation"></a><a class="link" href="#_installation">1. Installation</a></h2>
+<h2 id="_introduction_to_gservlet"><a class="anchor" href="#_introduction_to_gservlet"></a><a class="link" href="#_introduction_to_gservlet">1. Introduction to GServlet</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>GServlet is an open source project inspired from the <a href="http://docs.groovy-lang.org/latest/html/documentation/servlet-userguide.html">Groovlets</a>, which aims to use the Groovy language and its provided modules to simplify Servlet API web development. If you have no prior experience with Groovy, there are several curated lists of online resources for learning it.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://groovy-lang.org">Official Groovy Programming Language website</a></p>
+</li>
+<li>
+<p><a href="https://groovy-lang.org/learn.html#books">List of Programming Books</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_main_features"><a class="anchor" href="#_main_features"></a><a class="link" href="#_main_features">2. Main Features</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Servlet 3.1+ Support</p>
+</li>
+<li>
+<p>Groovy Scripting</p>
+</li>
+<li>
+<p>Hot Reloading</p>
+</li>
+<li>
+<p>JSON and XML Support</p>
+</li>
+<li>
+<p>JDBC Support</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requirements"><a class="anchor" href="#_requirements"></a><a class="link" href="#_requirements">3. Requirements</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Java 7+</p>
+</li>
+<li>
+<p>Java IDE (Eclipse, IntelliJ IDEA, NetBeans..)</p>
+</li>
+<li>
+<p>Java EE 7+ compliant WebServer (Tomcat, Wildfly, Glassfish, Payara..)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a><a class="link" href="#_installation">4. Installation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To get started with GServlet, you may want to begin by creating your first project. This section shows you how to get up and running quickly. It is highly recommended to consume the GServlet API through a dependency management tool and the artifact can be found in Maven&#8217;s central repository. It is named <strong>gservlet-api</strong> and you just need to name a dependency on it in your project.</p>
 </div>
 <div class="sect2">
-<h3 id="_from_maven"><a class="anchor" href="#_from_maven"></a><a class="link" href="#_from_maven">1.1. From Maven</a></h3>
+<h3 id="_from_maven"><a class="anchor" href="#_from_maven"></a><a class="link" href="#_from_maven">4.1. From Maven</a></h3>
 <div class="listingblock">
 <div class="title">pom.xml</div>
 <div class="content">
@@ -2203,7 +2268,7 @@ p {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_from_gradle"><a class="anchor" href="#_from_gradle"></a><a class="link" href="#_from_gradle">1.2. From Gradle</a></h3>
+<h3 id="_from_gradle"><a class="anchor" href="#_from_gradle"></a><a class="link" href="#_from_gradle">4.2. From Gradle</a></h3>
 <div class="listingblock">
 <div class="title">build.gradle</div>
 <div class="content">
@@ -2220,7 +2285,7 @@ dependencies {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_getting_started"><a class="anchor" href="#_getting_started"></a><a class="link" href="#_getting_started">2. Getting Started</a></h2>
+<h2 id="_getting_started"><a class="anchor" href="#_getting_started"></a><a class="link" href="#_getting_started">5. Getting Started</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Once your Java web server is installed and configured, you can put it to work. Five steps take you from writing your first Groovy servlet to running it. These steps are as follows:</p>
@@ -2328,7 +2393,7 @@ class ServletRequestListener {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_servlets"><a class="anchor" href="#_creating_servlets"></a><a class="link" href="#_creating_servlets">3. Creating Servlets</a></h2>
+<h2 id="_creating_servlets"><a class="anchor" href="#_creating_servlets"></a><a class="link" href="#_creating_servlets">6. Creating Servlets</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A servlet is a small Java program that runs within a Web server. The <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/Servlet.html">Servlet</a> interface defines methods that all servlets must implement. To implement this interface, you can write a generic servlet that extends the <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/GenericServlet.html">GenericServlet</a> class or an HTTP servlet which extends the <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServlet.html">HttpServlet</a> class and which overrides at least one method, usually one of these:</p>
@@ -2490,7 +2555,7 @@ class MyHttpServlet {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_filters"><a class="anchor" href="#_creating_filters"></a><a class="link" href="#_creating_filters">4. Creating Filters</a></h2>
+<h2 id="_creating_filters"><a class="anchor" href="#_creating_filters"></a><a class="link" href="#_creating_filters">7. Creating Filters</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A filter is an object that performs filtering tasks on either the request to a resource (a servlet or static content), or on the response from a resource, or both. The <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/Filter.html">Filter</a> interface defines methods that all filters must implement. Filters perform filtering in the <em>doFilter</em> method.</p>
@@ -2612,7 +2677,7 @@ class MyFilter {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_listeners"><a class="anchor" href="#_creating_listeners"></a><a class="link" href="#_creating_listeners">5. Creating Listeners</a></h2>
+<h2 id="_creating_listeners"><a class="anchor" href="#_creating_listeners"></a><a class="link" href="#_creating_listeners">8. Creating Listeners</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>During the lifetime of a typical Java EE web application, a number of events take place. The Servlet API provides a number of listener interfaces that we can implement to react to these events.</p>
@@ -2662,7 +2727,7 @@ class MyFilter {
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="_servletcontextlistener"><a class="anchor" href="#_servletcontextlistener"></a><a class="link" href="#_servletcontextlistener">5.1. ServletContextListener</a></h3>
+<h3 id="_servletcontextlistener"><a class="anchor" href="#_servletcontextlistener"></a><a class="link" href="#_servletcontextlistener">8.1. ServletContextListener</a></h3>
 <div class="paragraph">
 <p>This interface is for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContext.html">ServletContext</a> lifecycle changes. Implementations of this interface are invoked at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContextListener.html#contextInitialized-javax.servlet.ServletContextEvent">contextInitialized</a> method in the order in which they have been declared, and at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContextListener.html#contextDestroyed-javax.servlet.ServletContextEvent-">contextDestroyed</a> method in reverse order.</p>
 </div>
@@ -2737,7 +2802,7 @@ public class MyServletContextListener {
 </table>
 </div>
 <div class="sect2">
-<h3 id="_servletcontextattributelistener"><a class="anchor" href="#_servletcontextattributelistener"></a><a class="link" href="#_servletcontextattributelistener">5.2. ServletContextAttributeListener</a></h3>
+<h3 id="_servletcontextattributelistener"><a class="anchor" href="#_servletcontextattributelistener"></a><a class="link" href="#_servletcontextattributelistener">8.2. ServletContextAttributeListener</a></h3>
 <div class="paragraph">
 <p>This interface is for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContext.html">ServletContext</a> attribute changes. The order in which implementations of this interface are invoked is unspecified.</p>
 </div>
@@ -2829,7 +2894,7 @@ public class MyServletContextAttributeListener {
 </table>
 </div>
 <div class="sect2">
-<h3 id="_servletrequestlistener"><a class="anchor" href="#_servletrequestlistener"></a><a class="link" href="#_servletrequestlistener">5.3. ServletRequestListener</a></h3>
+<h3 id="_servletrequestlistener"><a class="anchor" href="#_servletrequestlistener"></a><a class="link" href="#_servletrequestlistener">8.3. ServletRequestListener</a></h3>
 <div class="paragraph">
 <p>This interface is for receiving notification events about requests coming into and going out of scope of a web application. A request is defined as coming into scope of a web application when it is about to enter the first servlet or filter of the web application, and as going out of scope as it exits the last servlet or the first filter in the chain. Implementations of this interface are invoked at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequestListener.html#requestInitialized-javax.servlet.ServletRequestEvent">requestInitialized</a> method in the order in which they have been declared, and at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequestListener.html#requestDestroyed-javax.servlet.ServletRequestEvent-">requestDestroyed</a> method in reverse order.</p>
 </div>
@@ -2912,7 +2977,7 @@ public class MyServletRequestListener {
 </table>
 </div>
 <div class="sect2">
-<h3 id="_servletrequestattributelistener"><a class="anchor" href="#_servletrequestattributelistener"></a><a class="link" href="#_servletrequestattributelistener">5.4. ServletRequestAttributeListener</a></h3>
+<h3 id="_servletrequestattributelistener"><a class="anchor" href="#_servletrequestattributelistener"></a><a class="link" href="#_servletrequestattributelistener">8.4. ServletRequestAttributeListener</a></h3>
 <div class="paragraph">
 <p>This interface is for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequest.html">ServletRequest</a> attribute changes.
 Notifications will be generated while the request is within the scope of the web application. A ServletRequest is defined as coming into scope of a web application when it is about to enter the first servlet or filter of the web application, and as going out of scope when it exits the last servlet or the first filter in the chain. The order in which implementations of this interface are invoked is unspecified.</p>
@@ -3013,7 +3078,7 @@ public class MyServletRequestAttributeListener {
 </table>
 </div>
 <div class="sect2">
-<h3 id="_httpsessionlistener"><a class="anchor" href="#_httpsessionlistener"></a><a class="link" href="#_httpsessionlistener">5.5. HttpSessionListener</a></h3>
+<h3 id="_httpsessionlistener"><a class="anchor" href="#_httpsessionlistener"></a><a class="link" href="#_httpsessionlistener">8.5. HttpSessionListener</a></h3>
 <div class="paragraph">
 <p>This interface is for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> lifecycle changes. Implementations of this interface are invoked at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionListener.html#sessionCreated-javax.servlet.http.HttpSessionEvent">sessionCreated</a> method in the order in which they have been declared, and at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionListener.html#sessionDestroyed-javax.servlet.http.HttpSessionEvent">sessionDestroyed</a> method in reverse order.</p>
 </div>
@@ -3088,7 +3153,7 @@ public class MyHttpSessionListener {
 </table>
 </div>
 <div class="sect2">
-<h3 id="_httpsessionattributelistener"><a class="anchor" href="#_httpsessionattributelistener"></a><a class="link" href="#_httpsessionattributelistener">5.6. HttpSessionAttributeListener</a></h3>
+<h3 id="_httpsessionattributelistener"><a class="anchor" href="#_httpsessionattributelistener"></a><a class="link" href="#_httpsessionattributelistener">8.6. HttpSessionAttributeListener</a></h3>
 <div class="paragraph">
 <p>This interface is for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> attribute changes. The order in which implementations of this interface are invoked is unspecified.</p>
 </div>
@@ -3180,7 +3245,7 @@ public class MyHttpSessionAttributeListener {
 </table>
 </div>
 <div class="sect2">
-<h3 id="_httpsessionbindinglistener"><a class="anchor" href="#_httpsessionbindinglistener"></a><a class="link" href="#_httpsessionbindinglistener">5.7. HttpSessionBindingListener</a></h3>
+<h3 id="_httpsessionbindinglistener"><a class="anchor" href="#_httpsessionbindinglistener"></a><a class="link" href="#_httpsessionbindinglistener">8.7. HttpSessionBindingListener</a></h3>
 <div class="paragraph">
 <p>It causes an object to be notified when it is bound to or unbound from a session. This may be as a result of a servlet programmer explicitly unbinding an attribute from a session, due to a session being invalidated, or due to a session timing out.</p>
 </div>
@@ -3263,7 +3328,7 @@ public class MyHttpSessionBindingListener {
 </table>
 </div>
 <div class="sect2">
-<h3 id="_httpsessionactivationlistener"><a class="anchor" href="#_httpsessionactivationlistener"></a><a class="link" href="#_httpsessionactivationlistener">5.8. HttpSessionActivationListener</a></h3>
+<h3 id="_httpsessionactivationlistener"><a class="anchor" href="#_httpsessionactivationlistener"></a><a class="link" href="#_httpsessionactivationlistener">8.8. HttpSessionActivationListener</a></h3>
 <div class="paragraph">
 <p>Objects that are bound to a session may listen to container events notifying them that sessions will be passivated and activated. A container that migrates session between VMs or persists sessions is required to notify all attributes bound to sessions implementing this interface.</p>
 </div>
@@ -3338,7 +3403,7 @@ public class MyHttpSessionActivationListener {
 </table>
 </div>
 <div class="sect2">
-<h3 id="_httpsessionidlistener"><a class="anchor" href="#_httpsessionidlistener"></a><a class="link" href="#_httpsessionidlistener">5.9. HttpSessionIdListener</a></h3>
+<h3 id="_httpsessionidlistener"><a class="anchor" href="#_httpsessionidlistener"></a><a class="link" href="#_httpsessionidlistener">8.9. HttpSessionIdListener</a></h3>
 <div class="paragraph">
 <p>This interface is for receiving notification events about HttpSession id changes. The order in which implementations of this interface are invoked is unspecified.</p>
 </div>
@@ -3410,37 +3475,37 @@ public class MyHttpSessionIdListener {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_parsing_and_producing_json"><a class="anchor" href="#_parsing_and_producing_json"></a><a class="link" href="#_parsing_and_producing_json">6. Parsing and Producing JSON</a></h2>
+<h2 id="_parsing_and_producing_json"><a class="anchor" href="#_parsing_and_producing_json"></a><a class="link" href="#_parsing_and_producing_json">9. Parsing and Producing JSON</a></h2>
 <div class="sectionbody">
 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_working_with_a_database"><a class="anchor" href="#_working_with_a_database"></a><a class="link" href="#_working_with_a_database">7. Working With a Database</a></h2>
+<h2 id="_working_with_a_database"><a class="anchor" href="#_working_with_a_database"></a><a class="link" href="#_working_with_a_database">10. Working With a Database</a></h2>
 <div class="sectionbody">
 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_servlets_examples"><a class="anchor" href="#_servlets_examples"></a><a class="link" href="#_servlets_examples">8. Servlets Examples</a></h2>
+<h2 id="_servlets_examples"><a class="anchor" href="#_servlets_examples"></a><a class="link" href="#_servlets_examples">11. Servlets Examples</a></h2>
 <div class="sectionbody">
 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_filters_examples"><a class="anchor" href="#_filters_examples"></a><a class="link" href="#_filters_examples">9. Filters Examples</a></h2>
+<h2 id="_filters_examples"><a class="anchor" href="#_filters_examples"></a><a class="link" href="#_filters_examples">12. Filters Examples</a></h2>
 <div class="sectionbody">
 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_listeners_examples"><a class="anchor" href="#_listeners_examples"></a><a class="link" href="#_listeners_examples">10. Listeners Examples</a></h2>
+<h2 id="_listeners_examples"><a class="anchor" href="#_listeners_examples"></a><a class="link" href="#_listeners_examples">13. Listeners Examples</a></h2>
 <div class="sectionbody">
 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_copyright_and_license"><a class="anchor" href="#_copyright_and_license"></a><a class="link" href="#_copyright_and_license">11. Copyright and License</a></h2>
+<h2 id="_copyright_and_license"><a class="anchor" href="#_copyright_and_license"></a><a class="link" href="#_copyright_and_license">14. Copyright and License</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Copyright @2019. Free use of this software is granted under the terms of the Apache 2.0 License.</p>
@@ -3451,7 +3516,7 @@ public class MyHttpSessionIdListener {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_authors"><a class="anchor" href="#_authors"></a><a class="link" href="#_authors">12. Authors</a></h2>
+<h2 id="_authors"><a class="anchor" href="#_authors"></a><a class="link" href="#_authors">15. Authors</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>GServlet was written by <a href="https://github.com/laminba2003">Mamadou Lamine Ba</a>.</p>
@@ -3459,18 +3524,12 @@ public class MyHttpSessionIdListener {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_contributing"><a class="anchor" href="#_contributing"></a><a class="link" href="#_contributing">13. Contributing</a></h2>
+<h2 id="_contributing"><a class="anchor" href="#_contributing"></a><a class="link" href="#_contributing">16. Contributing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>GServlet is an open source project and contributions, of any type or any scope, drive the project forward. There are lot of ways to contribute, not just writing/fixing code.  We provide more information about how to get involved in our <a href="/contribute">contribute</a> page.</p>
 </div>
 </div>
-</div>
-</div>
-<div id="footer">
-<div id="footer-text">
-Version 1.0.0<br>
-Last updated 2020-01-13 15:49:01 WET
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
