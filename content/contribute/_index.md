@@ -23,7 +23,7 @@ You can search for existing issues in order to fix them or to raise a new one. W
 The documentation comes in various forms:
 
 * The reference Guide built with [Asciidoctor](http://asciidoctor.org/)
-* The Javadocs APIs documenting the classes of the code base
+* The Javadocs documenting the classes of the code base
 * This website
 
 You can find all the materials in our code repositories on [Github](https://github.com/GServlet).
