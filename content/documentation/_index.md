@@ -15,7 +15,7 @@ If you have no prior experience with Groovy, there are several curated lists of 
 
 ## Resources
 
-* [Official Groovy Programming Language website](https://groovy-lang.org)
+* [Official Groovy Website](https://groovy-lang.org)
 * [List of Programming Books](https://groovy-lang.org/learn.html#books)
 
 The documentation of GServlet is split into two categories:
