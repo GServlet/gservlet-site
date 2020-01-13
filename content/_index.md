@@ -71,7 +71,7 @@ Get ready to get started and running in less than 5 minutes. We provide in our [
 
 ## Documentation
 
-In our [documentation](/documentation) page, you'll find all the documentation for in-depth knowledge of this project. The javadocs for a particular version can be found as well.  
+In our [documentation](/documentation) page, you'll find all the documentation for in-depth knowledge of this project. The Javadocs for a particular version can be found as well.  
 
 ## Download
 
