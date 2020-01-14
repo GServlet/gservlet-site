@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./FileListener.html" title="org.gservlet.FileListener" alt="" coords="16,11,99,51"/>
-<area shape="rect" id="node1" href="./FileListener.html" title="&lt;TABLE&gt;" alt="" coords="5,5,109,56"/>
-<area shape="rect" id="node2_1" href="./FileAdapter.html" title="org.gservlet.FileAdapter" alt="" coords="17,116,97,140"/>
-<area shape="rect" id="node2" href="./FileAdapter.html" title="&lt;TABLE&gt;" alt="" coords="7,104,108,152"/>
+<area shape="rect" id="node1_0" href="./FileAdapter.html" title="org.gservlet.FileAdapter" alt="" coords="17,118,102,143"/>
+<area shape="rect" id="node1" href="./FileAdapter.html" title="&lt;TABLE&gt;" alt="" coords="6,107,113,155"/>
+<area shape="rect" id="node2_1" href="./FileListener.html" title="org.gservlet.FileListener" alt="" coords="16,11,103,53"/>
+<area shape="rect" id="node2" href="./FileListener.html" title="&lt;TABLE&gt;" alt="" coords="5,5,113,59"/>
 </map>

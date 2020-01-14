@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./AbstractSessionIdListener.html" title="org.gservlet.AbstractSessionIdListener" alt="" coords="73,116,234,140"/>
-<area shape="rect" id="node1" href="./AbstractSessionIdListener.html" title="&lt;TABLE&gt;" alt="" coords="62,104,245,152"/>
-<area shape="rect" id="node2_1" href="./AbstractListener.html" title="org.gservlet.AbstractListener" alt="" coords="16,19,123,43"/>
-<area shape="rect" id="node2" href="./AbstractListener.html" title="&lt;TABLE&gt;" alt="" coords="5,7,133,55"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/javax/servlet/http/HttpSessionIdListener.html" title="javax.servlet.http.HttpSessionIdListener" alt="" coords="169,11,309,51"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/javax/servlet/http/HttpSessionIdListener.html" title="&lt;TABLE&gt;" alt="" coords="158,5,319,56"/>
+<area shape="rect" id="node1_0" href="./AbstractListener.html" title="org.gservlet.AbstractListener" alt="" coords="16,19,132,45"/>
+<area shape="rect" id="node1" href="./AbstractListener.html" title="&lt;TABLE&gt;" alt="" coords="5,8,143,56"/>
+<area shape="rect" id="node2_1" href="./AbstractSessionIdListener.html" title="org.gservlet.AbstractSessionIdListener" alt="" coords="75,118,249,143"/>
+<area shape="rect" id="node2" href="./AbstractSessionIdListener.html" title="&lt;TABLE&gt;" alt="" coords="65,107,259,155"/>
+<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/javax/servlet/http/HttpSessionIdListener.html" title="javax.servlet.http.HttpSessionIdListener" alt="" coords="178,11,325,53"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/javax/servlet/http/HttpSessionIdListener.html" title="&lt;TABLE&gt;" alt="" coords="167,5,335,59"/>
 </map>

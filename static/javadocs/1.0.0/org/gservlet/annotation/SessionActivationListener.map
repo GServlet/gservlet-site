@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./SessionActivationListener.html" title="org.gservlet.annotation.SessionActivationListener" alt="" coords="16,116,175,140"/>
-<area shape="rect" id="node1" href="./SessionActivationListener.html" title="&lt;TABLE&gt;" alt="" coords="5,104,185,152"/>
-<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/annotation/Annotation.html" title="java.lang.annotation.Annotation" alt="" coords="56,11,135,51"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/annotation/Annotation.html" title="&lt;TABLE&gt;" alt="" coords="45,5,145,56"/>
+<area shape="rect" id="node1_0" href="./SessionActivationListener.html" title="org.gservlet.annotation.SessionActivationListener" alt="" coords="16,118,185,143"/>
+<area shape="rect" id="node1" href="./SessionActivationListener.html" title="&lt;TABLE&gt;" alt="" coords="5,107,196,155"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/annotation/Annotation.html" title="java.lang.annotation.Annotation" alt="" coords="59,11,142,53"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/annotation/Annotation.html" title="&lt;TABLE&gt;" alt="" coords="49,5,153,59"/>
 </map>

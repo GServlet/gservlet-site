@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.gservlet.RequestWrapper
-	c1296 [label=<<table title="org.gservlet.RequestWrapper" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RequestWrapper.html">
+	c1328 [label=<<table title="org.gservlet.RequestWrapper" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RequestWrapper.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RequestWrapper </td></tr>
 		</table></td></tr>
-		</table>>, URL="./RequestWrapper.html", fontname="arial", fontcolor="black", fontsize=9.0];
+		</table>>, URL="./RequestWrapper.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.gservlet.RequestWrapper extends javax.servlet.http.HttpServletRequestWrapper
-	c1334:p -> c1296:p [dir=back,arrowtail=empty];
+	c1334:p -> c1328:p [dir=back,arrowtail=empty];
 	// javax.servlet.http.HttpServletRequestWrapper
 	c1334 [label=<<table title="javax.servlet.http.HttpServletRequestWrapper" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/javax/servlet/http/HttpServletRequestWrapper.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> HttpServletRequestWrapper </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/javax/servlet/http/HttpServletRequestWrapper.html", fontname="arial", fontcolor="black", fontsize=9.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/javax/servlet/http/HttpServletRequestWrapper.html", fontname="arial", fontcolor="black", fontsize=10.0];
 }
 
