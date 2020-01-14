@@ -5,4 +5,4 @@
 
 ## Description
 
-This is the official website of the GServlet Project. It hosts also the Javadocs and the reference documentation.
+This is the official website of the GServlet Project. It hosts also the developer guide and the Javadocs.
