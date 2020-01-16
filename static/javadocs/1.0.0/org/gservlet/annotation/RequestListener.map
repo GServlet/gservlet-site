@@ -1,6 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./RequestListener.html" title="org.gservlet.annotation.RequestListener" alt="" coords="16,118,129,143"/>
 <area shape="rect" id="node1" href="./RequestListener.html" title="&lt;TABLE&gt;" alt="" coords="5,107,140,155"/>
-<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/annotation/Annotation.html" title="java.lang.annotation.Annotation" alt="" coords="31,11,114,53"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/annotation/Annotation.html" title="&lt;TABLE&gt;" alt="" coords="21,5,125,59"/>
+<area shape="rect" id="node2_1" href="https://docs.oracle.com/javase/7/docs/api/java/lang/annotation/Annotation.html" title="java.lang.annotation.Annotation" alt="" coords="31,11,114,53"/>
+<area shape="rect" id="node2" href="https://docs.oracle.com/javase/7/docs/api/java/lang/annotation/Annotation.html" title="&lt;TABLE&gt;" alt="" coords="21,5,125,59"/>
 </map>
