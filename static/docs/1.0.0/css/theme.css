@@ -932,6 +932,9 @@ p a>code:hover {
 	.literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] {
     	font-size: .73em!important;
 	}
+	table.tableblock>caption.title {
+    	font-size: 13px;
+	}
 }
 
 #content #toc {
