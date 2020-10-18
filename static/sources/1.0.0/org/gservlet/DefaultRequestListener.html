@@ -56,7 +56,7 @@
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> requestInitialized(ServletRequestEvent event) {
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  		ServletRequest request = event.getServletRequest();
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  		ServletContext context = event.getServletContext();
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		request.setAttribute(Constants.CONNECTION, <strong class="jxr_keyword">new</strong> Sql((DataSource) context.getAttribute(Constants.DATASOURCE)));
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		request.setAttribute(Constants.DB_CONNECTION, <strong class="jxr_keyword">new</strong> Sql((DataSource) context.getAttribute(Constants.DATASOURCE)));
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  	}
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<em class="jxr_javadoccomment">/**</em>
@@ -69,7 +69,7 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  	@Override
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> requestDestroyed(ServletRequestEvent event) {
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  		ServletRequest request = event.getServletRequest();
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		Sql connection = (Sql) request.getAttribute(Constants.CONNECTION);
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		Sql connection = (Sql) request.getAttribute(Constants.DB_CONNECTION);
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  		connection.close();
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  	}
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  

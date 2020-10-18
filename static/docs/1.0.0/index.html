@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<meta name="description" content="This guide describes how to use the GServlet API.">
+<meta name="description" content="This developer guide describes how to use the GServlet API.">
 <meta name="keywords" content="Java, Servlets, Groovy, reference, learn, how to">
 <meta name="author" content="Mamadou Lamine Ba">
 <title>GServlet Developer Guide</title>
@@ -499,17 +499,17 @@ blockquote, blockquote p {
 		line-height: 1.2
 	}
 	h1 {
-		font-size: 2.75em;
+		font-size: 2.45em;
 		font-weight: 600;
 	}
 	h2 {
-		font-size: 1.7em
+		font-size: 1.5em
 	}
 	h3, #toctitle, .sidebarblock>.content>.title {
-		font-size: 1.6875em
+		font-size: 1.2875em
 	}
 	h4 {
-		font-size: 1.4375em
+		font-size: 1.0375em
 	}
 }
 
@@ -539,7 +539,7 @@ table tr th, table tr td {
 }
 
 table tr.even, table tr.alt, table tr:nth-of-type(even) {
-	background: #f8f8f7
+	background: #fdfdfd
 }
 
 table thead tr th, table tfoot tr th, table tbody tr td, table tr td,
@@ -695,6 +695,10 @@ p a>code:hover {
 
 #content {
 	width: 95%;
+}
+
+#content h3 {
+	border: 1px solid #e2dddd;
 }
 
 #header:before, #header:after, #content:before, #content:after,
@@ -1039,7 +1043,12 @@ p a>code:hover {
     display: block;
 }
 
-#content h1>a.link:hover, h2>a.link:hover, h3>a.link:hover, #toctitle>a.link:hover,
+h3>a.link {
+	background: #f8f8f8;
+    color: black;
+}
+
+#content h1>a.link:hover, h2>a.link:hover, #toctitle>a.link:hover,
 	.sidebarblock>.content>.title>a.link:hover, h4>a.link:hover, h5>a.link:hover,
 	h6>a.link:hover {
 	color: #fff
@@ -2166,7 +2175,7 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2020-10-10</span>
+<span id="revdate">2020-10-18</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2176,13 +2185,27 @@ p {
 <li><a href="#_requirements">3. Requirements</a></li>
 <li><a href="#_installation">4. Installation</a>
 <ul class="sectlevel2">
-<li><a href="#_from_maven">4.1. From Maven</a></li>
-<li><a href="#_from_gradle">4.2. From Gradle</a></li>
+<li><a href="#_maven">4.1. Maven</a></li>
+<li><a href="#_gradle">4.2. Gradle</a></li>
 </ul>
 </li>
 <li><a href="#_getting_started">5. Getting Started</a></li>
-<li><a href="#_creating_servlets">6. Creating Servlets</a></li>
-<li><a href="#_creating_filters">7. Creating Filters</a></li>
+<li><a href="#_creating_servlets">6. Creating Servlets</a>
+<ul class="sectlevel2">
+<li><a href="#_servlet_implicit_variables">6.1. Servlet implicit variables</a></li>
+<li><a href="#_servlet_methods">6.2. Servlet methods</a></li>
+<li><a href="#_servlet_initialization_parameters">6.3. Servlet initialization parameters</a></li>
+<li><a href="#_servlet_multipart_configuration">6.4. Servlet Multipart configuration</a></li>
+<li><a href="#_servlet_security">6.5. Servlet Security</a></li>
+</ul>
+</li>
+<li><a href="#_creating_filters">7. Creating Filters</a>
+<ul class="sectlevel2">
+<li><a href="#_filter_implicit_variables">7.1. Filter implicit variables</a></li>
+<li><a href="#_filter_methods">7.2. Filter methods</a></li>
+<li><a href="#_filter_initialization_parameters">7.3. Filter initialization parameters</a></li>
+</ul>
+</li>
 <li><a href="#_creating_listeners">8. Creating Listeners</a>
 <ul class="sectlevel2">
 <li><a href="#_servletcontextlistener">8.1. ServletContextListener</a></li>
@@ -2196,8 +2219,8 @@ p {
 <li><a href="#_httpsessionidlistener">8.9. HttpSessionIdListener</a></li>
 </ul>
 </li>
-<li><a href="#_parsing_and_producing_json">9. Parsing and Producing JSON</a></li>
-<li><a href="#_working_with_a_database">10. Working With a Database</a></li>
+<li><a href="#_working_with_json">9. Working With JSON</a></li>
+<li><a href="#_working_with_rdbms">10. Working With RDBMS</a></li>
 <li><a href="#_copyright_and_license">11. Copyright and License</a></li>
 <li><a href="#_authors">12. Authors</a></li>
 <li><a href="#_contributing">13. Contributing</a></li>
@@ -2209,7 +2232,30 @@ p {
 <h2 id="_introduction_to_gservlet"><a class="anchor" href="#_introduction_to_gservlet"></a><a class="link" href="#_introduction_to_gservlet">1. Introduction to GServlet</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>GServlet is an open source project inspired from the <a href="http://docs.groovy-lang.org/latest/html/documentation/servlet-userguide.html">Groovlets</a>, which aims to use the Groovy language and its provided modules to simplify Servlet API web development. If you have no prior experience with Groovy, there are several curated lists of online resources for learning it.</p>
+<p>GServlet is an open source project inspired from the <a href="http://docs.groovy-lang.org/latest/html/documentation/servlet-userguide.html">Groovlets</a>, which aims to use the Groovy language and its provided modules to simplify Servlet API web development. Groovlets are Groovy scripts executed by a servlet. They are run on request, having the whole web context (request, response, etc.) bound to the evaluation context. They are much more suitable for smaller web applications. Compared to Java Servlets, coding in Groovy can be much simpler. It has a couple of implicit variables we can use, for example, <em>request</em>, <em>response</em> to access the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a>, and <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html"><em>HttpServletResponse</em></a> objects. We have access to the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html"><em>HttpSession</em></a> with the <em>session</em> variable. If we want to output data, we can use <em>out</em>, <em>sout</em>, and <em>html</em>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Groovlet.groovy</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">if (!session) {
+    session = request.getSession(true)
+}
+if (!session.counter) {
+    session.counter = 1
+}
+html.html {
+  head {
+      title('Groovy Servlet')
+  }
+  body {
+    p("Hello, ${request.remoteHost}: ${session.counter}! ${new Date()}")
+  }
+}
+session.counter = session.counter + 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The same philosophy has been followed in the design of this API and if you have no prior experience with the Groovy language, there are several curated lists of online resources for learning it.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2232,16 +2278,10 @@ p {
 <p>Servlet 3.1+ Support</p>
 </li>
 <li>
-<p>Groovy Scripting</p>
+<p>Groovy Scripting and Hot Reloading</p>
 </li>
 <li>
-<p>Hot Reloading</p>
-</li>
-<li>
-<p>JSON and XML Support</p>
-</li>
-<li>
-<p>JDBC Support</p>
+<p>JSON, HTML and JDBC Support</p>
 </li>
 </ul>
 </div>
@@ -2269,10 +2309,10 @@ p {
 <h2 id="_installation"><a class="anchor" href="#_installation"></a><a class="link" href="#_installation">4. Installation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To get started with GServlet, you may want to begin by creating your first project. This section shows you how to get up and running quickly. It is highly recommended to consume the GServlet API through a dependency management tool and the artifact can be found in Maven&#8217;s central repository. It is named <strong>gservlet-api</strong> and you just need to name a dependency on it in your project.</p>
+<p>To get started with GServlet, you may want to begin by creating your first project. This section shows you how to get up and running quickly. It is highly recommended to consume the API through a dependency management tool and the artifact can be found in Maven&#8217;s central repository. It is named <strong>gservlet-api</strong> and you just need to name a dependency on it in your project.</p>
 </div>
 <div class="sect2">
-<h3 id="_from_maven"><a class="anchor" href="#_from_maven"></a><a class="link" href="#_from_maven">4.1. From Maven</a></h3>
+<h3 id="_maven"><a class="anchor" href="#_maven"></a><a class="link" href="#_maven">4.1. Maven</a></h3>
 <div class="listingblock">
 <div class="title">pom.xml</div>
 <div class="content">
@@ -2285,7 +2325,7 @@ p {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_from_gradle"><a class="anchor" href="#_from_gradle"></a><a class="link" href="#_from_gradle">4.2. From Gradle</a></h3>
+<h3 id="_gradle"><a class="anchor" href="#_gradle"></a><a class="link" href="#_gradle">4.2. Gradle</a></h3>
 <div class="listingblock">
 <div class="title">build.gradle</div>
 <div class="content">
@@ -2294,7 +2334,7 @@ p {
 }
 
 dependencies {
-    implementation 'org.gservlet:gservlet-api:1.0.0'
+    compile("org.gservlet:gservlet-api:1.0.0")
 }</code></pre>
 </div>
 </div>
@@ -2330,35 +2370,43 @@ dependencies {
 <p>You can find below some examples that you can try out.</p>
 </div>
 <div class="listingblock">
-<div class="title">CustomerServlet.java</div>
+<div class="title">ProjectServlet.java</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
 
-@Servlet("/customers")
-class CustomerServlet {
+@Servlet("/projects")
+class ProjectServlet {
 
-    void get() {
-      def customers = []
-      customers &lt;&lt; [FirstName : "John", lastName : "Doe"]
-      customers &lt;&lt; [FirstName : "Kate", lastName : "Martinez"]
-      customers &lt;&lt; [FirstName : "Allisson", lastName : "Becker"]
-      json(customers)
-    }
+	def projects = []
 
-    void post() {
-      def customer = request.body // get the json request payload as object
-      json(customer)
-    }
+	void init() {
+	   projects &lt;&lt; [id : 1, name : "Groovy", url : "https://groovy-lang.org"]
+	   projects &lt;&lt; [id : 2, name : "Spring", url : "https://spring.io"]
+	   projects &lt;&lt; [id : 3, name : "Maven",  url : "https://maven.apache.org"]
+	}
 
-    void put() {
-      def customer = request.body // get the json request payload as object
-      json(customer)
-    }
+	void get() {
+	   json(projects)
+	}
 
-    void delete() {
-      def param = request.param // shortcut to request.getParameter("param")
-      def attribute = request.attribute // shortcut to request.getAttribute("attribute")
-    }
+	void post() {
+	   def project = request.body
+	   projects &lt;&lt; project
+	   json(project)
+	}
+
+	void put() {
+	   def project = request.body
+	   int index = projects.findIndexOf { it.id == project.id }
+	   projects[index] = project
+	   json(project)
+	}
+
+	void delete() {
+	   def project = request.body
+	   int index = projects.findIndexOf { it.id == project.id }
+	   json(projects.remove(index))
+	}
 
 }</code></pre>
 </div>
@@ -2412,7 +2460,7 @@ class ServletRequestListener {
 <h2 id="_creating_servlets"><a class="anchor" href="#_creating_servlets"></a><a class="link" href="#_creating_servlets">6. Creating Servlets</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A servlet is a small Java program that runs within a Web server. The <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/Servlet.html">Servlet</a> interface defines methods that all servlets must implement. To implement this interface, you can write a generic servlet that extends the <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/GenericServlet.html">GenericServlet</a> class or an HTTP servlet which extends the <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServlet.html">HttpServlet</a> class and overrides at least one method, usually one of these:</p>
+<p>A servlet is a small Java program that runs within a Web server. The <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/Servlet.html">Servlet</a> interface defines methods that all servlets must implement. To implement this interface, you can write a generic servlet that extends the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/GenericServlet.html">GenericServlet</a> class or an HTTP servlet which extends the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html">HttpServlet</a> class and overrides at least one method, usually one of these:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2430,6 +2478,9 @@ class ServletRequestListener {
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>This is a Java class that extends the HttpServlet class:</p>
+</div>
 <div class="listingblock">
 <div class="title">MyHttpServlet.java</div>
 <div class="content">
@@ -2442,22 +2493,21 @@ import java.io.IOException;
 @WebServlet("/myServlet")
 public class MyHttpServlet extends HttpServlet {
 
-	@Override
-	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException {
-	  response.setContentType("text/html");
-	  PrintWriter out = response.getWriter();
-	  out.println("&lt;html&gt;");
-	  out.println("&lt;body&gt;");
-	  out.println("&lt;p&gt;Welcome to servlet&lt;/p&gt;");
-	  out.println("&lt;/body&gt;");
-	  out.println("&lt;/html&gt;");
+   public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException {
+      response.setContentType("text/html");
+      PrintWriter out = response.getWriter();
+      out.println("&lt;html&gt;");
+      out.println("&lt;body&gt;");
+      out.println("&lt;p&gt;Welcome to servlet&lt;/p&gt;");
+      out.println("&lt;/body&gt;");
+      out.println("&lt;/html&gt;");
    }
 
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We are going to write its Groovy counterpart with the GServlet API so you can perceive the difference in terms of simplicity and clarity. The name of the HTTP request method handlers are shortened to <em>get</em>, <em>post</em> and so on. They take no arguments since the request and the response are now implicit variables.</p>
+<p>Now, we are going to write its Groovy counterpart with the GServlet API so you can perceive the difference in terms of simplicity and clarity. The name of the HTTP request method handlers are shortened to <em>get</em>, <em>post</em> and so on. They take no arguments since the request and the response are now implicit variables.</p>
 </div>
 <div class="listingblock">
 <div class="title">MyHttpServlet.groovy</div>
@@ -2467,19 +2517,19 @@ public class MyHttpServlet extends HttpServlet {
 @Servlet("/myServlet")
 class MyHttpServlet {
 
-	void get() {
-	  out.println("&lt;html&gt;")
-	  out.println("&lt;body&gt;")
-	  out.println("&lt;p&gt;Welcome to servlet&lt;/p&gt;")
-	  out.println("&lt;/body&gt;")
-	  out.println("&lt;/html&gt;")
+   void get() {
+      out.println("&lt;html&gt;")
+      out.println("&lt;body&gt;")
+      out.println("&lt;p&gt;Welcome to servlet&lt;/p&gt;")
+      out.println("&lt;/body&gt;")
+      out.println("&lt;/html&gt;")
    }
 
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>By default the Content-Type of the <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletResponse.html">HttpServletResponse</a> is set to <em>text/html</em> and the implicit <em>out</em> variable used to generate the HMTL content is nothing less than a reference to a <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletResponse.html#getWriter">PrintWriter</a> object. We could use as well the implicit <em>html</em> variable which is an instance of a Groovy MarkupBuilder, to write a better version of this servlet.</p>
+<p>By default the Content-Type of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html">HttpServletResponse</a> is set to <em>text/html</em> and the implicit <em>out</em> variable used to generate the HMTL content is nothing less than a reference to its <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletResponse.html#getWriter">PrintWriter</a> object. We could use as well the implicit <em>html</em> variable which is an instance of a Groovy MarkupBuilder, to write a better version of this servlet.</p>
 </div>
 <div class="listingblock">
 <div class="title">MyHttpServlet.groovy</div>
@@ -2489,13 +2539,13 @@ class MyHttpServlet {
 @Servlet("/myServlet")
 class MyHttpServlet {
 
-	void get() {
+  void get() {
      html.html {
        body {
          p("Welcome to gservlet")
        }
      }
-   }
+  }
 
 }</code></pre>
 </div>
@@ -2514,8 +2564,12 @@ class MyHttpServlet {
 &lt;/html&gt;</code></pre>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_servlet_implicit_variables"><a class="anchor" href="#_servlet_implicit_variables"></a><a class="link" href="#_servlet_implicit_variables">6.1. Servlet implicit variables</a></h3>
+<div class="paragraph">
+<p>The implicit variables made available to your servlets are as follows:</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. Servlet Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2528,53 +2582,255 @@ class MyHttpServlet {
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">logger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>logger</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html">logger</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">config</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletConfig.html">ServletConfig</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>config</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletConfig.html">ServletConfig</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">request</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>request</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">response</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletResponse.html)">HttpServletResponse</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>response</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html)">HttpServletResponse</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">session</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>session</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">context</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContext.html">ServletContext</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>context</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sql</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>sql</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://docs.groovy-lang.org/latest/html/api/groovy/sql/Sql.html">Sql</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">out</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>out</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/io/PrintWriter.html">PrintWriter</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">html</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>html</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://docs.groovy-lang.org/latest/html/api/groovy/xml/MarkupBuilder.html">MarkupBuilder</a> object</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect2">
+<h3 id="_servlet_methods"><a class="anchor" href="#_servlet_methods"></a><a class="link" href="#_servlet_methods">6.2. Servlet methods</a></h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void init()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handles the initialization process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void get()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handles the GET request</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void post()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handles the POST request</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void put()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handles the PUT request</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void delete()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handles the DELETE request</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void head()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handles the HEAD request</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void options()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handles the OPTIONS request</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void trace()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handles the TRACE request.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void destroy()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">invoked when taken out of the service</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_servlet_initialization_parameters"><a class="anchor" href="#_servlet_initialization_parameters"></a><a class="link" href="#_servlet_initialization_parameters">6.3. Servlet initialization parameters</a></h3>
+<div class="paragraph">
+<p>Since Servlet 3, the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebInitParam.html">@WebInitParam</a> annotation is used to specify initialization parameters for a servlet or filter programmatically, and it takes a required name and value. You can add a description but this is rather informative. In the initialization method <em>init()</em>, we can get our parameters using the <em>getInitParameter()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletConfig.html">ServletConfig</a> object. In the GServlet API, the annotation has been shorten to <em>@InitParam</em> and you can get an initialization parameter through the implicit <em>config</em> variable using just its name or as described above.</p>
+</div>
+<div class="listingblock">
+<div class="title">UploadServlet.groovy</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.InitParam
+import org.gservlet.annotation.Servlet
+
+@Servlet( urlPatterns = "/upload",
+initParams = [
+	@InitParam(name = "uploadDirectory", value = "/images")
+] )
+class UploadServlet {
+
+	void init() {
+		println config.uploadDirectory
+		println config.getInitParameter("uploadDirectory")
+	}
+
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_servlet_multipart_configuration"><a class="anchor" href="#_servlet_multipart_configuration"></a><a class="link" href="#_servlet_multipart_configuration">6.4. Servlet Multipart configuration</a></h3>
+<div class="paragraph">
+<p>Supporting file uploads is a very basic and common requirement for many web applications. Prior to Servlet 3.0, implementing file upload required the use of external libraries or complex input processing. Version 3.0 of the Java Servlet specification helps to provide a viable solution to the problem in a generic and portable way. The Servlet 3.0 specification supports file upload out of the box, so any web container that implements the specification can parse multipart requests and make mime attachments available through the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a> object. A new annotation, <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/MultipartConfig.html">@MultipartConfig</a>, is used to indicate that the servlet on which it is declared expects requests to made using the <em>multipart/form-data</em> MIME type. Therefore, it can retrieve the Part components of a given <em>multipart/form-data</em> request by calling the <em>getPart(String name)</em> or <em>getParts()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a> object. In the GServlet API, the annotation has been shorten to <em>@Multipart</em> while taking the same input parameters.</p>
+</div>
+<div class="listingblock">
+<div class="title">UploadServlet.groovy</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.InitParam
+import org.gservlet.annotation.Servlet
+import org.gservlet.annotation.Multipart
+
+@Servlet( urlPatterns = "/upload",
+initParams = [
+	@InitParam(name = "uploadDirectory", value = "/images")
+] )
+@Multipart( fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 25 )
+class UploadServlet {
+
+	String uploadPath
+
+	void init() {
+		uploadPath = context.getRealPath(config.uploadDirectory)
+		File uploadDir = new File(uploadPath)
+		if (!uploadDir.exists()) {
+			uploadDir.mkdir()
+		}
+	}
+
+	void post() {
+		request.getParts().each { part -&gt;
+			String file = uploadPath + File.separator + getFileName(part)
+			part.write(file)
+		}
+		json(["status" : 1])
+	}
+
+	String getFileName(part) {
+		for(String content : part.getHeader("content-disposition").split(";")) {
+			if ( content.trim().startsWith("filename")) {
+				return content.substring( content.indexOf("=") + 2, content.length() - 1 )
+			}
+		}
+		return "default.txt";
+	}
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_servlet_security"><a class="anchor" href="#_servlet_security"></a><a class="link" href="#_servlet_security">6.5. Servlet Security</a></h3>
+<div class="paragraph">
+<p>The <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/ServletSecurity.html">@ServletSecurity</a> annotation is used to specify security constraints on a Java servlet. The annotations <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/HttpMethodConstraint.html">@HttpMethodConstraint</a> and <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/HttpConstraint.html">@HttpConstraint</a> are used within that annotation to define the security constraints.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ServletSecurity(
+    httpMethodConstraints = &lt;HttpMethodConstraint[]&gt;,
+    value = &lt;HttpConstraint&gt;
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <em>httpMethodConstraints</em> attribute specifies one or more constraints for some specific HTTP methods, whereas the value attribute specifies a constraint that applies for all other HTTP methods.</p>
+</div>
+<div class="listingblock">
+<div class="title">Encryption for all HTTP methods</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
+import javax.servlet.annotation.ServletSecurity
+import javax.servlet.annotation.ServletSecurity.TransportGuarantee
+import javax.servlet.annotation.HttpConstraint
+
+@Servlet(value="/projects")
+@ServletSecurity(@HttpConstraint(transportGuarantee = TransportGuarantee.CONFIDENTIAL))
+class ProjectServlet {
+
+
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Denying access to HTTP POST method</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
+import javax.servlet.annotation.ServletSecurity
+import javax.servlet.annotation.HttpMethodConstraint
+import javax.servlet.annotation.ServletSecurity.EmptyRoleSemantic
+
+@Servlet(value="/projects")
+@ServletSecurity(httpMethodConstraints = @HttpMethodConstraint(value = "POST",
+	emptyRoleSemantic = EmptyRoleSemantic.DENY))
+class ProjectServlet {
+
+
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Requiring that users must have the admin role</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
+import javax.servlet.annotation.ServletSecurity
+import javax.servlet.annotation.HttpMethodConstraint
+
+@Servlet(value="/projects")
+@ServletSecurity(
+ httpMethodConstraints = [
+  @HttpMethodConstraint(value = "GET", rolesAllowed = "admin"),
+  @HttpMethodConstraint(value = "POST", rolesAllowed = "admin"),
+ ]
+)
+class ProjectServlet {
+
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can find more examples about how to use the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/ServletSecurity.html">@ServletSecurity</a> annotation on the web.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_creating_filters"><a class="anchor" href="#_creating_filters"></a><a class="link" href="#_creating_filters">7. Creating Filters</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A filter is an object that performs filtering tasks on either the request to a resource (a servlet or static content), or on the response from a resource, or both. The <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/Filter.html">Filter</a> interface defines methods that all filters must implement. Filters perform filtering in the <em>doFilter</em> method.</p>
+<p>A filter is an object that performs filtering tasks on either the request to a resource (a servlet or static content), or on the response from a resource, or both. The <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html">Filter</a> interface defines methods that all filters must implement. Filters perform filtering in the <em>doFilter</em> method.</p>
 </div>
 <div class="paragraph">
-<p>This is a Java filter that implements this interface:</p>
+<p>This is a Java class that implements this interface:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyFilter.java</div>
@@ -2591,17 +2847,14 @@ import java.io.IOException;
 @WebFilter("/*")
 public class MyFilter implements Filter {
 
-    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
 
-    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         chain.doFilter(request, response);
     }
 
-    @Override
     public void destroy() {
     }
 
@@ -2609,7 +2862,7 @@ public class MyFilter implements Filter {
 </div>
 </div>
 <div class="paragraph">
-<p>The Groovy version with the GServlet API looks like this:</p>
+<p>The Groovy version of this filter with the GServlet API looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyFilter.groovy</div>
@@ -2632,8 +2885,12 @@ class MyFilter {
 }</code></pre>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_filter_implicit_variables"><a class="anchor" href="#_filter_implicit_variables"></a><a class="link" href="#_filter_implicit_variables">7.1. Filter implicit variables</a></h3>
+<div class="paragraph">
+<p>The implicit variables made available to your filters are as follows:</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 2. Filter Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2646,47 +2903,81 @@ class MyFilter {
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">logger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>logger</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html">logger</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">config</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/FilterConfig.html">FilterConfig</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>config</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/FilterConfig.html">FilterConfig</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">request</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>request</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">response</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletResponse.html)">HttpServletResponse</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>response</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html)">HttpServletResponse</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">chain</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/FilterChain.html)">FilterChain</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>chain</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/FilterChain.html)">FilterChain</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">session</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>session</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">context</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContext.html">ServletContext</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>context</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sql</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>sql</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://docs.groovy-lang.org/latest/html/api/groovy/sql/Sql.html">Sql</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">out</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>out</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/io/PrintWriter.html">PrintWriter</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">html</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>html</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://docs.groovy-lang.org/latest/html/api/groovy/xml/MarkupBuilder.html">MarkupBuilder</a> object</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect2">
+<h3 id="_filter_methods"><a class="anchor" href="#_filter_methods"></a><a class="link" href="#_filter_methods">7.2. Filter methods</a></h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void init()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handles the initialization process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void filter()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">handles the filtering tasks</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void destroy()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">invoked when taken out of the service</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_filter_initialization_parameters"><a class="anchor" href="#_filter_initialization_parameters"></a><a class="link" href="#_filter_initialization_parameters">7.3. Filter initialization parameters</a></h3>
+
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2702,47 +2993,47 @@ class MyFilter {
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContextListener.html">ServletContextListener</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContext.html">ServletContext</a> lifecycle changes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextListener.html">ServletContextListener</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> lifecycle changes.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContextAttributeListener.html">ServletContextAttributeListener</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContext.html">ServletContext</a> attribute changes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextAttributeListener.html">ServletContextAttributeListener</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> attribute changes.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequestListener.html">ServletRequestListener</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about a <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequest.html">ServletRequest</a> coming into and going out of scope of a web application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestListener.html">ServletRequestListener</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequest.html">ServletRequest</a> coming into and going out of scope of a web application.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequestAttributeListener.html">ServletRequestAttributeListener</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequest.html">ServletRequest</a> attribute changes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestAttributeListener.html">ServletRequestAttributeListener</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequest.html">ServletRequest</a> attribute changes.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionListener.html">HttpSessionListener</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> lifecycle changes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionListener.html">HttpSessionListener</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> lifecycle changes.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionAttributeListener.html">HttpSessionAttributeListener</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> attribute changes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionAttributeListener.html">HttpSessionAttributeListener</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> attribute changes.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionBindingListener.html">HttpSessionBindingListener</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events when an object is bound to or unbound from a <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionBindingListener.html">HttpSessionBindingListener</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events when an object is bound to or unbound from a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionActivationListener.html">HttpSessionActivationListener</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events when an <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> is being passivated and and activated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionActivationListener.html">HttpSessionActivationListener</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events when an <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> is being passivated and and activated.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionIdListener.html">HttpSessionIdListener</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> id changes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionIdListener.html">HttpSessionIdListener</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> id changes.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect2">
 <h3 id="_servletcontextlistener"><a class="anchor" href="#_servletcontextlistener"></a><a class="link" href="#_servletcontextlistener">8.1. ServletContextListener</a></h3>
 <div class="paragraph">
-<p>This interface is for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContext.html">ServletContext</a> lifecycle changes. Implementations of this interface are invoked at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContextListener.html#contextInitialized-javax.servlet.ServletContextEvent">contextInitialized</a> method in the order in which they have been declared, and at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContextListener.html#contextDestroyed-javax.servlet.ServletContextEvent-">contextDestroyed</a> method in reverse order.</p>
+<p>This interface is for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> lifecycle changes. Implementations of this interface are invoked at their <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextListener.html#contextInitialized-javax.servlet.ServletContextEvent">contextInitialized</a> method in the order in which they have been declared, and at their <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextListener.html#contextDestroyed-javax.servlet.ServletContextEvent-">contextDestroyed</a> method in reverse order.</p>
 </div>
 <div class="listingblock">
 <div class="title">MyServletContextListener.java</div>
@@ -2754,14 +3045,12 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class MyServletContextListener implements ServletContextListener {
 
-	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		System.out.println("context started");
+	   System.out.println("context started");
 	}
 
-	@Override
 	public void contextDestroyed(ServletContextEvent event) {
-		System.out.println("context destroyed");
+	   System.out.println("context destroyed");
 	}
 
 }</code></pre>
@@ -2776,18 +3065,21 @@ public class MyServletContextListener implements ServletContextListener {
 public class MyServletContextListener {
 
 	void contextInitialized() {
-		println "context started"
+	   println "context started"
 	}
 
 	void contextDestroyed() {
-		println "context destroyed"
+	   println "context destroyed"
 	}
 
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The implicit variables made available to your ServletContext listeners are as follows:</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 3. ServletContextListener Implicit Variables</caption>
+<caption class="title">Table 1. ServletContextListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2800,16 +3092,16 @@ public class MyServletContextListener {
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">logger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>logger</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html">logger</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">context</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContext.html">ServletContext</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>context</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">event</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContextEvent.html">ServletContextEvent</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>event</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextEvent.html">ServletContextEvent</a> object</p></td>
 </tr>
 </tbody>
 </table>
@@ -2817,7 +3109,7 @@ public class MyServletContextListener {
 <div class="sect2">
 <h3 id="_servletcontextattributelistener"><a class="anchor" href="#_servletcontextattributelistener"></a><a class="link" href="#_servletcontextattributelistener">8.2. ServletContextAttributeListener</a></h3>
 <div class="paragraph">
-<p>This interface is for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContext.html">ServletContext</a> attribute changes. The order in which implementations of this interface are invoked is unspecified.</p>
+<p>This interface is for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> attribute changes. The order in which implementations of this interface are invoked is unspecified.</p>
 </div>
 <div class="listingblock">
 <div class="title">MyServletContextAttributeListener.java</div>
@@ -2829,17 +3121,14 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class MyServletContextAttributeListener implements ServletContextAttributeListener {
 
-    @Override
     public void attributeAdded(ServletContextAttributeEvent event) {
         System.out.println("attr " + event.getName() + " added with value " + event.getValue());
     }
 
-    @Override
     public void attributeRemoved(ServletContextAttributeEvent event) {
         System.out.println("attr " + event.getName() + " removed with value " + event.getValue());
     }
 
-    @Override
     public void attributeReplaced(ServletContextAttributeEvent event) {
         System.out.println("attr " + event.getName() + " replaced with value " + event.getValue());
     }
@@ -2870,8 +3159,11 @@ public class MyServletContextAttributeListener {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The implicit variables made available to your ServletContext attribute listeners are as follows:</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 4. ServletContextAttributeListener Implicit Variables</caption>
+<caption class="title">Table 2. ServletContextAttributeListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2884,23 +3176,23 @@ public class MyServletContextAttributeListener {
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">logger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>logger</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html">logger</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">context</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContext.html">ServletContext</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>context</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">event</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContextAttributeEvent.html">ServletContextAttributeEvent</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>event</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextAttributeEvent.html">ServletContextAttributeEvent</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>name</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attribute name</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>value</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attribute value</p></td>
 </tr>
 </tbody>
@@ -2909,7 +3201,7 @@ public class MyServletContextAttributeListener {
 <div class="sect2">
 <h3 id="_servletrequestlistener"><a class="anchor" href="#_servletrequestlistener"></a><a class="link" href="#_servletrequestlistener">8.3. ServletRequestListener</a></h3>
 <div class="paragraph">
-<p>This interface is for receiving notification events about requests coming into and going out of scope of a web application. A request is defined as coming into scope of a web application when it is about to enter the first servlet or filter of the web application, and as going out of scope as it exits the last servlet or the first filter in the chain. Implementations of this interface are invoked at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequestListener.html#requestInitialized-javax.servlet.ServletRequestEvent">requestInitialized</a> method in the order in which they have been declared, and at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequestListener.html#requestDestroyed-javax.servlet.ServletRequestEvent-">requestDestroyed</a> method in reverse order.</p>
+<p>This interface is for receiving notification events about requests coming into and going out of scope of a web application. A request is defined as coming into scope of a web application when it is about to enter the first servlet or filter of the web application, and as going out of scope as it exits the last servlet or the first filter in the chain. Implementations of this interface are invoked at their <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestListener.html#requestInitialized-javax.servlet.ServletRequestEvent">requestInitialized</a> method in the order in which they have been declared, and at their <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestListener.html#requestDestroyed-javax.servlet.ServletRequestEvent-">requestDestroyed</a> method in reverse order.</p>
 </div>
 <div class="listingblock">
 <div class="title">MyServletRequestListener.java</div>
@@ -2921,12 +3213,10 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class MyServletRequestListener implements ServletRequestListener {
 
-	 @Override
     public void requestInitialized(ServletRequestEvent event) {
         System.out.println("request initialized");
     }
 
-    @Override
     public void requestDestroyed(ServletRequestEvent event) {
         System.out.println("request destroyed");
     }
@@ -2953,8 +3243,11 @@ public class MyServletRequestListener {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The implicit variables made available to your ServletRequest listeners are as follows:</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 5. ServletRequestListener Implicit Variables</caption>
+<caption class="title">Table 3. ServletRequestListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2967,24 +3260,24 @@ public class MyServletRequestListener {
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">logger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>logger</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html">logger</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">request</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>request</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">session</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>session</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">context</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContext.html">ServletContext</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>context</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">event</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequestEvent.html">ServletRequestEvent</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>event</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestEvent.html">ServletRequestEvent</a> object</p></td>
 </tr>
 </tbody>
 </table>
@@ -2992,7 +3285,7 @@ public class MyServletRequestListener {
 <div class="sect2">
 <h3 id="_servletrequestattributelistener"><a class="anchor" href="#_servletrequestattributelistener"></a><a class="link" href="#_servletrequestattributelistener">8.4. ServletRequestAttributeListener</a></h3>
 <div class="paragraph">
-<p>This interface is for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequest.html">ServletRequest</a> attribute changes.
+<p>This interface is for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequest.html">ServletRequest</a> attribute changes.
 Notifications will be generated while the request is within the scope of the web application. A ServletRequest is defined as coming into scope of a web application when it is about to enter the first servlet or filter of the web application, and as going out of scope when it exits the last servlet or the first filter in the chain. The order in which implementations of this interface are invoked is unspecified.</p>
 </div>
 <div class="listingblock">
@@ -3005,17 +3298,14 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class MyServletRequestAttributeListener implements ServletRequestAttributeListener {
 
-    @Override
     public void attributeAdded(ServletRequestAttributeEvent event) {
         System.out.println("attr " + event.getName() + " added with value " + event.getValue());
     }
 
-    @Override
     public void attributeRemoved(ServletRequestAttributeEvent event) {
         System.out.println("attr " + event.getName() + " removed with value " + event.getValue());
     }
 
-    @Override
     public void attributeReplaced(ServletRequestAttributeEvent event) {
         System.out.println("attr " + event.getName() + " replaced with value " + event.getValue());
     }
@@ -3046,8 +3336,11 @@ public class MyServletRequestAttributeListener {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The implicit variables made available to your ServletRequest attribute listeners are as follows:</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 6. ServletRequestAttributeListener Implicit Variables</caption>
+<caption class="title">Table 4. ServletRequestAttributeListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3060,31 +3353,31 @@ public class MyServletRequestAttributeListener {
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">logger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>logger</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html">logger</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">request</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>request</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">session</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>session</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">context</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletContext.html">ServletContext</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>context</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">event</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/ServletRequestAttributeEvent.html">ServletRequestAttributeEvent</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>event</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestAttributeEvent.html">ServletRequestAttributeEvent</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>name</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attribute name</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>value</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attribute value</p></td>
 </tr>
 </tbody>
@@ -3093,7 +3386,7 @@ public class MyServletRequestAttributeListener {
 <div class="sect2">
 <h3 id="_httpsessionlistener"><a class="anchor" href="#_httpsessionlistener"></a><a class="link" href="#_httpsessionlistener">8.5. HttpSessionListener</a></h3>
 <div class="paragraph">
-<p>This interface is for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> lifecycle changes. Implementations of this interface are invoked at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionListener.html#sessionCreated-javax.servlet.http.HttpSessionEvent">sessionCreated</a> method in the order in which they have been declared, and at their <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionListener.html#sessionDestroyed-javax.servlet.http.HttpSessionEvent">sessionDestroyed</a> method in reverse order.</p>
+<p>This interface is for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> lifecycle changes. Implementations of this interface are invoked at their <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionListener.html#sessionCreated-javax.servlet.http.HttpSessionEvent">sessionCreated</a> method in the order in which they have been declared, and at their <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionListener.html#sessionDestroyed-javax.servlet.http.HttpSessionEvent">sessionDestroyed</a> method in reverse order.</p>
 </div>
 <div class="listingblock">
 <div class="title">MyHttpSessionListener.java</div>
@@ -3105,14 +3398,12 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class MyHttpSessionListener implements HttpSessionListener {
 
-	@Override
 	public void sessionCreated(HttpSessionEvent event) {
-		System.out.println("session created");
+	  System.out.println("session created");
 	}
 
-	@Override
 	public void sessionDestroyed(HttpSessionEvent event) {
-		System.out.println("session destroyed");
+	  System.out.println("session destroyed");
 	}
 
 }</code></pre>
@@ -3127,18 +3418,21 @@ public class MyHttpSessionListener implements HttpSessionListener {
 public class MyHttpSessionListener {
 
 	void sessionCreated() {
-		println "session created"
+	   println "session created"
 	}
 
 	void sessionDestroyed() {
-		println "session destroyed"
+	   println "session destroyed"
 	}
 
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The implicit variables made available to your HttpSession listeners are as follows:</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 7. HttpSessionListener Implicit Variables</caption>
+<caption class="title">Table 5. HttpSessionListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3151,16 +3445,16 @@ public class MyHttpSessionListener {
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">logger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>logger</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html">logger</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">session</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>session</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">event</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionEvent.html">HttpSessionEvent</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>event</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionEvent.html">HttpSessionEvent</a> object</p></td>
 </tr>
 </tbody>
 </table>
@@ -3168,7 +3462,7 @@ public class MyHttpSessionListener {
 <div class="sect2">
 <h3 id="_httpsessionattributelistener"><a class="anchor" href="#_httpsessionattributelistener"></a><a class="link" href="#_httpsessionattributelistener">8.6. HttpSessionAttributeListener</a></h3>
 <div class="paragraph">
-<p>This interface is for receiving notification events about <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> attribute changes. The order in which implementations of this interface are invoked is unspecified.</p>
+<p>This interface is for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> attribute changes. The order in which implementations of this interface are invoked is unspecified.</p>
 </div>
 <div class="listingblock">
 <div class="title">MyHttpSessionAttributeListener.java</div>
@@ -3180,17 +3474,14 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class MyHttpSessionAttributeListener implements HttpSessionAttributeListener {
 
-    @Override
     public void attributeAdded(HttpSessionBindingEvent event) {
         System.out.println("attr " + event.getName() + " added with value " + event.getValue());
     }
 
-    @Override
     public void attributeRemoved(HttpSessionBindingEvent event) {
         System.out.println("attr " + event.getName() + " removed with value " + event.getValue());
     }
 
-    @Override
     public void attributeReplaced(HttpSessionBindingEvent event) {
         System.out.println("attr " + event.getName() + " replaced with value " + event.getValue());
     }
@@ -3221,8 +3512,11 @@ public class MyHttpSessionAttributeListener {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The implicit variables made available to your HttpSession attribute listeners are as follows:</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 8. HttpSessionAttributeListener Implicit Variables</caption>
+<caption class="title">Table 6. HttpSessionAttributeListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3235,23 +3529,23 @@ public class MyHttpSessionAttributeListener {
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">logger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>logger</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html">logger</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">session</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>session</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">event</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionBindingEvent.html">HttpSessionBindingEvent</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>event</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionBindingEvent.html">HttpSessionBindingEvent</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>name</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attribute name</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>value</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attribute value</p></td>
 </tr>
 </tbody>
@@ -3272,12 +3566,10 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class MyHttpSessionBindingListener implements HttpSessionBindingListener {
 
-    @Override
     public void valueBound(HttpSessionBindingEvent event) {
         System.out.println("attr " + event.getName() + " bounded with value " + event.getValue());
     }
 
-    @Override
     public void valueUnbound(HttpSessionBindingEvent event) {
         System.out.println("attr " + event.getName() + " unbounded with value " + event.getValue());
     }
@@ -3304,8 +3596,11 @@ public class MyHttpSessionBindingListener {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The implicit variables made available to your HttpSession binding listeners are as follows:</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 9. HttpSessionBindingListener Implicit Variables</caption>
+<caption class="title">Table 7. HttpSessionBindingListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3318,23 +3613,23 @@ public class MyHttpSessionBindingListener {
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">logger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>logger</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html">logger</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">session</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>session</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">event</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionBindingEvent.html">HttpSessionBindingEvent</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>event</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionBindingEvent.html">HttpSessionBindingEvent</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>name</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attribute name</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>value</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attribute value</p></td>
 </tr>
 </tbody>
@@ -3355,12 +3650,10 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class MyHttpSessionActivationListener implements HttpSessionActivationListener {
 
-    @Override
     public void sessionDidActivate(HttpSessionEvent event) {
         System.out.println("session activated");
     }
 
-    @Override
     public void sessionWillPassivate(HttpSessionEvent event) {
         System.out.println("session passivated");
     }
@@ -3387,8 +3680,11 @@ public class MyHttpSessionActivationListener {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The implicit variables made available to your HttpSession activation listeners are as follows:</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 10. HttpSessionActivationListener Implicit Variables</caption>
+<caption class="title">Table 8. HttpSessionActivationListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3401,16 +3697,16 @@ public class MyHttpSessionActivationListener {
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">logger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>logger</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html">logger</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">session</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>session</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">event</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionEvent.html">HttpSessionEvent</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>event</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionEvent.html">HttpSessionEvent</a> object</p></td>
 </tr>
 </tbody>
 </table>
@@ -3430,7 +3726,6 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class MyHttpSessionIdListener implements HttpSessionIdListener {
 
-    @Override
     public void sessionIdChanged(HttpSessionEvent event, String oldSessionId) {
         System.out.println("the session id was "+oldSessionId);
     }
@@ -3441,7 +3736,7 @@ public class MyHttpSessionIdListener implements HttpSessionIdListener {
 <div class="listingblock">
 <div class="title">MyHttpSessionIdListener.groovy</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.servlet.annotation.SessionIdListener
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.servlet.annotation.SessionIdListenerThe implicit variables below are made available
 
 @WebListener
 public class MyHttpSessionIdListener {
@@ -3453,8 +3748,11 @@ public class MyHttpSessionIdListener {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The implicit variables made available to your HttpSession Id listeners are as follows:</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 11. HttpSessionIdListener Implicit Variables</caption>
+<caption class="title">Table 9. HttpSessionIdListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3467,20 +3765,20 @@ public class MyHttpSessionIdListener {
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">logger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>logger</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html">logger</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">session</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>session</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">event</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSessionEvent.html">HttpSessionEvent</a> object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>event</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionEvent.html">HttpSessionEvent</a> object</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">oldSessionId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">old <a href="https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html">HttpSession</a> Id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>oldSessionId</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">old <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> Id</p></td>
 </tr>
 </tbody>
 </table>
@@ -3488,15 +3786,102 @@ public class MyHttpSessionIdListener {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_parsing_and_producing_json"><a class="anchor" href="#_parsing_and_producing_json"></a><a class="link" href="#_parsing_and_producing_json">9. Parsing and Producing JSON</a></h2>
+<h2 id="_working_with_json"><a class="anchor" href="#_working_with_json"></a><a class="link" href="#_working_with_json">9. Working With JSON</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Groovy comes with integrated support for converting between Groovy objects and JSON. The classes dedicated to JSON serialisation and parsing are found in the <strong><em>groovy.json</em></strong> package. You can get an insight of how to use them in the Groovy <a href="https://groovy-lang.org/json.html">documentation</a>. In the Gservlet API, we have simplified the process of parsing and producing JSON in your servlets and filters as below:</p>
+</div>
+<div class="listingblock">
+<div class="title">CustomerServlet.java</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
 
+@Servlet("/projects")
+class ProjectServlet {
+
+   def projects = []
+
+   void init() {
+     projects &lt;&lt; [id : 1, name : "Groovy", url : "https://groovy-lang.org"]
+     projects &lt;&lt; [id : 2, name : "Spring", url : "https://spring.io"]
+     projects &lt;&lt; [id : 3, name : "Maven",  url : "https://maven.apache.org"]
+   }
+
+   void get() {
+     json(projects)
+   }
+
+   void post() {
+     def project = request.body
+     projects &lt;&lt; project
+     json(project)
+   }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Whenever, the content-type of the request is set to <strong><em>application/json</em></strong>, you can use its <strong><em>body</em></strong> property to get the payload as Groovy object. Your servlet or filter can use as well the built-in <strong><em>json()</em></strong> method to send json data as a response.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_working_with_a_database"><a class="anchor" href="#_working_with_a_database"></a><a class="link" href="#_working_with_a_database">10. Working With a Database</a></h2>
+<h2 id="_working_with_rdbms"><a class="anchor" href="#_working_with_rdbms"></a><a class="link" href="#_working_with_rdbms">10. Working With RDBMS</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The <strong><em>groovy-sql</em></strong> module provides a higher-level abstraction over the current Java’s JDBC technology and it supports a wide variety of databases. To set up a database with the GServlet API is as simple as to create in the root directory of your web application, a file named <strong><em>application.properties</em></strong> like below :</p>
+</div>
+<div class="listingblock">
+<div class="title">application.properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plain hljs" data-lang="plain">db.driver : oracle.jdbc.driver.OracleDriver
+db.url : jdbc:oracle:thin:@10.0.0.85:1521:ssv8acs
+db.user : ACSQA
+db.password : acs
+db.minPoolSize : 5
+db.maxPoolSize : 10</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For each request, an <a href="http://docs.groovy-lang.org/latest/html/api/groovy/sql/Sql.html">Sql</a> connection is automatically created from a data source and made available in your servlets and filters through the implicit <em>sql</em> variable as below:</p>
+</div>
+<div class="listingblock">
+<div class="title">ProjectServlet.groovy</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
 
+@Servlet("/myServlet")
+class ProjectServlet {
+
+   void post() {
+     def params = [1, 'Groovy', 'https://groovy-lang.org']
+     sql.execute 'insert into projects (id, name, url) values (?, ?, ?)', params
+   }
+
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">ProjectFilter.groovy</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Filter;
+
+@Filter("/*")
+class ProjectFilter {
+
+   void filter() {
+      sql.eachRow('select * from projects') { project -&gt;
+         println "${project.name.padRight(10)} ($project.url)"
+      }
+      next()
+   }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After each request, the <em>close()</em> method of the <a href="http://docs.groovy-lang.org/latest/html/api/groovy/sql/Sql.html">Sql</a> object is automatically invoked to bring it back to the connection pool.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -3511,7 +3896,7 @@ public class MyHttpSessionIdListener {
 <h2 id="_authors"><a class="anchor" href="#_authors"></a><a class="link" href="#_authors">12. Authors</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>GServlet was written by <a href="https://github.com/laminba2003">Mamadou Lamine Ba</a>.</p>
+<p>GServlet was created by <a href="https://github.com/laminba2003">Mamadou Lamine Ba</a>.</p>
 </div>
 </div>
 </div>
@@ -3519,7 +3904,7 @@ public class MyHttpSessionIdListener {
 <h2 id="_contributing"><a class="anchor" href="#_contributing"></a><a class="link" href="#_contributing">13. Contributing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Contributions of any type or any scope, drive the project forward. There are lot of ways to contribute, not just code.  We provide more information about how to get involved in our <a href="/contribute">contribute</a> page.</p>
+<p>Contributions of any type or any scope, drive the project forward. There are lot of ways to contribute, not just code. We provide more information about how to get involved in our <a href="/contribute">contribute</a> page.</p>
 </div>
 </div>
 </div>
