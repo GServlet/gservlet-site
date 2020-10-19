@@ -814,9 +814,9 @@ p a>code:hover {
 }
 
 #toc ul {
-	font-family: Tahoma, "Open Sans", "DejaVu Sans", sans-serif;
+	font-family: "Open Sans", "DejaVu Sans", sans-serif;
 	list-style-type: none;
-	font-size: 0.97em;
+	font-size: 0.95em;
 }
 
 #toc li {
@@ -857,7 +857,7 @@ p a>code:hover {
 		z-index: 1000;
 		padding: 1.25em 1em;
 		height: 100%;
-		overflow: auto
+		overflow: hidden
 	}
 	#toc.toc2 #toctitle {
 		margin-top: 0;
@@ -2167,6 +2167,73 @@ p {
 }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="icon" href="images/favicon.png" type="image/png">
+<!-- Generate a nice TOC -->
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js"></script>
+<!-- We do not need the tocify CSS because the asciidoc CSS already provides most of what we neeed -->
+
+<style>
+
+.tocify ul {
+    margin: 0;
+ }
+
+.tocify-focus {
+    color: #e65251;
+}
+
+.tocify-focus > a {
+    color: #e65251;
+}
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        // Add a new container for the tocify toc into the existing toc so we can re-use its
+        // styling
+        $("#toc").append("<div id='generated-toc'></div>");
+        $("#generated-toc").tocify({
+            extendPage: false,
+            context: "#content",
+            highlightOnScroll: true,
+            hideEffect: "slideUp",
+            // Use the IDs that asciidoc already provides so that TOC links and intra-document
+            // links are the same. Anything else might confuse users when they create bookmarks.
+            hashGenerator: function(text, element) {
+                return $(element).attr("id");
+            },
+            // Smooth scrolling doesn't work properly if we use the asciidoc IDs
+            smoothScroll: false,
+            // Set to 'none' to use the tocify classes
+            theme: "none",
+            // Handle book (may contain h1) and article (only h2 deeper)
+            selectors: $( "#content" ).has( "h1" ).size() > 0 ? "h1,h2,h3,h4,h5" : "h2,h3,h4,h5",
+            ignoreSelector: ".discrete"
+        });
+
+        // Switch between static asciidoc toc and dynamic tocify toc based on browser size
+        // This is set to match the media selectors in the asciidoc CSS
+        // Without this, we keep the dynamic toc even if it is moved from the side to preamble
+        // position which will cause odd scrolling behavior
+        var handleTocOnResize = function() {
+            if ($(document).width() < 768) {
+                $("#generated-toc").hide();
+                $(".sectlevel0").show();
+                $(".sectlevel1").show();
+            }
+            else {
+                $("#generated-toc").show();
+                $(".sectlevel0").hide();
+                $(".sectlevel1").hide();
+            }
+        }
+
+        $(window).resize(handleTocOnResize);
+        handleTocOnResize();
+    });
+</script>
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -2175,12 +2242,12 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2020-10-18</span>
+<span id="revdate">2020-10-19</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_introduction_to_gservlet">1. Introduction to GServlet</a></li>
+<li><a href="#_introduction">1. Introduction</a></li>
 <li><a href="#_main_features">2. Main Features</a></li>
 <li><a href="#_requirements">3. Requirements</a></li>
 <li><a href="#_installation">4. Installation</a>
@@ -2229,7 +2296,7 @@ p {
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_introduction_to_gservlet"><a class="anchor" href="#_introduction_to_gservlet"></a><a class="link" href="#_introduction_to_gservlet">1. Introduction to GServlet</a></h2>
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a><a class="link" href="#_introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>GServlet is an open source project inspired from the <a href="http://docs.groovy-lang.org/latest/html/documentation/servlet-userguide.html">Groovlets</a>, which aims to use the Groovy language and its provided modules to simplify Servlet API web development. Groovlets are Groovy scripts executed by a servlet. They are run on request, having the whole web context (request, response, etc.) bound to the evaluation context. They are much more suitable for smaller web applications. Compared to Java Servlets, coding in Groovy can be much simpler. It has a couple of implicit variables we can use, for example, <em>request</em>, <em>response</em> to access the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a>, and <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html"><em>HttpServletResponse</em></a> objects. We have access to the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html"><em>HttpSession</em></a> with the <em>session</em> variable. If we want to output data, we can use <em>out</em>, <em>sout</em>, and <em>html</em>.</p>
@@ -2702,20 +2769,20 @@ class UploadServlet {
 <div class="sect2">
 <h3 id="_servlet_multipart_configuration"><a class="anchor" href="#_servlet_multipart_configuration"></a><a class="link" href="#_servlet_multipart_configuration">6.4. Servlet Multipart configuration</a></h3>
 <div class="paragraph">
-<p>Supporting file uploads is a very basic and common requirement for many web applications. Prior to Servlet 3.0, implementing file upload required the use of external libraries or complex input processing. Version 3.0 of the Java Servlet specification helps to provide a viable solution to the problem in a generic and portable way. The Servlet 3.0 specification supports file upload out of the box, so any web container that implements the specification can parse multipart requests and make mime attachments available through the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a> object. A new annotation, <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/MultipartConfig.html">@MultipartConfig</a>, is used to indicate that the servlet on which it is declared expects requests to made using the <em>multipart/form-data</em> MIME type. Therefore, it can retrieve the Part components of a given <em>multipart/form-data</em> request by calling the <em>getPart(String name)</em> or <em>getParts()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a> object. In the GServlet API, the annotation has been shorten to <em>@Multipart</em> while taking the same input parameters.</p>
+<p>Supporting file uploads is a very basic and common requirement for many web applications. Prior to Servlet 3.0, implementing file upload required the use of external libraries or complex input processing. Version 3.0 of the Java Servlet specification helps to provide a viable solution to the problem in a generic and portable way. The Servlet 3.0 specification supports file upload out of the box, so any web container that implements the specification can parse multipart requests and make mime attachments available through the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a> object. A new annotation, <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/MultipartConfig.html">@MultipartConfig</a>, is used to indicate that the servlet on which it is declared expects requests to made using the <em>multipart/form-data</em> MIME type. Therefore, it can retrieve the Part components of a given <em>multipart/form-data</em> request by calling the <em>getPart(String name)</em> or <em>getParts()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a> object.</p>
 </div>
 <div class="listingblock">
 <div class="title">UploadServlet.groovy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.InitParam
 import org.gservlet.annotation.Servlet
-import org.gservlet.annotation.Multipart
+import javax.servlet.annotation.MultipartConfig
 
 @Servlet( urlPatterns = "/upload",
 initParams = [
 	@InitParam(name = "uploadDirectory", value = "/images")
 ] )
-@Multipart( fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 25 )
+@MultipartConfig( fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 25 )
 class UploadServlet {
 
 	String uploadPath
@@ -2968,6 +3035,10 @@ class MyFilter {
 <td class="tableblock halign-left valign-top"><p class="tableblock">handles the filtering tasks</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void next()</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calls the next filter in the chain</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>void destroy()</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">invoked when taken out of the service</p></td>
 </tr>
@@ -2976,7 +3047,29 @@ class MyFilter {
 </div>
 <div class="sect2">
 <h3 id="_filter_initialization_parameters"><a class="anchor" href="#_filter_initialization_parameters"></a><a class="link" href="#_filter_initialization_parameters">7.3. Filter initialization parameters</a></h3>
+<div class="paragraph">
+<p>Like for a servlet, the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebInitParam.html">@WebInitParam</a> annotation is used to specify initialization parameters for filter programmatically. In its initialization method <em>init()</em>, we can get our parameters using the <em>getInitParameter()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/FilterConfig.html">FilterConfig</a> object. In the GServlet API, the annotation has been shorten to <em>@InitParam</em> and you can get an initialization parameter through the implicit <em>config</em> variable using just its name or as described above.</p>
+</div>
+<div class="listingblock">
+<div class="title">LoggingFilter.groovy</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.InitParam
+import org.gservlet.annotation.Filter
 
+@Filter( value = "/*",
+initParams = [
+	@InitParam(name = "loggingDirectory", value = "/logs")
+])
+class LoggingFilter {
+
+	void init() {
+		println config.loggingDirectory
+		println config.getInitParameter("loggingDirectory")
+	}
+
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>

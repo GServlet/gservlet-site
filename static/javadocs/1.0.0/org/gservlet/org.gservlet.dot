@@ -45,164 +45,176 @@ digraph G {
 <tr><td align="center" balign="center"> RequestContext </td></tr>
 		</table></td></tr>
 		</table>>, URL="./RequestContext.html", fontname="arial", fontcolor="black", fontsize=10.0];
+	// org.gservlet.FilterConfigWrapper
+	c6 [label=<<table title="org.gservlet.FilterConfigWrapper" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FilterConfigWrapper.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> FilterConfigWrapper </td></tr>
+		</table></td></tr>
+		</table>>, URL="./FilterConfigWrapper.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.FileWatcher
-	c6 [label=<<table title="org.gservlet.FileWatcher" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileWatcher.html">
+	c7 [label=<<table title="org.gservlet.FileWatcher" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileWatcher.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FileWatcher </td></tr>
 		</table></td></tr>
 		</table>>, URL="./FileWatcher.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.FileListener
-	c7 [label=<<table title="org.gservlet.FileListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileListener.html">
+	c8 [label=<<table title="org.gservlet.FileListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FileListener </td></tr>
 		</table></td></tr>
 		</table>>, URL="./FileListener.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.FileEvent
-	c8 [label=<<table title="org.gservlet.FileEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileEvent.html">
+	c9 [label=<<table title="org.gservlet.FileEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileEvent.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FileEvent </td></tr>
 		</table></td></tr>
 		</table>>, URL="./FileEvent.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.FileAdapter
-	c9 [label=<<table title="org.gservlet.FileAdapter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileAdapter.html">
+	c10 [label=<<table title="org.gservlet.FileAdapter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileAdapter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> FileAdapter </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./FileAdapter.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.DynamicInvocationHandler
-	c10 [label=<<table title="org.gservlet.DynamicInvocationHandler" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DynamicInvocationHandler.html">
+	c11 [label=<<table title="org.gservlet.DynamicInvocationHandler" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DynamicInvocationHandler.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DynamicInvocationHandler </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DynamicInvocationHandler.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.DefaultServletConfig
-	c11 [label=<<table title="org.gservlet.DefaultServletConfig" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DefaultServletConfig.html">
+	c12 [label=<<table title="org.gservlet.DefaultServletConfig" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DefaultServletConfig.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DefaultServletConfig </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DefaultServletConfig.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.DefaultRequestListener
-	c12 [label=<<table title="org.gservlet.DefaultRequestListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DefaultRequestListener.html">
+	c13 [label=<<table title="org.gservlet.DefaultRequestListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DefaultRequestListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DefaultRequestListener </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DefaultRequestListener.html", fontname="arial", fontcolor="black", fontsize=10.0];
+	// org.gservlet.DefaultFilterConfig
+	c14 [label=<<table title="org.gservlet.DefaultFilterConfig" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DefaultFilterConfig.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> DefaultFilterConfig </td></tr>
+		</table></td></tr>
+		</table>>, URL="./DefaultFilterConfig.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.DatabaseManager
-	c13 [label=<<table title="org.gservlet.DatabaseManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatabaseManager.html">
+	c15 [label=<<table title="org.gservlet.DatabaseManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatabaseManager.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DatabaseManager </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DatabaseManager.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.ContextWrapper
-	c14 [label=<<table title="org.gservlet.ContextWrapper" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContextWrapper.html">
+	c16 [label=<<table title="org.gservlet.ContextWrapper" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContextWrapper.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ContextWrapper </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ContextWrapper.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.ContainerInitializer
-	c15 [label=<<table title="org.gservlet.ContainerInitializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContainerInitializer.html">
+	c17 [label=<<table title="org.gservlet.ContainerInitializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContainerInitializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ContainerInitializer </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ContainerInitializer.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.Constants
-	c16 [label=<<table title="org.gservlet.Constants" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Constants.html">
+	c18 [label=<<table title="org.gservlet.Constants" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Constants.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Constants </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Constants.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.AbstractSessionListener
-	c17 [label=<<table title="org.gservlet.AbstractSessionListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSessionListener.html">
+	c19 [label=<<table title="org.gservlet.AbstractSessionListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSessionListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> AbstractSessionListener </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractSessionListener.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.AbstractSessionIdListener
-	c18 [label=<<table title="org.gservlet.AbstractSessionIdListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSessionIdListener.html">
+	c20 [label=<<table title="org.gservlet.AbstractSessionIdListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSessionIdListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> AbstractSessionIdListener </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractSessionIdListener.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.AbstractSessionBindingListener
-	c19 [label=<<table title="org.gservlet.AbstractSessionBindingListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSessionBindingListener.html">
+	c21 [label=<<table title="org.gservlet.AbstractSessionBindingListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSessionBindingListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> AbstractSessionBindingListener </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractSessionBindingListener.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.AbstractSessionAttributeListener
-	c20 [label=<<table title="org.gservlet.AbstractSessionAttributeListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSessionAttributeListener.html">
+	c22 [label=<<table title="org.gservlet.AbstractSessionAttributeListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSessionAttributeListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> AbstractSessionAttributeListener </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractSessionAttributeListener.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.AbstractSessionActivationListener
-	c21 [label=<<table title="org.gservlet.AbstractSessionActivationListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSessionActivationListener.html">
+	c23 [label=<<table title="org.gservlet.AbstractSessionActivationListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSessionActivationListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> AbstractSessionActivationListener </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractSessionActivationListener.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.AbstractServlet
-	c22 [label=<<table title="org.gservlet.AbstractServlet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractServlet.html">
+	c24 [label=<<table title="org.gservlet.AbstractServlet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractServlet.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> AbstractServlet </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractServlet.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.AbstractRequestListener
-	c23 [label=<<table title="org.gservlet.AbstractRequestListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractRequestListener.html">
+	c25 [label=<<table title="org.gservlet.AbstractRequestListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractRequestListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> AbstractRequestListener </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractRequestListener.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.AbstractRequestAttributeListener
-	c24 [label=<<table title="org.gservlet.AbstractRequestAttributeListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractRequestAttributeListener.html">
+	c26 [label=<<table title="org.gservlet.AbstractRequestAttributeListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractRequestAttributeListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> AbstractRequestAttributeListener </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractRequestAttributeListener.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.AbstractListener
-	c25 [label=<<table title="org.gservlet.AbstractListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractListener.html">
+	c27 [label=<<table title="org.gservlet.AbstractListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> AbstractListener </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractListener.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.AbstractFilter
-	c26 [label=<<table title="org.gservlet.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractFilter.html">
+	c28 [label=<<table title="org.gservlet.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> AbstractFilter </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractFilter.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.AbstractContextListener
-	c27 [label=<<table title="org.gservlet.AbstractContextListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractContextListener.html">
+	c29 [label=<<table title="org.gservlet.AbstractContextListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractContextListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> AbstractContextListener </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractContextListener.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.gservlet.AbstractContextAttributeListener
-	c28 [label=<<table title="org.gservlet.AbstractContextAttributeListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractContextAttributeListener.html">
+	c30 [label=<<table title="org.gservlet.AbstractContextAttributeListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractContextAttributeListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> AbstractContextAttributeListener </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractContextAttributeListener.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.gservlet.FileAdapter implements org.gservlet.FileListener
-	c7:p -> c9:p [dir=back,arrowtail=empty,style=dashed];
+	c8:p -> c10:p [dir=back,arrowtail=empty,style=dashed];
 	//org.gservlet.AbstractSessionListener extends org.gservlet.AbstractListener
-	c25:p -> c17:p [dir=back,arrowtail=empty];
+	c27:p -> c19:p [dir=back,arrowtail=empty];
 	//org.gservlet.AbstractSessionIdListener extends org.gservlet.AbstractListener
-	c25:p -> c18:p [dir=back,arrowtail=empty];
+	c27:p -> c20:p [dir=back,arrowtail=empty];
 	//org.gservlet.AbstractSessionBindingListener extends org.gservlet.AbstractListener
-	c25:p -> c19:p [dir=back,arrowtail=empty];
+	c27:p -> c21:p [dir=back,arrowtail=empty];
 	//org.gservlet.AbstractSessionAttributeListener extends org.gservlet.AbstractListener
-	c25:p -> c20:p [dir=back,arrowtail=empty];
+	c27:p -> c22:p [dir=back,arrowtail=empty];
 	//org.gservlet.AbstractSessionActivationListener extends org.gservlet.AbstractListener
-	c25:p -> c21:p [dir=back,arrowtail=empty];
+	c27:p -> c23:p [dir=back,arrowtail=empty];
 	//org.gservlet.AbstractRequestListener extends org.gservlet.AbstractListener
-	c25:p -> c23:p [dir=back,arrowtail=empty];
+	c27:p -> c25:p [dir=back,arrowtail=empty];
 	//org.gservlet.AbstractRequestAttributeListener extends org.gservlet.AbstractListener
-	c25:p -> c24:p [dir=back,arrowtail=empty];
+	c27:p -> c26:p [dir=back,arrowtail=empty];
 	//org.gservlet.AbstractContextListener extends org.gservlet.AbstractListener
-	c25:p -> c27:p [dir=back,arrowtail=empty];
+	c27:p -> c29:p [dir=back,arrowtail=empty];
 	//org.gservlet.AbstractContextAttributeListener extends org.gservlet.AbstractListener
-	c25:p -> c28:p [dir=back,arrowtail=empty];
+	c27:p -> c30:p [dir=back,arrowtail=empty];
 }
 
