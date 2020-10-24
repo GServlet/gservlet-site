@@ -1,6 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./DefaultServletConfig.html" title="org.gservlet.DefaultServletConfig" alt="" coords="16,118,151,143"/>
-<area shape="rect" id="node1" href="./DefaultServletConfig.html" title="&lt;TABLE&gt;" alt="" coords="5,107,161,155"/>
-<area shape="rect" id="node2_1" href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletConfig.html" title="javax.servlet.ServletConfig" alt="" coords="36,11,131,53"/>
-<area shape="rect" id="node2" href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletConfig.html" title="&lt;TABLE&gt;" alt="" coords="25,5,141,59"/>
+<area shape="rect" id="node1_0" href="./DefaultServletConfig.html" title="org.gservlet.DefaultServletConfig" alt="" coords="73,118,207,143"/>
+<area shape="rect" id="node1" href="./DefaultServletConfig.html" title="&lt;TABLE&gt;" alt="" coords="62,107,218,155"/>
+<area shape="rect" id="node2_1" href="./AbstractConfig.html" title="org.gservlet.AbstractConfig" alt="" coords="16,19,120,45"/>
+<area shape="rect" id="node2" href="./AbstractConfig.html" title="&lt;TABLE&gt;" alt="" coords="5,8,131,56"/>
+<area shape="rect" id="node3_2" href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletConfig.html" title="javax.servlet.ServletConfig" alt="" coords="166,11,261,53"/>
+<area shape="rect" id="node3" href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletConfig.html" title="&lt;TABLE&gt;" alt="" coords="155,5,271,59"/>
 </map>

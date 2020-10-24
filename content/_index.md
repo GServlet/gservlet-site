@@ -54,14 +54,12 @@ session.counter = session.counter + 1
 ## Main Features
 
 * Servlet 3.1+ Support
-* Groovy Scripting
-* Hot Reloading
-* JSON and XML Support
-* JDBC Support
+* Groovy Scripting and Hot Reloading
+* JSON, HTML and JDBC Support
 
 ## Requirements
 
-* Java 7+
+* Java 8+
 * Java IDE (Eclipse, IntelliJ IDEA, NetBeans..)
 * Java EE 7+ compliant WebServer (Tomcat, Wildfly, Glassfish, Payara..)
 

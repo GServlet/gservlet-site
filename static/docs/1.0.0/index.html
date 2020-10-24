@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
 <meta name="description" content="This developer guide describes how to use the GServlet API.">
-<meta name="keywords" content="Java, Servlets, Groovy, reference, learn, how to">
+<meta name="keywords" content="Java, Servlets, Groovy, Spring, reference, learn, how to">
 <meta name="author" content="Mamadou Lamine Ba">
 <title>GServlet Developer Guide</title>
 <style>
@@ -1038,7 +1038,7 @@ p a>code:hover {
 	color: #fff;
     text-decoration: none;
     background: #e65251;
-    padding: 10px;
+    padding: 8px;
     width: 100%;
     display: block;
 }
@@ -2167,12 +2167,17 @@ p {
 }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@gservlet">
+<meta name="twitter:domain" property="og:site_name" content="gservlet.org">
+<meta name="twitter:url" property="og:url" content="https://gservlet.org/documentation/">
+<meta name="twitter:title" property="og:title" content="GServlet Developer Guide">
+<meta name="twitter:description" property="og:description" content="The Developer Guide shows how to develop web applications with the GServlet API">
+<meta name="twitter:image" property="og:image" content="https://gservlet.org/documentation/images/logo.png">
 <link rel="icon" href="images/favicon.png" type="image/png">
-<!-- Generate a nice TOC -->
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js"></script>
-<!-- We do not need the tocify CSS because the asciidoc CSS already provides most of what we neeed -->
 
 <style>
 
@@ -2191,32 +2196,21 @@ p {
 
 <script type="text/javascript">
     $(function () {
-        // Add a new container for the tocify toc into the existing toc so we can re-use its
-        // styling
         $("#toc").append("<div id='generated-toc'></div>");
         $("#generated-toc").tocify({
             extendPage: false,
             context: "#content",
             highlightOnScroll: true,
             hideEffect: "slideUp",
-            // Use the IDs that asciidoc already provides so that TOC links and intra-document
-            // links are the same. Anything else might confuse users when they create bookmarks.
             hashGenerator: function(text, element) {
                 return $(element).attr("id");
             },
-            // Smooth scrolling doesn't work properly if we use the asciidoc IDs
             smoothScroll: false,
-            // Set to 'none' to use the tocify classes
             theme: "none",
-            // Handle book (may contain h1) and article (only h2 deeper)
             selectors: $( "#content" ).has( "h1" ).size() > 0 ? "h1,h2,h3,h4,h5" : "h2,h3,h4,h5",
             ignoreSelector: ".discrete"
         });
 
-        // Switch between static asciidoc toc and dynamic tocify toc based on browser size
-        // This is set to match the media selectors in the asciidoc CSS
-        // Without this, we keep the dynamic toc even if it is moved from the side to preamble
-        // position which will cause odd scrolling behavior
         var handleTocOnResize = function() {
             if ($(document).width() < 768) {
                 $("#generated-toc").hide();
@@ -2242,7 +2236,7 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2020-10-19</span>
+<span id="revdate">2020-10-24</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2288,9 +2282,22 @@ p {
 </li>
 <li><a href="#_working_with_json">9. Working With JSON</a></li>
 <li><a href="#_working_with_rdbms">10. Working With RDBMS</a></li>
-<li><a href="#_copyright_and_license">11. Copyright and License</a></li>
-<li><a href="#_authors">12. Authors</a></li>
-<li><a href="#_contributing">13. Contributing</a></li>
+<li><a href="#_ide_support">11. IDE Support</a>
+<ul class="sectlevel2">
+<li><a href="#_eclipse">11.1. Eclipse</a></li>
+<li><a href="#_intellij_idea">11.2. IntelliJ IDEA</a></li>
+</ul>
+</li>
+<li><a href="#_frameworks_support">12. Frameworks Support</a>
+<ul class="sectlevel2">
+<li><a href="#_spring_boot">12.1. Spring Boot</a></li>
+<li><a href="#_other_java_web_frameworks">12.2. Other Java web frameworks</a></li>
+</ul>
+</li>
+<li><a href="#_examples">13. Examples</a></li>
+<li><a href="#_copyright_and_license">14. Copyright and License</a></li>
+<li><a href="#_authors">15. Authors</a></li>
+<li><a href="#_contributing">16. Contributing</a></li>
 </ul>
 </div>
 </div>
@@ -2360,7 +2367,7 @@ session.counter = session.counter + 1</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Java 7+</p>
+<p>Java 8+</p>
 </li>
 <li>
 <p>Java IDE (Eclipse, IntelliJ IDEA, NetBeans..)</p>
@@ -2603,13 +2610,13 @@ class MyHttpServlet {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
 
-@Servlet("/myServlet")
+@Servlet(value="/projects", loadOnStartup = 1)
 class MyHttpServlet {
 
   void get() {
      html.html {
        body {
-         p("Welcome to gservlet")
+         p("Welcome to GServlet!")
        }
      }
   }
@@ -2626,7 +2633,7 @@ class MyHttpServlet {
 <pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;body&gt;
-    &lt;p&gt;Welcome to gservlet&lt;/p&gt;
+    &lt;p&gt;Welcome to GServlet!&lt;/p&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 </div>
@@ -2734,11 +2741,26 @@ class MyHttpServlet {
 <td class="tableblock halign-left valign-top"><p class="tableblock">handles the TRACE request.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void forward(location)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Forwards the request to the provided location</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void redirect(location)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Redirects the request to the provided location</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void json(object)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sends the response as JSON</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>void destroy()</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">invoked when taken out of the service</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>For an exhaustive list of the supported methods, please read the Javadocs.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_servlet_initialization_parameters"><a class="anchor" href="#_servlet_initialization_parameters"></a><a class="link" href="#_servlet_initialization_parameters">6.3. Servlet initialization parameters</a></h3>
@@ -3039,11 +3061,18 @@ class MyFilter {
 <td class="tableblock halign-left valign-top"><p class="tableblock">Calls the next filter in the chain</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>void json(object)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sends the response as JSON</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>void destroy()</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">invoked when taken out of the service</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>For an exhaustive list of the supported methods, please read the Javadocs.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_filter_initialization_parameters"><a class="anchor" href="#_filter_initialization_parameters"></a><a class="link" href="#_filter_initialization_parameters">7.3. Filter initialization parameters</a></h3>
@@ -3978,7 +4007,226 @@ class ProjectFilter {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_copyright_and_license"><a class="anchor" href="#_copyright_and_license"></a><a class="link" href="#_copyright_and_license">11. Copyright and License</a></h2>
+<h2 id="_ide_support"><a class="anchor" href="#_ide_support"></a><a class="link" href="#_ide_support">11. IDE Support</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_eclipse"><a class="anchor" href="#_eclipse"></a><a class="link" href="#_eclipse">11.1. Eclipse</a></h3>
+<div class="paragraph">
+<p>To augment the editor features such as content assist, the GServlet API ships with a DSL Descriptor (DSLD) to describe the editing semantics in a way that can be interpreted by the <a href="https://marketplace.eclipse.org/content/groovy-development-tools">Groovy Development Tools (GDT)</a> which provides Eclipse support for the Groovy programming language.</p>
+</div>
+<div class="listingblock">
+<div class="title">servlet.dsld</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">contribute(currentType(annos: annotatedBy(Servlet))) {
+	property name : 'logger', type : java.util.Logger, provider : 'org.gservlet.AbstractServlet'
+	property name : 'config', type : javax.servlet.ServletConfig, provider : 'org.gservlet.AbstractServlet'
+	property name : 'request', type : javax.servlet.http.HttpServletRequest, provider : 'org.gservlet.AbstractServlet'
+	property name : 'response', type : javax.servlet.http.HttpServletResponse, provider : 'org.gservlet.AbstractServlet'
+	property name : 'session', type : javax.servlet.http.HttpSession, provider : 'org.gservlet.AbstractServlet'
+	property name : 'context', type : javax.servlet.ServletContext, provider : 'org.gservlet.AbstractServlet'
+	property name : 'sql', type : groovy.sql.Sql, provider : 'org.gservlet.AbstractServlet'
+	property name : 'out', type : java.io.PrintWriter, provider : 'org.gservlet.AbstractServlet'
+	property name : 'html', type : groovy.xml.MarkupBuilder, provider : 'org.gservlet.AbstractServlet'
+}
+
+contribute(currentType(annos: annotatedBy(Servlet))) {
+	delegatesTo type : org.gservlet.AbstractServlet, except : [
+		'service',
+		'doGet',
+		'doPost',
+		'doHead',
+		'doPut',
+		'doTrace',
+		'doOptions',
+		'doDelete'
+	]
+}
+
+contribute(currentType(annos: annotatedBy(Filter))) {
+	property name : 'logger', type : java.util.Logger, provider : 'org.gservlet.AbstractFilter'
+	property name : 'config', type : javax.servlet.FilterConfig, provider : 'org.gservlet.AbstractFilter'
+	property name : 'request', type : javax.servlet.http.HttpServletRequest, provider : 'org.gservlet.AbstractFilter'
+	property name : 'response', type : javax.servlet.http.HttpServletResponse, provider : 'org.gservlet.AbstractFilter'
+	property name : 'chain', type : javax.servlet.FilterChain, provider : 'org.gservlet.AbstractFilter'
+	property name : 'session', type : javax.servlet.http.HttpSession, provider : 'org.gservlet.AbstractFilter'
+	property name : 'context', type : javax.servlet.ServletContext, provider : 'org.gservlet.AbstractFilter'
+	property name : 'sql', type : groovy.sql.Sql, provider : 'org.gservlet.AbstractFilter'
+	property name : 'out', type : java.io.PrintWriter, provider : 'org.gservlet.AbstractFilter'
+	property name : 'html', type : groovy.xml.MarkupBuilder, provider : 'org.gservlet.AbstractFilter'
+}
+
+contribute(currentType(annos: annotatedBy(Filter))) {
+	delegatesTo type : org.gservlet.AbstractFilter, except : ['init', 'doFilter']
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_intellij_idea"><a class="anchor" href="#_intellij_idea"></a><a class="link" href="#_intellij_idea">11.2. IntelliJ IDEA</a></h3>
+<div class="paragraph">
+<p>In the other hand, in IntelliJ IDEA, we can write GDSL Files in order have code completion on the injected methods/properties and closures. <a href="https://confluence.jetbrains.com/display/GRVY/Scripting+IDE+for+DSL+awareness">GroovyDSL</a> is a scripting framework with a domain-specific language designed to define the behavior of end-user DSLs as script files which are executed by the IDE on the fly, bringing new reference resolution and code completion logic into the scope of a project.</p>
+</div>
+<div class="listingblock">
+<div class="title">servlet.gdsl</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">def classContext = context(scope: classScope())
+
+contributor(classContext) {
+  if (hasAnnotation('org.gservlet.annotation.Servlet')) {
+    property name: 'logger', type: 'java.util.logging.Logger'
+    property name: 'config', type: 'javax.servlet.ServletConfig'
+    property name: 'request', type: 'javax.servlet.http.HttpServletRequest'
+    property name: 'response',type: 'javax.servlet.http.HttpServletResponse'
+    property name: 'session', type: 'javax.servlet.http.HttpSession'
+    property name: 'context', type: 'javax.servlet.ServletContext'
+    property name: 'sql', type: 'groovy.sql.Sql'
+    property name: 'out', type: 'java.io.PrintWriter'
+    property name: 'html', type: 'groovy.xml.MarkupBuilder'
+    delegatesTo(findClass('org.gservlet.AbstractServlet'))
+  }
+}
+
+contributor(classContext) {
+  if (hasAnnotation('org.gservlet.annotation.Filter')) {
+    property name: 'logger', type: 'java.util.logging.Logger'
+    property name: 'config', type: 'javax.servlet.FilterConfig'
+    property name: 'request', type: 'javax.servlet.http.HttpServletRequest'
+    property name: 'response', type: 'javax.servlet.http.HttpServletResponse'
+    property name: 'chain', type: 'javax.servlet.FilterChain'
+    property name: 'session', type: 'javax.servlet.http.HttpSession'
+    property name: 'context', type: 'javax.servlet.ServletContext'
+    property name: 'sql', type: 'groovy.sql.Sql'
+    property name: 'out', type: 'java.io.PrintWriter'
+    property name: 'html', type: 'groovy.xml.MarkupBuilder'
+    delegatesTo(findClass('org.gservlet.AbstractFilter'))
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_frameworks_support"><a class="anchor" href="#_frameworks_support"></a><a class="link" href="#_frameworks_support">12. Frameworks Support</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_spring_boot"><a class="anchor" href="#_spring_boot"></a><a class="link" href="#_spring_boot">12.1. Spring Boot</a></h3>
+<div class="paragraph">
+<p>The <em>scripts</em> folder must created be inside the <em>src/main/resources</em> directory of your Spring Boot applications so it can be packaged inside the final jar and you just need this configuration below to leverage the GServlet API.</p>
+</div>
+<div class="listingblock">
+<div class="title">SpringConfiguration.java</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import org.gservlet.GServletApplication;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
+
+@Configuration
+public class SpringConfiguration implements ServletContextInitializer {
+
+	private GServletApplication application;
+
+	@Override
+	public void onStartup(ServletContext context) throws ServletException {
+		application = new GServletApplication(context);
+		application.startOnSpringBoot();
+
+	}
+
+	@Bean(destroyMethod = "stop")
+	public GServletApplication getGServletApplication() {
+		return application;
+	}
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to reuse the data source configured by Spring, this is how you must proceed:</p>
+</div>
+<div class="listingblock">
+<div class="title">SpringConfiguration.java</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.sql.DataSource;
+import org.gservlet.GServletApplication;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class SpringConfiguration implements ServletContextInitializer {
+
+	private GServletApplication application;
+
+	@Override
+	public void onStartup(ServletContext context) throws ServletException {
+		application = new GServletApplication(context);
+		application.startOnSpringBoot();
+
+	}
+
+	@Bean(destroyMethod = "stop")
+	public GServletApplication getGServletApplication(DataSource dataSource) {
+		application.setDataSource(dataSource);
+		return application;
+	}
+
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_other_java_web_frameworks"><a class="anchor" href="#_other_java_web_frameworks"></a><a class="link" href="#_other_java_web_frameworks">12.2. Other Java web frameworks</a></h3>
+<div class="paragraph">
+<p>If the target framework supports the Servlet API and the <em>@WebListener</em> annotation, no configuration is required since the GServlet API ships with a context listener which starts and stops the application. This statement is
+valid for frameworks like JSF, Apache Struts.</p>
+</div>
+<div class="listingblock">
+<div class="title">StartupListener.java</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.gservlet;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
+
+@WebListener
+public class StartupListener implements ServletContextListener {
+
+
+	private GServletApplication application;
+
+	@Override
+	public void contextInitialized(ServletContextEvent event) {
+		application = new GServletApplication(event.getServletContext());
+		application.start();
+	}
+
+
+
+	@Override
+	public void contextDestroyed(ServletContextEvent event) {
+		application.stop();
+	}
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples"><a class="anchor" href="#_examples"></a><a class="link" href="#_examples">13. Examples</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_copyright_and_license"><a class="anchor" href="#_copyright_and_license"></a><a class="link" href="#_copyright_and_license">14. Copyright and License</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Copyright @2020. Free use of this software is granted under the terms of the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> License.</p>
@@ -3986,7 +4234,7 @@ class ProjectFilter {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_authors"><a class="anchor" href="#_authors"></a><a class="link" href="#_authors">12. Authors</a></h2>
+<h2 id="_authors"><a class="anchor" href="#_authors"></a><a class="link" href="#_authors">15. Authors</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>GServlet was created by <a href="https://github.com/laminba2003">Mamadou Lamine Ba</a>.</p>
@@ -3994,7 +4242,7 @@ class ProjectFilter {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_contributing"><a class="anchor" href="#_contributing"></a><a class="link" href="#_contributing">13. Contributing</a></h2>
+<h2 id="_contributing"><a class="anchor" href="#_contributing"></a><a class="link" href="#_contributing">16. Contributing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Contributions of any type or any scope, drive the project forward. There are lot of ways to contribute, not just code. We provide more information about how to get involved in our <a href="/contribute">contribute</a> page.</p>
