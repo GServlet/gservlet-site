@@ -4136,7 +4136,7 @@ public class SpringConfiguration implements ServletContextInitializer {
 	}
 
 	@Bean(destroyMethod = "stop")
-	public GServletApplication getGServletApplication() {
+	public GServletApplication servletApplication() {
 		return application;
 	}
 
@@ -4170,7 +4170,7 @@ public class SpringConfiguration implements ServletContextInitializer {
 	}
 
 	@Bean(destroyMethod = "stop")
-	public GServletApplication getGServletApplication(DataSource dataSource) {
+	public GServletApplication servletApplication(DataSource dataSource) {
 		application.setDataSource(dataSource);
 		return application;
 	}
