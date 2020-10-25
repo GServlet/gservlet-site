@@ -2819,20 +2819,12 @@ class UploadServlet {
 
 	void post() {
 		request.getParts().each { part -&gt;
-			String file = uploadPath + File.separator + getFileName(part)
+			String file = uploadPath + File.separator + request.getFileName(part)
 			part.write(file)
 		}
 		json(["status" : 1])
 	}
 
-	String getFileName(part) {
-		for(String content : part.getHeader("content-disposition").split(";")) {
-			if ( content.trim().startsWith("filename")) {
-				return content.substring( content.indexOf("=") + 2, content.length() - 1 )
-			}
-		}
-		return "default.txt";
-	}
 }</code></pre>
 </div>
 </div>
