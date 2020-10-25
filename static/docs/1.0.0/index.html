@@ -2817,13 +2817,23 @@ class UploadServlet {
 		}
 	}
 
+	void get() {
+		File uploadDir = new File(uploadPath)
+		def files = []
+		uploadDir.listFiles()?.each { file -&gt;
+			files &lt;&lt; [name : file.name, length : file.length(), lastModified : file.lastModified()]
+		}
+		json(files);
+	}
+
 	void post() {
 		request.getParts().each { part -&gt;
 			String file = uploadPath + File.separator + request.getFileName(part)
 			part.write(file)
 		}
-		json(["status" : 1])
+		redirect(context.contextPath + "/upload");
 	}
+
 
 }</code></pre>
 </div>
