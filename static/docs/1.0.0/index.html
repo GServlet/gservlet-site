@@ -2556,7 +2556,7 @@ class ServletRequestListener {
 <p>This is a Java class that extends the HttpServlet class:</p>
 </div>
 <div class="listingblock">
-<div class="title">MyHttpServlet.java</div>
+<div class="title">HelloWordServlet.java</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -2564,15 +2564,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/myServlet")
-public class MyHttpServlet extends HttpServlet {
+@WebServlet("/index.html")
+public class HelloWordServlet extends HttpServlet {
 
    public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException {
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       out.println("&lt;html&gt;");
       out.println("&lt;body&gt;");
-      out.println("&lt;p&gt;Welcome to servlet&lt;/p&gt;");
+      out.println("&lt;p&gt;Hello World!&lt;/p&gt;");
       out.println("&lt;/body&gt;");
       out.println("&lt;/html&gt;");
    }
@@ -2584,17 +2584,17 @@ public class MyHttpServlet extends HttpServlet {
 <p>Now, we are going to write its Groovy counterpart with the GServlet API so you can perceive the difference in terms of simplicity and clarity. The name of the HTTP request method handlers are shortened to <em>get</em>, <em>post</em> and so on. They take no arguments since the request and the response are now implicit variables.</p>
 </div>
 <div class="listingblock">
-<div class="title">MyHttpServlet.groovy</div>
+<div class="title">HelloWordServlet.groovy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
 
-@Servlet("/myServlet")
-class MyHttpServlet {
+@Servlet("/index.html")
+class HelloWordServlet {
 
    void get() {
       out.println("&lt;html&gt;")
       out.println("&lt;body&gt;")
-      out.println("&lt;p&gt;Welcome to servlet&lt;/p&gt;")
+      out.println("&lt;p&gt;Hello World!&lt;/p&gt;")
       out.println("&lt;/body&gt;")
       out.println("&lt;/html&gt;")
    }
@@ -2606,17 +2606,17 @@ class MyHttpServlet {
 <p>By default the Content-Type of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html">HttpServletResponse</a> is set to <em>text/html</em> and the implicit <em>out</em> variable used to generate the HMTL content is nothing less than a reference to its <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletResponse.html#getWriter">PrintWriter</a> object. We could use as well the implicit <em>html</em> variable which is an instance of a Groovy MarkupBuilder, to write a better version of this servlet.</p>
 </div>
 <div class="listingblock">
-<div class="title">MyHttpServlet.groovy</div>
+<div class="title">HelloWordServlet.groovy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
 
-@Servlet(value="/projects", loadOnStartup = 1)
-class MyHttpServlet {
+@Servlet(value="/index.html", loadOnStartup = 1)
+class HelloWordServlet {
 
   void get() {
      html.html {
        body {
-         p("Welcome to GServlet!")
+         p("Hello World!")
        }
      }
   }
@@ -2633,7 +2633,7 @@ class MyHttpServlet {
 <pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;body&gt;
-    &lt;p&gt;Welcome to GServlet!&lt;/p&gt;
+    &lt;p&gt;Hello World!&lt;/p&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 </div>
