@@ -33,19 +33,19 @@
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> java.io.IOException;
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> java.io.InputStream;
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> java.net.URI;
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> java.net.URISyntaxException;
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> java.nio.file.FileSystem;
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> java.nio.file.FileSystems;
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> java.nio.file.Files;
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> java.nio.file.Path;
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> java.nio.file.WatchService;
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> java.util.HashMap;
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> java.util.List;
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">import</strong> java.util.Properties;
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">import</strong> java.util.logging.Level;
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">import</strong> java.util.logging.Logger;
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> java.util.stream.Collectors;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> java.nio.file.FileSystem;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> java.nio.file.FileSystems;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> java.nio.file.Files;
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> java.nio.file.Path;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> java.nio.file.WatchService;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> java.util.HashMap;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> java.util.List;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> java.util.Properties;
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">import</strong> java.util.logging.Level;
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">import</strong> java.util.logging.Logger;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">import</strong> java.util.stream.Collectors;
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> java.util.stream.Stream;
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">import</strong> javax.servlet.ServletContext;
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">import</strong> javax.sql.DataSource;
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  
@@ -251,8 +251,8 @@
 <a class="jxr_linenumber" name="L243" href="#L243">243</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> explodeClassPathResources(String root, String folder) {
 <a class="jxr_linenumber" name="L244" href="#L244">244</a> 		<strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L245" href="#L245">245</a> 			List&lt;Path&gt; paths = getClassPathResources(folder);
-<a class="jxr_linenumber" name="L246" href="#L246">246</a> 			<strong class="jxr_keyword">for</strong> (Path path : paths) {
-<a class="jxr_linenumber" name="L247" href="#L247">247</a> 				String resource = path.toString();
+<a class="jxr_linenumber" name="L246" href="#L246">246</a> 			<strong class="jxr_keyword">for</strong> (Path resourcePath : paths) {
+<a class="jxr_linenumber" name="L247" href="#L247">247</a> 				String resource = resourcePath.toString();
 <a class="jxr_linenumber" name="L248" href="#L248">248</a> 				<strong class="jxr_keyword">if</strong> (resource.startsWith(<span class="jxr_string">"/"</span>)) {
 <a class="jxr_linenumber" name="L249" href="#L249">249</a> 					resource = resource.substring(1, resource.length());
 <a class="jxr_linenumber" name="L250" href="#L250">250</a> 				}
@@ -266,8 +266,8 @@
 <a class="jxr_linenumber" name="L258" href="#L258">258</a> 					}
 <a class="jxr_linenumber" name="L259" href="#L259">259</a> 			}
 <a class="jxr_linenumber" name="L260" href="#L260">260</a> 
-<a class="jxr_linenumber" name="L261" href="#L261">261</a> 		} <strong class="jxr_keyword">catch</strong> (URISyntaxException | IOException e) {
-<a class="jxr_linenumber" name="L262" href="#L262">262</a> 			e.printStackTrace();
+<a class="jxr_linenumber" name="L261" href="#L261">261</a> 		} <strong class="jxr_keyword">catch</strong> (IOException e) {
+<a class="jxr_linenumber" name="L262" href="#L262">262</a> 			logger.log(Level.SEVERE, <span class="jxr_string">"exception encountered when exploding the classpath resources"</span>, e);
 <a class="jxr_linenumber" name="L263" href="#L263">263</a> 		}
 <a class="jxr_linenumber" name="L264" href="#L264">264</a> 	}
 <a class="jxr_linenumber" name="L265" href="#L265">265</a> 
@@ -280,30 +280,32 @@
 <a class="jxr_linenumber" name="L272" href="#L272">272</a> <em class="jxr_javadoccomment">	 * @return the list of classpath resources</em>
 <a class="jxr_linenumber" name="L273" href="#L273">273</a> <em class="jxr_javadoccomment">	 * </em>
 <a class="jxr_linenumber" name="L274" href="#L274">274</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L275" href="#L275">275</a> 	<strong class="jxr_keyword">private</strong> List&lt;Path&gt; getClassPathResources(String folder) <strong class="jxr_keyword">throws</strong> URISyntaxException, IOException {
+<a class="jxr_linenumber" name="L275" href="#L275">275</a> 	<strong class="jxr_keyword">private</strong> List&lt;Path&gt; getClassPathResources(String folder) <strong class="jxr_keyword">throws</strong> IOException {
 <a class="jxr_linenumber" name="L276" href="#L276">276</a> 		List&lt;Path&gt; paths = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L277" href="#L277">277</a> 		String jarPath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 <a class="jxr_linenumber" name="L278" href="#L278">278</a> 		URI uri = URI.create(<span class="jxr_string">"jar:"</span> + jarPath);
 <a class="jxr_linenumber" name="L279" href="#L279">279</a> 		<strong class="jxr_keyword">try</strong> (FileSystem fs = FileSystems.newFileSystem(uri, <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;())) {
-<a class="jxr_linenumber" name="L280" href="#L280">280</a> 			paths = Files.walk(fs.getPath(folder + Constants.SCRIPTS_FOLDER)).collect(Collectors.toList());
-<a class="jxr_linenumber" name="L281" href="#L281">281</a> 			paths.add(fs.getPath(folder + Constants.APP_CONFIG_FILE));
-<a class="jxr_linenumber" name="L282" href="#L282">282</a> 		}
-<a class="jxr_linenumber" name="L283" href="#L283">283</a> 		<strong class="jxr_keyword">return</strong> paths;
-<a class="jxr_linenumber" name="L284" href="#L284">284</a> 	}
-<a class="jxr_linenumber" name="L285" href="#L285">285</a> 
-<a class="jxr_linenumber" name="L286" href="#L286">286</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L287" href="#L287">287</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L288" href="#L288">288</a> <em class="jxr_javadoccomment">	 * Sets the data source</em>
+<a class="jxr_linenumber" name="L280" href="#L280">280</a> 			<strong class="jxr_keyword">try</strong>(Stream&lt;Path&gt; stream = Files.walk(fs.getPath(folder + Constants.SCRIPTS_FOLDER))) {
+<a class="jxr_linenumber" name="L281" href="#L281">281</a> 				paths = stream.collect(Collectors.toList());
+<a class="jxr_linenumber" name="L282" href="#L282">282</a> 			}
+<a class="jxr_linenumber" name="L283" href="#L283">283</a> 			paths.add(fs.getPath(folder + Constants.APP_CONFIG_FILE));
+<a class="jxr_linenumber" name="L284" href="#L284">284</a> 		}
+<a class="jxr_linenumber" name="L285" href="#L285">285</a> 		<strong class="jxr_keyword">return</strong> paths;
+<a class="jxr_linenumber" name="L286" href="#L286">286</a> 	}
+<a class="jxr_linenumber" name="L287" href="#L287">287</a> 
+<a class="jxr_linenumber" name="L288" href="#L288">288</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L289" href="#L289">289</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L290" href="#L290">290</a> <em class="jxr_javadoccomment">	 * @param dataSource the data source</em>
+<a class="jxr_linenumber" name="L290" href="#L290">290</a> <em class="jxr_javadoccomment">	 * Sets the data source</em>
 <a class="jxr_linenumber" name="L291" href="#L291">291</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L292" href="#L292">292</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L293" href="#L293">293</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setDataSource(DataSource dataSource) {
-<a class="jxr_linenumber" name="L294" href="#L294">294</a> 		databaseManager = <strong class="jxr_keyword">new</strong> <a name="DatabaseManager" href="../../org/gservlet/DatabaseManager.html#DatabaseManager">DatabaseManager</a>(context);
-<a class="jxr_linenumber" name="L295" href="#L295">295</a> 		databaseManager.setupDataSource(dataSource);
-<a class="jxr_linenumber" name="L296" href="#L296">296</a> 	}
-<a class="jxr_linenumber" name="L297" href="#L297">297</a> 
-<a class="jxr_linenumber" name="L298" href="#L298">298</a> }
+<a class="jxr_linenumber" name="L292" href="#L292">292</a> <em class="jxr_javadoccomment">	 * @param dataSource the data source</em>
+<a class="jxr_linenumber" name="L293" href="#L293">293</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L294" href="#L294">294</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L295" href="#L295">295</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setDataSource(DataSource dataSource) {
+<a class="jxr_linenumber" name="L296" href="#L296">296</a> 		databaseManager = <strong class="jxr_keyword">new</strong> <a name="DatabaseManager" href="../../org/gservlet/DatabaseManager.html#DatabaseManager">DatabaseManager</a>(context);
+<a class="jxr_linenumber" name="L297" href="#L297">297</a> 		databaseManager.setupDataSource(dataSource);
+<a class="jxr_linenumber" name="L298" href="#L298">298</a> 	}
+<a class="jxr_linenumber" name="L299" href="#L299">299</a> 
+<a class="jxr_linenumber" name="L300" href="#L300">300</a> }
 </pre>
 <hr/>
 <div id="footer">Use is subject to <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_top"> the Apache 2.0 license terms</a>.</div>

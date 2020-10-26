@@ -1044,7 +1044,7 @@ p a>code:hover {
 }
 
 h3>a.link {
-	background: #f8f8f8;
+	background: #fffacd;
     color: black;
 }
 
@@ -2236,7 +2236,7 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2020-10-25</span>
+<span id="revdate">2020-10-26</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2765,7 +2765,7 @@ class HelloWordServlet {
 <div class="sect2">
 <h3 id="_servlet_initialization_parameters"><a class="anchor" href="#_servlet_initialization_parameters"></a><a class="link" href="#_servlet_initialization_parameters">6.3. Servlet initialization parameters</a></h3>
 <div class="paragraph">
-<p>Since Servlet 3, the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebInitParam.html">@WebInitParam</a> annotation is used to specify initialization parameters for a servlet or filter programmatically, and it takes a required name and value. You can add a description but this is rather informative. In the initialization method <em>init()</em>, we can get our parameters using the <em>getInitParameter()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletConfig.html">ServletConfig</a> object. In the GServlet API, the annotation has been shorten to <em>@InitParam</em> and you can get an initialization parameter through the implicit <em>config</em> variable using just its name or as described above.</p>
+<p>Since Servlet 3, the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebInitParam.html">@WebInitParam</a> annotation is used to specify initialization parameters for a servlet programmatically, and it takes a required name and value. You can add a description but this is rather informative. In the initialization method <em>init()</em>, we can get our parameters using the <em>getInitParameter()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletConfig.html">ServletConfig</a> object. In the GServlet API, the annotation has been shorten to <em>@InitParam</em> and you can get an initialization parameter through the implicit <em>config</em> variable using just its name or as described above.</p>
 </div>
 <div class="listingblock">
 <div class="title">UploadServlet.groovy</div>
@@ -3079,7 +3079,7 @@ class MyFilter {
 <div class="sect2">
 <h3 id="_filter_initialization_parameters"><a class="anchor" href="#_filter_initialization_parameters"></a><a class="link" href="#_filter_initialization_parameters">7.3. Filter initialization parameters</a></h3>
 <div class="paragraph">
-<p>Like for a servlet, the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebInitParam.html">@WebInitParam</a> annotation is used to specify initialization parameters for filter programmatically. In its initialization method <em>init()</em>, we can get our parameters using the <em>getInitParameter()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/FilterConfig.html">FilterConfig</a> object. In the GServlet API, the annotation has been shorten to <em>@InitParam</em> and you can get an initialization parameter through the implicit <em>config</em> variable using just its name or as described above.</p>
+<p>The <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebInitParam.html">@WebInitParam</a> annotation is used to specify initialization parameters for a filter programmatically. In its initialization method <em>init()</em>, we can get our parameters using the <em>getInitParameter()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/FilterConfig.html">FilterConfig</a> object. Like for a servlet, the annotation has been shorten to <em>@InitParam</em> and you can get an initialization parameter through the implicit <em>config</em> variable using just its name or as described above.</p>
 </div>
 <div class="listingblock">
 <div class="title">LoggingFilter.groovy</div>
@@ -3200,7 +3200,7 @@ public class MyServletContextListener {
 </div>
 </div>
 <div class="paragraph">
-<p>The implicit variables made available to your ServletContext listeners are as follows:</p>
+<p>The implicit variables made available to your <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextListener.html">ServletContextListeners</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1. ServletContextListener Implicit Variables</caption>
@@ -3284,7 +3284,7 @@ public class MyServletContextAttributeListener {
 </div>
 </div>
 <div class="paragraph">
-<p>The implicit variables made available to your ServletContext attribute listeners are as follows:</p>
+<p>The implicit variables made available to your <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextAttributeListener.html">ServletContextAttributeListeners</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 2. ServletContextAttributeListener Implicit Variables</caption>
@@ -3368,7 +3368,7 @@ public class MyServletRequestListener {
 </div>
 </div>
 <div class="paragraph">
-<p>The implicit variables made available to your ServletRequest listeners are as follows:</p>
+<p>The implicit variables made available to your <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestListener.html">ServletRequestListeners</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 3. ServletRequestListener Implicit Variables</caption>
@@ -3461,7 +3461,7 @@ public class MyServletRequestAttributeListener {
 </div>
 </div>
 <div class="paragraph">
-<p>The implicit variables made available to your ServletRequest attribute listeners are as follows:</p>
+<p>The implicit variables made available to your <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestAttributeListener.html">ServletRequestAttributeListeners</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 4. ServletRequestAttributeListener Implicit Variables</caption>
@@ -3553,7 +3553,7 @@ public class MyHttpSessionListener {
 </div>
 </div>
 <div class="paragraph">
-<p>The implicit variables made available to your HttpSession listeners are as follows:</p>
+<p>The implicit variables made available to your <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionListener.html">HttpSessionListeners</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 5. HttpSessionListener Implicit Variables</caption>
@@ -3637,7 +3637,7 @@ public class MyHttpSessionAttributeListener {
 </div>
 </div>
 <div class="paragraph">
-<p>The implicit variables made available to your HttpSession attribute listeners are as follows:</p>
+<p>The implicit variables made available to your <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionAttributeListener.html">HttpSessionAttributeListeners</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 6. HttpSessionAttributeListener Implicit Variables</caption>
@@ -3721,7 +3721,7 @@ public class MyHttpSessionBindingListener {
 </div>
 </div>
 <div class="paragraph">
-<p>The implicit variables made available to your HttpSession binding listeners are as follows:</p>
+<p>The implicit variables made available to your <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionBindingListener.html">HttpSessionBindingListeners</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 7. HttpSessionBindingListener Implicit Variables</caption>
@@ -3805,7 +3805,7 @@ public class MyHttpSessionActivationListener {
 </div>
 </div>
 <div class="paragraph">
-<p>The implicit variables made available to your HttpSession activation listeners are as follows:</p>
+<p>The implicit variables made available to your <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionActivationListener.html">HttpSessionActivationListeners</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 8. HttpSessionActivationListener Implicit Variables</caption>
@@ -3860,7 +3860,7 @@ public class MyHttpSessionIdListener implements HttpSessionIdListener {
 <div class="listingblock">
 <div class="title">MyHttpSessionIdListener.groovy</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.servlet.annotation.SessionIdListenerThe implicit variables below are made available
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.servlet.annotation.SessionIdListener
 
 @WebListener
 public class MyHttpSessionIdListener {
@@ -3873,7 +3873,7 @@ public class MyHttpSessionIdListener {
 </div>
 </div>
 <div class="paragraph">
-<p>The implicit variables made available to your HttpSession Id listeners are as follows:</p>
+<p>The implicit variables made available to your <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionIdListener.html">HttpSessionIdListeners</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 9. HttpSessionIdListener Implicit Variables</caption>
@@ -3916,7 +3916,7 @@ public class MyHttpSessionIdListener {
 <p>Groovy comes with integrated support for converting between Groovy objects and JSON. The classes dedicated to JSON serialisation and parsing are found in the <strong><em>groovy.json</em></strong> package. You can get an insight of how to use them in the Groovy <a href="https://groovy-lang.org/json.html">documentation</a>. In the Gservlet API, we have simplified the process of parsing and producing JSON in your servlets and filters as below:</p>
 </div>
 <div class="listingblock">
-<div class="title">CustomerServlet.java</div>
+<div class="title">ProjectServlet.java</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
 
@@ -3974,7 +3974,7 @@ db.maxPoolSize : 10</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
 
-@Servlet("/myServlet")
+@Servlet("/projects")
 class ProjectServlet {
 
    void post() {
