@@ -25,8 +25,12 @@ The recommended way of getting GServlet is to declare a dependency on the _gserv
 #### Gradle
 
 ```
+repositories {
+    mavenCentral()
+}
+
 dependencies {
-    implementation 'org.gservlet:gservlet-api:1.0.0'
+    compile("org.gservlet:gservlet-api:1.0.0")
 }
 
 ```

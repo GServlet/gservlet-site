@@ -20,7 +20,7 @@ If you have no prior experience with Groovy, there are several curated lists of 
 
 The documentation of GServlet is split into three categories:
 
-* The _Developer Guide_ to know how to develop applications with the API
+* The _Developer Guide_ to see how to develop applications with the API
 * The _Javadocs_ to grasp the design of the API
 * The _Source Code_ to see the implementation of the API
 

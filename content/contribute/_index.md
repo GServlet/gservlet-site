@@ -7,7 +7,7 @@ pre : "<b>5. </b>"
 
 # Contribute
 
-There are many ways in which you can get involved to help us make this project even better. We really appreciate and welcome contributions and you can help us by:
+There are many ways in which you can get involved to make this project even better. We really appreciate and welcome contributions and you can help us by:
 
 * Reporting or fixing issues
 * Improving the documentation
