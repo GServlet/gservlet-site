@@ -2254,18 +2254,20 @@ p {
 <li><a href="#_getting_started">5. Getting Started</a></li>
 <li><a href="#_creating_servlets">6. Creating Servlets</a>
 <ul class="sectlevel2">
-<li><a href="#_servlet_implicit_variables">6.1. Servlet implicit variables</a></li>
-<li><a href="#_servlet_methods">6.2. Servlet methods</a></li>
-<li><a href="#_servlet_initialization_parameters">6.3. Servlet initialization parameters</a></li>
-<li><a href="#_servlet_multipart_configuration">6.4. Servlet Multipart configuration</a></li>
-<li><a href="#_servlet_security">6.5. Servlet Security</a></li>
+<li><a href="#_servlet_annotation_attributes">6.1. Servlet annotation attributes</a></li>
+<li><a href="#_servlet_implicit_variables">6.2. Servlet implicit variables</a></li>
+<li><a href="#_servlet_methods">6.3. Servlet methods</a></li>
+<li><a href="#_servlet_initialization_parameters">6.4. Servlet initialization parameters</a></li>
+<li><a href="#_servlet_multipart_configuration">6.5. Servlet Multipart configuration</a></li>
+<li><a href="#_servlet_security">6.6. Servlet Security</a></li>
 </ul>
 </li>
 <li><a href="#_creating_filters">7. Creating Filters</a>
 <ul class="sectlevel2">
-<li><a href="#_filter_implicit_variables">7.1. Filter implicit variables</a></li>
-<li><a href="#_filter_methods">7.2. Filter methods</a></li>
-<li><a href="#_filter_initialization_parameters">7.3. Filter initialization parameters</a></li>
+<li><a href="#_filter_annotation_attributes">7.1. Filter annotation attributes</a></li>
+<li><a href="#_filter_implicit_variables">7.2. Filter implicit variables</a></li>
+<li><a href="#_filter_methods">7.3. Filter methods</a></li>
+<li><a href="#_filter_initialization_parameters">7.4. Filter initialization parameters</a></li>
 </ul>
 </li>
 <li><a href="#_creating_listeners">8. Creating Listeners</a>
@@ -2604,7 +2606,7 @@ class HelloWordServlet {
 </div>
 </div>
 <div class="paragraph">
-<p>By default the Content-Type of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html">HttpServletResponse</a> is set to <em>text/html</em> and the implicit <em>out</em> variable used to generate the HMTL content is nothing less than a reference to its <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletResponse.html#getWriter">PrintWriter</a> object. We could use as well the implicit <em>html</em> variable which is an instance of a Groovy MarkupBuilder, to write a better version of this servlet.</p>
+<p>By default the content type of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html">HttpServletResponse</a> is set to <em>text/html</em> and the implicit <em>out</em> variable used to generate the HMTL content is nothing less than a reference to its <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletResponse.html#getWriter">PrintWriter</a> object. We could use as well the implicit <em>html</em> variable which is an instance of a Groovy MarkupBuilder, to write a better version of this servlet.</p>
 </div>
 <div class="listingblock">
 <div class="title">HelloWordServlet.groovy</div>
@@ -2640,7 +2642,79 @@ class HelloWordServlet {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_servlet_implicit_variables"><a class="anchor" href="#_servlet_implicit_variables"></a><a class="link" href="#_servlet_implicit_variables">6.1. Servlet implicit variables</a></h3>
+<h3 id="_servlet_annotation_attributes"><a class="anchor" href="#_servlet_annotation_attributes"></a><a class="link" href="#_servlet_annotation_attributes">6.1. Servlet annotation attributes</a></h3>
+<div class="paragraph">
+<p>There are the same as those of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebServlet.html">@WebServlet</a> annotation.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>name</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name of the servlet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>value</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL patterns of the servlet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>urlPatterns</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL patterns of the servlet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>loadOnStartup</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">load-on-startup order of the servlet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>initParams</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">InitParam[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">init parameters of the servlet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>asyncSupported</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declares whether the servlet supports asynchronous operation mode</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>smallIcon</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">small icon of the servlet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>largeIcon</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">large icon of the servlet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>description</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">description of the servlet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>displayName</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display name of the servlet</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_servlet_implicit_variables"><a class="anchor" href="#_servlet_implicit_variables"></a><a class="link" href="#_servlet_implicit_variables">6.2. Servlet implicit variables</a></h3>
 <div class="paragraph">
 <p>The implicit variables made available to a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/Servlet.html">Servlet</a> are as follows:</p>
 </div>
@@ -2696,7 +2770,10 @@ class HelloWordServlet {
 </table>
 </div>
 <div class="sect2">
-<h3 id="_servlet_methods"><a class="anchor" href="#_servlet_methods"></a><a class="link" href="#_servlet_methods">6.2. Servlet methods</a></h3>
+<h3 id="_servlet_methods"><a class="anchor" href="#_servlet_methods"></a><a class="link" href="#_servlet_methods">6.3. Servlet methods</a></h3>
+<div class="paragraph">
+<p>For an exhaustive list of the supported methods, please read the Javadocs.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 50%;">
@@ -2759,12 +2836,9 @@ class HelloWordServlet {
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>For an exhaustive list of the supported methods, please read the Javadocs.</p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="_servlet_initialization_parameters"><a class="anchor" href="#_servlet_initialization_parameters"></a><a class="link" href="#_servlet_initialization_parameters">6.3. Servlet initialization parameters</a></h3>
+<h3 id="_servlet_initialization_parameters"><a class="anchor" href="#_servlet_initialization_parameters"></a><a class="link" href="#_servlet_initialization_parameters">6.4. Servlet initialization parameters</a></h3>
 <div class="paragraph">
 <p>Since Servlet 3, the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebInitParam.html">@WebInitParam</a> annotation is used to specify initialization parameters for a servlet programmatically, and it takes a required name and value. You can add a description but this is rather informative. In the initialization method <em>init()</em>, we can get our parameters using the <em>getInitParameter()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletConfig.html">ServletConfig</a> object. In the GServlet API, the annotation has been shorten to <em>@InitParam</em> and you can get an initialization parameter through the implicit <em>config</em> variable using just its name or as described above.</p>
 </div>
@@ -2788,9 +2862,38 @@ class UploadServlet {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The attributes of the <em>@InitParam</em> annotation are the same as those of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebInitParam.html">@WebInitParam</a> annotation.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>name</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name of the initialization parameter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>value</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of the initialization parameter</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
-<h3 id="_servlet_multipart_configuration"><a class="anchor" href="#_servlet_multipart_configuration"></a><a class="link" href="#_servlet_multipart_configuration">6.4. Servlet Multipart configuration</a></h3>
+<h3 id="_servlet_multipart_configuration"><a class="anchor" href="#_servlet_multipart_configuration"></a><a class="link" href="#_servlet_multipart_configuration">6.5. Servlet Multipart configuration</a></h3>
 <div class="paragraph">
 <p>Supporting file uploads is a very basic and common requirement for many web applications. Prior to Servlet 3.0, implementing file upload required the use of external libraries or complex input processing. Version 3.0 of the Java Servlet specification helps to provide a viable solution to the problem in a generic and portable way. The Servlet 3.0 specification supports file upload out of the box, so any web container that implements the specification can parse multipart requests and make mime attachments available through the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a> object. A new annotation, <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/MultipartConfig.html">@MultipartConfig</a>, is used to indicate that the servlet on which it is declared expects requests to made using the <em>multipart/form-data</em> MIME type. Therefore, it can retrieve the Part components of a given <em>multipart/form-data</em> request by calling the <em>getPart(String name)</em> or <em>getParts()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a> object.</p>
 </div>
@@ -2841,7 +2944,7 @@ class UploadServlet {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_servlet_security"><a class="anchor" href="#_servlet_security"></a><a class="link" href="#_servlet_security">6.5. Servlet Security</a></h3>
+<h3 id="_servlet_security"><a class="anchor" href="#_servlet_security"></a><a class="link" href="#_servlet_security">6.6. Servlet Security</a></h3>
 <div class="paragraph">
 <p>The <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/ServletSecurity.html">@ServletSecurity</a> annotation is used to specify security constraints on a Java servlet. The annotations <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/HttpMethodConstraint.html">@HttpMethodConstraint</a> and <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/HttpConstraint.html">@HttpConstraint</a> are used within that annotation to define the security constraints.</p>
 </div>
@@ -2978,7 +3081,84 @@ class MyFilter {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_filter_implicit_variables"><a class="anchor" href="#_filter_implicit_variables"></a><a class="link" href="#_filter_implicit_variables">7.1. Filter implicit variables</a></h3>
+<h3 id="_filter_annotation_attributes"><a class="anchor" href="#_filter_annotation_attributes"></a><a class="link" href="#_filter_annotation_attributes">7.1. Filter annotation attributes</a></h3>
+<div class="paragraph">
+<p>There are the same as those of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebFilter.html">@WebFilter</a> annotation.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>filterName</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name of the filter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>value</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL patterns of the filter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>urlPatterns</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL patterns of the filter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>dispatcherTypes</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DispatcherType[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dispatcher types to which the filter applies</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>initParams</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">InitParam[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">init parameters of the filter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>servletNames</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">names of the servlets to which the filter applies</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>asyncSupported</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Declares whether the filter supports asynchronous operation mode</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>smallIcon</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">small icon of the filter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>largeIcon</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">large icon of the filter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>description</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">description of the filter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>displayName</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display name of the filter</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_filter_implicit_variables"><a class="anchor" href="#_filter_implicit_variables"></a><a class="link" href="#_filter_implicit_variables">7.2. Filter implicit variables</a></h3>
 <div class="paragraph">
 <p>The implicit variables made available to a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html">Filter</a> are as follows:</p>
 </div>
@@ -3038,7 +3218,10 @@ class MyFilter {
 </table>
 </div>
 <div class="sect2">
-<h3 id="_filter_methods"><a class="anchor" href="#_filter_methods"></a><a class="link" href="#_filter_methods">7.2. Filter methods</a></h3>
+<h3 id="_filter_methods"><a class="anchor" href="#_filter_methods"></a><a class="link" href="#_filter_methods">7.3. Filter methods</a></h3>
+<div class="paragraph">
+<p>For an exhaustive list of the supported methods, please read the Javadocs.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 50%;">
@@ -3073,12 +3256,9 @@ class MyFilter {
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>For an exhaustive list of the supported methods, please read the Javadocs.</p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="_filter_initialization_parameters"><a class="anchor" href="#_filter_initialization_parameters"></a><a class="link" href="#_filter_initialization_parameters">7.3. Filter initialization parameters</a></h3>
+<h3 id="_filter_initialization_parameters"><a class="anchor" href="#_filter_initialization_parameters"></a><a class="link" href="#_filter_initialization_parameters">7.4. Filter initialization parameters</a></h3>
 <div class="paragraph">
 <p>The <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebInitParam.html">@WebInitParam</a> annotation is used to specify initialization parameters for a filter programmatically. In its initialization method <em>init()</em>, we can get our parameters using the <em>getInitParameter()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/FilterConfig.html">FilterConfig</a> object. Like for a servlet, the annotation has been shorten to <em>@InitParam</em> and you can get an initialization parameter through the implicit <em>config</em> variable using just its name or as described above.</p>
 </div>
@@ -3914,7 +4094,7 @@ public class MyHttpSessionIdListener {
 <h2 id="_working_with_json"><a class="anchor" href="#_working_with_json"></a><a class="link" href="#_working_with_json">9. Working With JSON</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Groovy comes with integrated support for converting between Groovy objects and JSON. The classes dedicated to JSON serialisation and parsing are found in the <strong><em>groovy.json</em></strong> package. You can get an insight of how to use them in the Groovy <a href="https://groovy-lang.org/json.html">documentation</a>. In the Gservlet API, we have simplified the process of parsing and producing JSON in your servlets and filters as below:</p>
+<p>Groovy comes with integrated support for converting between Groovy objects and JSON. The classes dedicated to JSON serialisation and parsing are found in the <strong><em>groovy.json</em></strong> package. You can get an insight of how to use them in the Groovy <a href="https://groovy-lang.org/json.html">documentation</a>. In the GServlet API, we have simplified the process of parsing and producing JSON in your servlets and filters as below:</p>
 </div>
 <div class="listingblock">
 <div class="title">ProjectServlet.java</div>
@@ -3946,7 +4126,7 @@ class ProjectServlet {
 </div>
 </div>
 <div class="paragraph">
-<p>Whenever, the content-type of the request is set to <strong><em>application/json</em></strong>, you can use its <strong><em>body</em></strong> property to get the payload as Groovy object. Your servlet or filter can use as well the built-in <strong><em>json()</em></strong> method to send json data as a response.</p>
+<p>Whenever, the content type of the request is set to <strong><em>application/json</em></strong>, you can use its <strong><em>body</em></strong> property to get the payload as Groovy object. Your servlet or filter can use as well the built-in <strong><em>json()</em></strong> method to send json data as a response.</p>
 </div>
 </div>
 </div>
