@@ -29,8 +29,12 @@ If you have a prior experience with the Servlet API, creating your first web app
 ### Gradle
 
 ```
+repositories {
+    mavenCentral()
+}
+
 dependencies {
-    implementation 'org.gservlet:gservlet-api:1.0.0'
+    compile("org.gservlet:gservlet-api:1.0.0")
 }
 ```
 
@@ -45,38 +49,49 @@ Once your Java web server is installed and configured, you can put it to work. F
 * Call your servlet from a web browser
 
 
-You can find below some examples that you can try out and for Hot Reloading, set the **GSERVLET_RELOAD** environment variable to true in your IDE. 
+You can find below some examples that you can try out and for a hot reloading of your source code, set the **GSERVLET_RELOAD** environment variable to true in your IDE. 
     
-#### CustomerServlet.groovy
+#### ProjectServlet.groovy
 
 ``` java
 import org.gservlet.annotation.Servlet
 
-@Servlet("/customers")
-class CustomerServlet {
+@Servlet("/projects")
+import org.gservlet.annotation.Servlet
 
-    void get() {
-      def customers = []
-      customers << [FirstName : "John", lastName : "Doe"]
-      customers << [FirstName : "Kate", lastName : "Martinez"]
-      customers << [FirstName : "Allisson", lastName : "Becker"]
-      json(customers)
-    }
+@Servlet("/projects")
+class ProjectServlet {
 
-    void post() {
-      def customer = request.body // get the json request payload as object
-      json(customer)
-    }
+	def projects = []
 
-    void put() {
-      def customer = request.body // get the json request payload as object
-      json(customer)
-    }
+	void init() {
+	   projects << [id : 1, name : "Groovy", url : "https://groovy-lang.org"]
+	   projects << [id : 2, name : "Spring", url : "https://spring.io"]
+	   projects << [id : 3, name : "Maven",  url : "https://maven.apache.org"]
+	}
 
-    void delete() {
-      def param = request.param // shortcut to request.getParameter("param")
-      def attribute = request.attribute // shortcut to request.getAttribute("attribute")
-    }
+	void get() {
+	   json(projects)
+	}
+
+	void post() {
+	   def project = request.body
+	   projects << project
+	   json(project)
+	}
+
+	void put() {
+	   def project = request.body
+	   int index = projects.findIndexOf { it.id == project.id }
+	   projects[index] = project
+	   json(project)
+	}
+
+	void delete() {
+	   def project = request.body
+	   int index = projects.findIndexOf { it.id == project.id }
+	   json(projects.remove(index))
+	}
 
 }
 ```
