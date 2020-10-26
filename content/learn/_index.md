@@ -136,4 +136,4 @@ class ServletRequestListener {
 }
 ```
 
-For a deep insight, please read the complete [documentation](/documentation). 
+For a deep insight, please read the Developer Guide in our [documentation](/documentation) page. 
