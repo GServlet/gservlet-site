@@ -130,42 +130,42 @@
 <a class="jxr_linenumber" name="L122" href="#L122">122</a> 	<strong class="jxr_keyword">private</strong> <a name="DatabaseManager" href="../../org/gservlet/DatabaseManager.html#DatabaseManager">DatabaseManager</a> createDatabaseManager() <strong class="jxr_keyword">throws</strong> IOException {
 <a class="jxr_linenumber" name="L123" href="#L123">123</a> 		databaseManager = <strong class="jxr_keyword">new</strong> <a name="DatabaseManager" href="../../org/gservlet/DatabaseManager.html#DatabaseManager">DatabaseManager</a>(context);
 <a class="jxr_linenumber" name="L124" href="#L124">124</a> 		File root = <strong class="jxr_keyword">new</strong> File(path);
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> 		File configuration = <strong class="jxr_keyword">new</strong> File(root + File.separator + APP_CONFIG_FILE);
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> 		<strong class="jxr_keyword">if</strong> (configuration.exists()) {
-<a class="jxr_linenumber" name="L127" href="#L127">127</a> 			databaseManager.setupDataSource(loadConfiguration(configuration));
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> 		}
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> 		watch(root);
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> 		<strong class="jxr_keyword">return</strong> databaseManager;
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> 	}
-<a class="jxr_linenumber" name="L132" href="#L132">132</a> 
-<a class="jxr_linenumber" name="L133" href="#L133">133</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">	 * Starts the initialization process on a SpringBoot application</em>
-<a class="jxr_linenumber" name="L135" href="#L135">135</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L137" href="#L137">137</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> startOnSpringBoot() {
-<a class="jxr_linenumber" name="L138" href="#L138">138</a> 		path = System.getProperty(<span class="jxr_string">"user.dir"</span>) + File.separator + <span class="jxr_string">"src/main/resources"</span>;
-<a class="jxr_linenumber" name="L139" href="#L139">139</a> 		<strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">new</strong> File(path).exists()) {
-<a class="jxr_linenumber" name="L140" href="#L140">140</a> 			start();
-<a class="jxr_linenumber" name="L141" href="#L141">141</a> 		} <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L142" href="#L142">142</a> 			String folder = <span class="jxr_string">"BOOT-INF/classes/"</span>;
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> 			explodeClassPathResources(context.getRealPath(<span class="jxr_string">"/"</span>), folder);
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> 			path = context.getRealPath(<span class="jxr_string">"/"</span>) + folder;
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> 			start();
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> 		}
-<a class="jxr_linenumber" name="L147" href="#L147">147</a> 		context.addListener(<strong class="jxr_keyword">new</strong> <a name="DefaultRequestListener" href="../../org/gservlet/DefaultRequestListener.html#DefaultRequestListener">DefaultRequestListener</a>());
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> 	}
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> 
-<a class="jxr_linenumber" name="L150" href="#L150">150</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">	 * Loads the configuration file properties</em>
-<a class="jxr_linenumber" name="L152" href="#L152">152</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L153" href="#L153">153</a> <em class="jxr_javadoccomment">	 * @param file the configuration file</em>
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> <em class="jxr_javadoccomment">	 * @throws IOException throws an Exception if the configuration file is invalid</em>
-<a class="jxr_linenumber" name="L155" href="#L155">155</a> <em class="jxr_javadoccomment">	 * @return the properties of the configuration file</em>
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L157" href="#L157">157</a> 	<strong class="jxr_keyword">public</strong> Properties loadConfiguration(File file) <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L158" href="#L158">158</a> 		Properties configuration = <strong class="jxr_keyword">new</strong> Properties();
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> 		<strong class="jxr_keyword">try</strong> (FileReader reader = <strong class="jxr_keyword">new</strong> FileReader(file)) {
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> 			configuration.load(reader);
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> 		File file = <strong class="jxr_keyword">new</strong> File(root + File.separator + APP_CONFIG_FILE);
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> 		databaseManager.setupDataSource(loadConfiguration(file));
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> 		watch(root);
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> 		<strong class="jxr_keyword">return</strong> databaseManager;
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> 	}
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> 
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> <em class="jxr_javadoccomment">	 * Starts the initialization process on a SpringBoot application</em>
+<a class="jxr_linenumber" name="L133" href="#L133">133</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L135" href="#L135">135</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> startOnSpringBoot() {
+<a class="jxr_linenumber" name="L136" href="#L136">136</a> 		path = System.getProperty(<span class="jxr_string">"user.dir"</span>) + File.separator + <span class="jxr_string">"src/main/resources"</span>;
+<a class="jxr_linenumber" name="L137" href="#L137">137</a> 		<strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">new</strong> File(path).exists()) {
+<a class="jxr_linenumber" name="L138" href="#L138">138</a> 			start();
+<a class="jxr_linenumber" name="L139" href="#L139">139</a> 		} <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L140" href="#L140">140</a> 			String folder = <span class="jxr_string">"BOOT-INF/classes/"</span>;
+<a class="jxr_linenumber" name="L141" href="#L141">141</a> 			explodeClassPathResources(context.getRealPath(<span class="jxr_string">"/"</span>), folder);
+<a class="jxr_linenumber" name="L142" href="#L142">142</a> 			path = context.getRealPath(<span class="jxr_string">"/"</span>) + folder;
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> 			start();
+<a class="jxr_linenumber" name="L144" href="#L144">144</a> 		}
+<a class="jxr_linenumber" name="L145" href="#L145">145</a> 		context.addListener(<strong class="jxr_keyword">new</strong> <a name="DefaultRequestListener" href="../../org/gservlet/DefaultRequestListener.html#DefaultRequestListener">DefaultRequestListener</a>());
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> 	}
+<a class="jxr_linenumber" name="L147" href="#L147">147</a> 
+<a class="jxr_linenumber" name="L148" href="#L148">148</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">	 * Loads the configuration file properties</em>
+<a class="jxr_linenumber" name="L150" href="#L150">150</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">	 * @param file the configuration file</em>
+<a class="jxr_linenumber" name="L152" href="#L152">152</a> <em class="jxr_javadoccomment">	 * @throws IOException throws an Exception if the configuration file is invalid</em>
+<a class="jxr_linenumber" name="L153" href="#L153">153</a> <em class="jxr_javadoccomment">	 * @return the properties of the configuration file</em>
+<a class="jxr_linenumber" name="L154" href="#L154">154</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L155" href="#L155">155</a> 	<strong class="jxr_keyword">public</strong> Properties loadConfiguration(File file) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L156" href="#L156">156</a> 		Properties configuration = <strong class="jxr_keyword">new</strong> Properties();
+<a class="jxr_linenumber" name="L157" href="#L157">157</a> 		<strong class="jxr_keyword">if</strong>(file.exists()) {
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> 			<strong class="jxr_keyword">try</strong> (FileReader reader = <strong class="jxr_keyword">new</strong> FileReader(file)) {
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> 				configuration.load(reader);
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> 			}
 <a class="jxr_linenumber" name="L161" href="#L161">161</a> 		}
 <a class="jxr_linenumber" name="L162" href="#L162">162</a> 		<strong class="jxr_keyword">return</strong> configuration;
 <a class="jxr_linenumber" name="L163" href="#L163">163</a> 	}

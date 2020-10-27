@@ -2237,7 +2237,7 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2020-10-26</span>
+<span id="revdate">2020-10-27</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2291,7 +2291,7 @@ p {
 <li><a href="#_intellij_idea">11.2. IntelliJ IDEA</a></li>
 </ul>
 </li>
-<li><a href="#_frameworks_support">12. Frameworks Support</a>
+<li><a href="#_framework_support">12. Framework Support</a>
 <ul class="sectlevel2">
 <li><a href="#_spring_boot">12.1. Spring Boot</a></li>
 <li><a href="#_other_java_web_frameworks">12.2. Other Java web frameworks</a></li>
@@ -3384,7 +3384,6 @@ public class MyServletContextListener {
 <p>The implicit variables made available to a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextListener.html">ServletContextListener</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. ServletContextListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3468,7 +3467,6 @@ public class MyServletContextAttributeListener {
 <p>The implicit variables made available to a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextAttributeListener.html">ServletContextAttributeListener</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 2. ServletContextAttributeListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3552,7 +3550,6 @@ public class MyServletRequestListener {
 <p>The implicit variables made available to a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestListener.html">ServletRequestListener</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 3. ServletRequestListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3645,7 +3642,6 @@ public class MyServletRequestAttributeListener {
 <p>The implicit variables made available to a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestAttributeListener.html">ServletRequestAttributeListener</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 4. ServletRequestAttributeListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3737,7 +3733,6 @@ public class MyHttpSessionListener {
 <p>The implicit variables made available to a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionListener.html">HttpSessionListener</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 5. HttpSessionListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3821,7 +3816,6 @@ public class MyHttpSessionAttributeListener {
 <p>The implicit variables made available to a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionAttributeListener.html">HttpSessionAttributeListener</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 6. HttpSessionAttributeListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3905,7 +3899,6 @@ public class MyHttpSessionBindingListener {
 <p>The implicit variables made available to a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionBindingListener.html">HttpSessionBindingListener</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 7. HttpSessionBindingListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3989,7 +3982,6 @@ public class MyHttpSessionActivationListener {
 <p>The implicit variables made available to a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionActivationListener.html">HttpSessionActivationListener</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 8. HttpSessionActivationListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4057,7 +4049,6 @@ public class MyHttpSessionIdListener {
 <p>The implicit variables made available to a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionIdListener.html">HttpSessionIdListener</a> are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 9. HttpSessionIdListener Implicit Variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4126,7 +4117,7 @@ class ProjectServlet {
 </div>
 </div>
 <div class="paragraph">
-<p>Whenever, the content type of the request is set to <strong><em>application/json</em></strong>, you can use its <strong><em>body</em></strong> property to get the payload as Groovy object. Your servlet or filter can use as well the built-in <strong><em>json()</em></strong> method to send json data as a response.</p>
+<p>Whenever, the content type of the request is set to <strong><em>application/json</em></strong>, you can use its <strong><em>body</em></strong> property to get the payload as Groovy object. Your servlet or filter can use as well the built-in <strong><em>json()</em></strong> method to send JSON data as a response.</p>
 </div>
 </div>
 </div>
@@ -4134,7 +4125,7 @@ class ProjectServlet {
 <h2 id="_working_with_rdbms"><a class="anchor" href="#_working_with_rdbms"></a><a class="link" href="#_working_with_rdbms">10. Working With RDBMS</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong><em>groovy-sql</em></strong> module provides a higher-level abstraction over the current Java’s JDBC technology and it supports a wide variety of databases. To set up a database with the GServlet API is as simple as to create in the root directory of your web application, a file named <strong><em>gservlet.properties</em></strong> like below :</p>
+<p>The <strong><em>groovy-sql</em></strong> module provides a higher-level abstraction over the current Java’s JDBC technology and it supports a wide variety of databases. To set up a database with the GServlet API is as simple as to create in the root directory of your web application, a file named <strong><em>gservlet.properties</em></strong> like below:</p>
 </div>
 <div class="listingblock">
 <div class="title">gservlet.properties</div>
@@ -4290,7 +4281,7 @@ contributor(classContext) {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_frameworks_support"><a class="anchor" href="#_frameworks_support"></a><a class="link" href="#_frameworks_support">12. Frameworks Support</a></h2>
+<h2 id="_framework_support"><a class="anchor" href="#_framework_support"></a><a class="link" href="#_framework_support">12. Framework Support</a></h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_spring_boot"><a class="anchor" href="#_spring_boot"></a><a class="link" href="#_spring_boot">12.1. Spring Boot</a></h3>
