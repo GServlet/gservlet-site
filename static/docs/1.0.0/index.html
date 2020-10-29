@@ -4277,17 +4277,25 @@ dependencies {
 
 apply plugin: 'groovy'
 
+sourceSets {
+	main {
+		groovy {
+			srcDirs = ['src/main/resources/scripts']
+		}
+	}
+}
+
 groovydoc {
   use = true
   groovyClasspath = configurations.compile
-  source = sourceSets.main.resources.scripts
+  source = sourceSets.main.groovy
   link 'https://docs.oracle.com/javase/7/docs/api/', 'java.'
   link 'http://docs.groovy-lang.org/latest/html/gapi/', 'groovy.', 'org.codehaus.groovy.'
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Run <strong><em>gradle groovydoc</em></strong> and your documentation will be generated in the <strong><em>target/gapidocs</em></strong> directory.</p>
+<p>Run <strong><em>gradle groovydoc</em></strong> and your documentation will be generated in the <strong><em>build/docs/groovydoc</em></strong> directory.</p>
 </div>
 </div>
 </div>
