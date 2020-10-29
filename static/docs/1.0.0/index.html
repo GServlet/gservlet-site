@@ -597,7 +597,9 @@ pre, pre>code {
 	font-weight: 400;
 	text-rendering: optimizeSpeed
 }
-
+em {
+  color : #e65251	
+}
 em em {
 	font-style: normal
 }
@@ -2316,7 +2318,7 @@ p {
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a><a class="link" href="#_introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://github.com/GServlet/gservlet-api">GServlet</a> is an open source project inspired from the <a href="http://docs.groovy-lang.org/latest/html/documentation/servlet-userguide.html">Groovlets</a>, which aims to use the Groovy language and its provided modules to simplify Servlet API web development. Groovlets are Groovy scripts executed by a servlet. They are run on request, having the whole web context (request, response, etc.) bound to the evaluation context. They are much more suitable for smaller web applications. Compared to Java Servlets, coding in Groovy can be much simpler. It has a couple of implicit variables we can use, for example, <em>request</em>, <em>response</em> to access the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a>, and <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html"><em>HttpServletResponse</em></a> objects. We have access to the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html"><em>HttpSession</em></a> with the <em>session</em> variable. If we want to output data, we can use <em>out</em>, <em>sout</em>, and <em>html</em>.</p>
+<p><a href="https://github.com/GServlet/gservlet-api">GServlet</a> is an open source project inspired from the <a href="http://docs.groovy-lang.org/latest/html/documentation/servlet-userguide.html">Groovlets</a>, which aims to use the Groovy language and its provided modules to simplify Servlet API web development. Groovlets are Groovy scripts executed by a servlet. They are run on request, having the whole web context (request, response, etc.) bound to the evaluation context. They are much more suitable for smaller web applications. Compared to Java Servlets, coding in Groovy can be much simpler. It has a couple of implicit variables we can use, for example, <em>request</em>, <em>response</em> to access the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a>, and <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html">HttpServletResponse</a> objects. We have access to the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> with the <em>session</em> variable. If we want to output data, we can use <em>out</em>, <em>sout</em>, and <em>html</em>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Groovlet.groovy</div>
@@ -2393,7 +2395,7 @@ session.counter = session.counter + 1</code></pre>
 <h2 id="_installation"><a class="anchor" href="#_installation"></a><a class="link" href="#_installation">4. Installation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To get started with GServlet, you may want to begin by creating your first project. This section shows you how to get up and running quickly. It is highly recommended to consume the API through a dependency management tool and the artifact can be found in Maven&#8217;s central repository. It is named <strong>gservlet-api</strong> and you just need to name a dependency on it in your project.</p>
+<p>To get started with GServlet, you may want to begin by creating your first project. This section shows you how to get up and running quickly. It is highly recommended to consume the API through a dependency management tool and the artifact can be found in Maven&#8217;s central repository. It is named <strong><em>gservlet-api</em></strong> and you just need to name a dependency on it in your project.</p>
 </div>
 <div class="sect2">
 <h3 id="_maven"><a class="anchor" href="#_maven"></a><a class="link" href="#_maven">4.1. Maven</a></h3>
@@ -2902,7 +2904,7 @@ class UploadServlet {
 <div class="sect2">
 <h3 id="_servlet_multipart_configuration"><a class="anchor" href="#_servlet_multipart_configuration"></a><a class="link" href="#_servlet_multipart_configuration">6.5. Servlet Multipart configuration</a></h3>
 <div class="paragraph">
-<p>Supporting file uploads is a very basic and common requirement for many web applications. Prior to Servlet 3.0, implementing file upload required the use of external libraries or complex input processing. Version 3.0 of the Java Servlet specification helps to provide a viable solution to the problem in a generic and portable way. The Servlet 3.0 specification supports file upload out of the box, so any web container that implements the specification can parse multipart requests and make mime attachments available through the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a> object. A new annotation, <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/MultipartConfig.html">@MultipartConfig</a>, is used to indicate that the servlet on which it is declared expects requests to made using the <em>multipart/form-data</em> MIME type. Therefore, it can retrieve the Part components of a given <em>multipart/form-data</em> request by calling the <em>getPart(String name)</em> or <em>getParts()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html"><em>HttpServletRequest</em></a> object.</p>
+<p>Supporting file uploads is a very basic and common requirement for many web applications. Prior to Servlet 3.0, implementing file upload required the use of external libraries or complex input processing. Version 3.0 of the Java Servlet specification helps to provide a viable solution to the problem in a generic and portable way. The Servlet 3.0 specification supports file upload out of the box, so any web container that implements the specification can parse multipart requests and make mime attachments available through the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a> object. A new annotation, <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/MultipartConfig.html">@MultipartConfig</a>, is used to indicate that the servlet on which it is declared expects requests to made using the <em>multipart/form-data</em> MIME type. Therefore, it can retrieve the Part components of a given <em>multipart/form-data</em> request by calling the <em>getPart(String name)</em> or <em>getParts()</em> method of the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a> object.</p>
 </div>
 <div class="listingblock">
 <div class="title">UploadServlet.groovy</div>
