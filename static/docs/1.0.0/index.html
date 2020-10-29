@@ -2237,7 +2237,7 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2020-10-27</span>
+<span id="revdate">2020-10-29</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2285,22 +2285,24 @@ p {
 </li>
 <li><a href="#_working_with_json">9. Working With JSON</a></li>
 <li><a href="#_working_with_rdbms">10. Working With RDBMS</a></li>
-<li><a href="#_ide_support">11. IDE Support</a>
+<li><a href="#_unit_testing">11. Unit Testing</a></li>
+<li><a href="#_groovydoc_generation">12. Groovydoc Generation</a></li>
+<li><a href="#_ide_support">13. IDE Support</a>
 <ul class="sectlevel2">
-<li><a href="#_eclipse">11.1. Eclipse</a></li>
-<li><a href="#_intellij_idea">11.2. IntelliJ IDEA</a></li>
+<li><a href="#_eclipse">13.1. Eclipse</a></li>
+<li><a href="#_intellij_idea">13.2. IntelliJ IDEA</a></li>
 </ul>
 </li>
-<li><a href="#_framework_support">12. Framework Support</a>
+<li><a href="#_framework_support">14. Framework Support</a>
 <ul class="sectlevel2">
-<li><a href="#_spring_boot">12.1. Spring Boot</a></li>
-<li><a href="#_other_java_web_frameworks">12.2. Other Java web frameworks</a></li>
+<li><a href="#_spring_boot">14.1. Spring Boot</a></li>
+<li><a href="#_other_java_web_frameworks">14.2. Other Java web frameworks</a></li>
 </ul>
 </li>
-<li><a href="#_code_examples">13. Code Examples</a></li>
-<li><a href="#_copyright_and_license">14. Copyright and License</a></li>
-<li><a href="#_authors">15. Authors</a></li>
-<li><a href="#_contributing">16. Contributing</a></li>
+<li><a href="#_code_examples">15. Code Examples</a></li>
+<li><a href="#_copyright_and_license">16. Copyright and License</a></li>
+<li><a href="#_authors">17. Authors</a></li>
+<li><a href="#_contributing">18. Contributing</a></li>
 </ul>
 </div>
 </div>
@@ -2430,7 +2432,7 @@ dependencies {
 <p>Create a dynamic web project</p>
 </li>
 <li>
-<p>Create the scripts folder inside your web content directory</p>
+<p>Create the scripts folder inside your web app directory</p>
 </li>
 <li>
 <p>Write the servlet source code</p>
@@ -2908,7 +2910,7 @@ import javax.servlet.annotation.MultipartConfig
 initParams = [
 	@InitParam(name = "uploadDirectory", value = "/images")
 ] )
-@MultipartConfig( fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 25 )
+@MultipartConfig( fileSizeThreshold = 1048576, maxFileSize = 5242880L, maxRequestSize = 26214400L )
 class UploadServlet {
 
 	String uploadPath
@@ -4181,10 +4183,22 @@ class ProjectFilter {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ide_support"><a class="anchor" href="#_ide_support"></a><a class="link" href="#_ide_support">11. IDE Support</a></h2>
+<h2 id="_unit_testing"><a class="anchor" href="#_unit_testing"></a><a class="link" href="#_unit_testing">11. Unit Testing</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_groovydoc_generation"><a class="anchor" href="#_groovydoc_generation"></a><a class="link" href="#_groovydoc_generation">12. Groovydoc Generation</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ide_support"><a class="anchor" href="#_ide_support"></a><a class="link" href="#_ide_support">13. IDE Support</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_eclipse"><a class="anchor" href="#_eclipse"></a><a class="link" href="#_eclipse">11.1. Eclipse</a></h3>
+<h3 id="_eclipse"><a class="anchor" href="#_eclipse"></a><a class="link" href="#_eclipse">13.1. Eclipse</a></h3>
 <div class="paragraph">
 <p>To augment the editor features such as content assist, the GServlet API ships with a DSL Descriptor (DSLD) to describe the editing semantics in a way that can be interpreted by the <a href="https://marketplace.eclipse.org/content/groovy-development-tools">Groovy Development Tools (GDT)</a> which provides Eclipse support for the Groovy programming language.</p>
 </div>
@@ -4234,9 +4248,54 @@ contribute(currentType(annos: annotatedBy(Filter))) {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Make sure your project has the Groovy nature and the Groovy DSL support is activated. Also to leverage the full power of the <a href="https://marketplace.eclipse.org/content/groovy-development-tools">Groovy Development Tools (GDT)</a>, it is highly recommended to add your <em>scripts</em> folder as source folder. Thus, you will be able to use its wizards to create your artifacts and like for Java, the use of the default package is discouraged. The example below illustrates a good practice to follow throughout your development in order to structure your project.</p>
+</div>
+<div class="listingblock">
+<div class="title">ProjectDao.groovy</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package dao
+
+class ProjectDao {
+
+   def projects = []
+
+   ProjectDao() {
+     projects &lt;&lt; [id : 1, name : "Groovy", url : "https://groovy-lang.org"]
+     projects &lt;&lt; [id : 2, name : "Spring", url : "https://spring.io"]
+     projects &lt;&lt; [id : 3, name : "Maven",  url : "https://maven.apache.org"]
+   }
+
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">ProjectServlet.java</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package servlets
+
+import org.gservlet.annotation.Servlet
+import dao.ProjectDao
+
+@Servlet("/projects")
+class ProjectServlet {
+
+   def projectDao
+
+   void init() {
+     projectDao = new ProjectDao()
+   }
+
+   void get() {
+     json(projectDao.projects)
+   }
+
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_intellij_idea"><a class="anchor" href="#_intellij_idea"></a><a class="link" href="#_intellij_idea">11.2. IntelliJ IDEA</a></h3>
+<h3 id="_intellij_idea"><a class="anchor" href="#_intellij_idea"></a><a class="link" href="#_intellij_idea">13.2. IntelliJ IDEA</a></h3>
 <div class="paragraph">
 <p>In the other hand, in IntelliJ IDEA, we can write GDSL Files to have code completion on the injected methods/properties and closures. <a href="https://confluence.jetbrains.com/display/GRVY/Scripting+IDE+for+DSL+awareness">GroovyDSL</a> is a scripting framework with a domain-specific language designed to define the behavior of end-user DSLs as script files which are executed by the IDE on the fly, bringing new reference resolution and code completion logic into the scope of a project.</p>
 </div>
@@ -4281,12 +4340,12 @@ contributor(classContext) {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_framework_support"><a class="anchor" href="#_framework_support"></a><a class="link" href="#_framework_support">12. Framework Support</a></h2>
+<h2 id="_framework_support"><a class="anchor" href="#_framework_support"></a><a class="link" href="#_framework_support">14. Framework Support</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_spring_boot"><a class="anchor" href="#_spring_boot"></a><a class="link" href="#_spring_boot">12.1. Spring Boot</a></h3>
+<h3 id="_spring_boot"><a class="anchor" href="#_spring_boot"></a><a class="link" href="#_spring_boot">14.1. Spring Boot</a></h3>
 <div class="paragraph">
-<p>The <em>scripts</em> folder must created be inside the <em>src/main/resources</em> directory of your Spring Boot applications so it can be packaged inside the final jar and you just need this configuration below to leverage the GServlet API.</p>
+<p>The <em>scripts</em> folder must be created inside the <em>src/main/resources</em> directory of your Spring Boot applications so it can be packaged inside the final jar and you just need this configuration below to leverage the GServlet API.</p>
 </div>
 <div class="listingblock">
 <div class="title">SpringConfiguration.java</div>
@@ -4354,10 +4413,9 @@ public class SpringConfiguration implements ServletContextInitializer {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_other_java_web_frameworks"><a class="anchor" href="#_other_java_web_frameworks"></a><a class="link" href="#_other_java_web_frameworks">12.2. Other Java web frameworks</a></h3>
+<h3 id="_other_java_web_frameworks"><a class="anchor" href="#_other_java_web_frameworks"></a><a class="link" href="#_other_java_web_frameworks">14.2. Other Java web frameworks</a></h3>
 <div class="paragraph">
-<p>If the target framework supports the Servlet API and the <em>@WebListener</em> annotation, no configuration is required since the GServlet API ships with a context listener which starts and stops the application. This statement is
-valid for frameworks like JSF, Apache Struts.</p>
+<p>If the target framework supports the Servlet API and the <em>@WebListener</em> annotation, no configuration is required since the GServlet API ships with a context listener which starts and stops the application. This statement is valid for frameworks like JSF, Apache Struts.</p>
 </div>
 <div class="listingblock">
 <div class="title">StartupListener.java</div>
@@ -4394,16 +4452,15 @@ public class StartupListener implements ServletContextListener {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_code_examples"><a class="anchor" href="#_code_examples"></a><a class="link" href="#_code_examples">13. Code Examples</a></h2>
+<h2 id="_code_examples"><a class="anchor" href="#_code_examples"></a><a class="link" href="#_code_examples">15. Code Examples</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We have created several code examples on <a href="https://github.com/GServlet/gservlet-examples">GitHub</a> to help beginners to learn and gain expertise at GServlet. Checkout the appropriate branch for the version that
-you are using.</p>
+<p>We have created several code examples on <a href="https://github.com/GServlet/gservlet-examples">GitHub</a> to help beginners to learn and gain expertise at GServlet. Checkout the appropriate branch for the version that you are using.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_copyright_and_license"><a class="anchor" href="#_copyright_and_license"></a><a class="link" href="#_copyright_and_license">14. Copyright and License</a></h2>
+<h2 id="_copyright_and_license"><a class="anchor" href="#_copyright_and_license"></a><a class="link" href="#_copyright_and_license">16. Copyright and License</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Copyright @2020. Free use of this software is granted under the terms of the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> License.</p>
@@ -4411,7 +4468,7 @@ you are using.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_authors"><a class="anchor" href="#_authors"></a><a class="link" href="#_authors">15. Authors</a></h2>
+<h2 id="_authors"><a class="anchor" href="#_authors"></a><a class="link" href="#_authors">17. Authors</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>GServlet was created by <a href="https://github.com/laminba2003">Mamadou Lamine Ba</a>.</p>
@@ -4419,7 +4476,7 @@ you are using.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_contributing"><a class="anchor" href="#_contributing"></a><a class="link" href="#_contributing">16. Contributing</a></h2>
+<h2 id="_contributing"><a class="anchor" href="#_contributing"></a><a class="link" href="#_contributing">18. Contributing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Contributions of any type or any scope, drive the project forward. There are lot of ways to contribute, not just code. We provide more information about how to get involved in our <a href="/contribute">contribute</a> page.</p>

@@ -41,12 +41,12 @@
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> java.util.Collections;
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> java.util.List;
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> java.util.stream.Collectors;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> java.util.concurrent.TimeUnit;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> * </em>
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment"> * Checks a folder for file changes and notifies the file</em>
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment"> * listeners accordingly.</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment"> * listeners accordingly</em>
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment"> * </em>
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment"> * @author Mamadou Lamine Ba</em>
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> * </em>
@@ -124,8 +124,8 @@
 <a class="jxr_linenumber" name="L116" href="#L116">116</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> pollEvents(WatchService watchService) <strong class="jxr_keyword">throws</strong> InterruptedException {
 <a class="jxr_linenumber" name="L117" href="#L117">117</a> 		WatchKey key = watchService.take();
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> 		Path path = (Path) key.watchable();
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> 		List&lt;WatchEvent&lt;?&gt;&gt; events =  key.pollEvents().stream().distinct().collect(Collectors.toList());
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> 		<strong class="jxr_keyword">for</strong> (WatchEvent&lt;?&gt; event : events) {
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> 		TimeUnit.MILLISECONDS.sleep(500);
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> 		<strong class="jxr_keyword">for</strong> (WatchEvent&lt;?&gt; event : key.pollEvents()) {
 <a class="jxr_linenumber" name="L121" href="#L121">121</a> 			notifyListeners(event.kind(), path.resolve((Path) event.context()).toFile());
 <a class="jxr_linenumber" name="L122" href="#L122">122</a> 		}
 <a class="jxr_linenumber" name="L123" href="#L123">123</a> 		<strong class="jxr_keyword">return</strong> key.reset();
