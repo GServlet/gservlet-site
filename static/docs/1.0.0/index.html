@@ -2286,7 +2286,12 @@ p {
 <li><a href="#_working_with_json">9. Working With JSON</a></li>
 <li><a href="#_working_with_rdbms">10. Working With RDBMS</a></li>
 <li><a href="#_unit_testing">11. Unit Testing</a></li>
-<li><a href="#_groovydocs_generation">12. Groovydocs Generation</a></li>
+<li><a href="#_groovydocs_generation">12. Groovydocs Generation</a>
+<ul class="sectlevel2">
+<li><a href="#_maven_2">12.1. Maven</a></li>
+<li><a href="#_gradle_2">12.2. Gradle</a></li>
+</ul>
+</li>
 <li><a href="#_ide_support">13. IDE Support</a>
 <ul class="sectlevel2">
 <li><a href="#_eclipse">13.1. Eclipse</a></li>
@@ -2456,7 +2461,7 @@ dependencies {
 @Servlet("/projects")
 class ProjectServlet {
 
-	def projects = []
+	List projects = []
 
 	void init() {
 	   projects &lt;&lt; [id : 1, name : "Groovy", url : "https://groovy-lang.org"]
@@ -4097,7 +4102,7 @@ public class MyHttpSessionIdListener {
 @Servlet("/projects")
 class ProjectServlet {
 
-   def projects = []
+   List projects = []
 
    void init() {
      projects &lt;&lt; [id : 1, name : "Groovy", url : "https://groovy-lang.org"]
@@ -4191,7 +4196,100 @@ class ProjectFilter {
 <div class="sect1">
 <h2 id="_groovydocs_generation"><a class="anchor" href="#_groovydocs_generation"></a><a class="link" href="#_groovydocs_generation">12. Groovydocs Generation</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_maven_2"><a class="anchor" href="#_maven_2"></a><a class="link" href="#_maven_2">12.1. Maven</a></h3>
+<div class="paragraph">
+<p><a href="https://github.com/groovy/GMavenPlus">GMavenPlus</a> is a rewrite of <a href="https://github.com/groovy/gmaven">GMaven</a>, a plugin that allows you to integrate Groovy into your Maven projects. This is the basic configuration to generate Groovydocs with this plugin.</p>
+</div>
+<div class="listingblock">
+<div class="title">pom.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;project&gt;
 
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.codehaus.groovy&lt;/groupId&gt;
+			&lt;artifactId&gt;groovy-all&lt;/artifactId&gt;
+			&lt;version&gt;3.0.6&lt;/version&gt;
+			&lt;type&gt;pom&lt;/type&gt;
+		&lt;/dependency&gt;
+	&lt;/dependencies&gt;
+
+	&lt;build&gt;
+		&lt;plugins&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.codehaus.gmavenplus&lt;/groupId&gt;
+				&lt;artifactId&gt;gmavenplus-plugin&lt;/artifactId&gt;
+				&lt;version&gt;1.11.0&lt;/version&gt;
+				&lt;executions&gt;
+					&lt;execution&gt;
+						&lt;goals&gt;
+							&lt;goal&gt;groovydoc&lt;/goal&gt;
+						&lt;/goals&gt;
+					&lt;/execution&gt;
+				&lt;/executions&gt;
+				&lt;configuration&gt;
+					&lt;sources&gt;
+						&lt;source&gt;
+							&lt;directory&gt;${project.basedir}/src/main/resources/scripts&lt;/directory&gt;
+							&lt;includes&gt;
+								&lt;include&gt;**/*.groovy&lt;/include&gt;
+							&lt;/includes&gt;
+						&lt;/source&gt;
+					&lt;/sources&gt;
+					&lt;links&gt;
+					  &lt;link&gt;
+					   &lt;href&gt;https://docs.oracle.com/javase/7/docs/api/&lt;/href&gt;
+					   &lt;packages&gt;java.,javax.,org.xml.&lt;/packages&gt;
+					  &lt;/link&gt;
+					  &lt;link&gt;
+					   &lt;href&gt;http://docs.groovy-lang.org/latest/html/gapi/&lt;/href&gt;
+					   &lt;packages&gt;groovy.,org.codehaus.groovy.&lt;/packages&gt;
+					  &lt;/link&gt;
+					&lt;/links&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+		&lt;/plugins&gt;
+	&lt;/build&gt;
+
+&lt;/project&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run <strong><em>mvn gplus:groovydoc</em></strong> and your documentation will be generated in the <strong><em>target/gapidocs</em></strong> directory.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gradle_2"><a class="anchor" href="#_gradle_2"></a><a class="link" href="#_gradle_2">12.2. Gradle</a></h3>
+<div class="paragraph">
+<p>You can use the <a href="https://github.com/apache/groovy/blob/master/subprojects/groovy-groovydoc/src/spec/doc/groovydoc.adoc">Groovydoc</a> tool to generate the API documentation, and the version that is used, is the one from the Groovy dependency defined in the build script.</p>
+</div>
+<div class="listingblock">
+<div class="title">build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.codehaus.groovy:groovy-all:3.0.6"
+}
+
+apply plugin: 'groovy'
+
+groovydoc {
+  use = true
+  groovyClasspath = configurations.compile
+  source = sourceSets.main.resources.scripts
+  link 'https://docs.oracle.com/javase/7/docs/api/', 'java.'
+  link 'http://docs.groovy-lang.org/latest/html/gapi/', 'groovy.', 'org.codehaus.groovy.'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run <strong><em>gradle groovydoc</em></strong> and your documentation will be generated in the <strong><em>target/gapidocs</em></strong> directory.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -4258,7 +4356,7 @@ contribute(currentType(annos: annotatedBy(Filter))) {
 
 class ProjectDao {
 
-   def projects = []
+   List projects = []
 
    ProjectDao() {
      projects &lt;&lt; [id : 1, name : "Groovy", url : "https://groovy-lang.org"]
@@ -4280,7 +4378,7 @@ import dao.ProjectDao
 @Servlet("/projects")
 class ProjectServlet {
 
-   def projectDao
+   ProjectDao projectDao
 
    void init() {
      projectDao = new ProjectDao()
