@@ -57,9 +57,6 @@ Below are some examples that you can try out and for a hot reloading of your sou
 import org.gservlet.annotation.Servlet
 
 @Servlet("/projects")
-import org.gservlet.annotation.Servlet
-
-@Servlet("/projects")
 class ProjectServlet {
 
    def projects = []
