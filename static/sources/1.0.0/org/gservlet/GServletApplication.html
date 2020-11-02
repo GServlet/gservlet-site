@@ -60,9 +60,9 @@
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="GServletApplication" href="../../org/gservlet/GServletApplication.html#GServletApplication">GServletApplication</a> {
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">	 * The container initializer object</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">	 * The container manager object</em>
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  	<strong class="jxr_keyword">protected</strong> <a name="ContainerInitializer" href="../../org/gservlet/ContainerInitializer.html#ContainerInitializer">ContainerInitializer</a> initializer;
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  	<strong class="jxr_keyword">protected</strong> <a name="ContainerManager" href="../../org/gservlet/ContainerManager.html#ContainerManager">ContainerManager</a> containerManager;
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">	 * The database manager object</em>
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  <em class="jxr_javadoccomment">	 */</em>
@@ -114,7 +114,7 @@
 <a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> start() {
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> 		<strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> 			initializer = <strong class="jxr_keyword">new</strong> <a name="ContainerInitializer" href="../../org/gservlet/ContainerInitializer.html#ContainerInitializer">ContainerInitializer</a>(context, realPath);
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> 			containerManager = <strong class="jxr_keyword">new</strong> <a name="ContainerManager" href="../../org/gservlet/ContainerManager.html#ContainerManager">ContainerManager</a>(context, realPath);
 <a class="jxr_linenumber" name="L110" href="#L110">110</a> 			databaseManager = databaseManager != <strong class="jxr_keyword">null</strong> ? databaseManager : createDatabaseManager();
 <a class="jxr_linenumber" name="L111" href="#L111">111</a> 			logger.info(<span class="jxr_string">"application started on context "</span> + context.getContextPath());
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> 		} <strong class="jxr_keyword">catch</strong> (Exception e) {
@@ -205,7 +205,7 @@
 <a class="jxr_linenumber" name="L197" href="#L197">197</a> <em class="jxr_javadoccomment">	 *  </em>
 <a class="jxr_linenumber" name="L198" href="#L198">198</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L199" href="#L199">199</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> stop() {
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> 		initializer.shutDown();
+<a class="jxr_linenumber" name="L200" href="#L200">200</a> 		containerManager.shutDown();
 <a class="jxr_linenumber" name="L201" href="#L201">201</a> 		databaseManager.shutDown();
 <a class="jxr_linenumber" name="L202" href="#L202">202</a> 		<strong class="jxr_keyword">for</strong> (WatchService watchService : FileWatcher.getWatchServices()) {
 <a class="jxr_linenumber" name="L203" href="#L203">203</a> 			<strong class="jxr_keyword">try</strong> {
@@ -218,13 +218,13 @@
 <a class="jxr_linenumber" name="L210" href="#L210">210</a> 
 <a class="jxr_linenumber" name="L211" href="#L211">211</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L212" href="#L212">212</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L213" href="#L213">213</a> <em class="jxr_javadoccomment">	 * Returns the ContainerInitializer object</em>
+<a class="jxr_linenumber" name="L213" href="#L213">213</a> <em class="jxr_javadoccomment">	 * Returns the ContainerManager object</em>
 <a class="jxr_linenumber" name="L214" href="#L214">214</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L215" href="#L215">215</a> <em class="jxr_javadoccomment">	 * @return the ContainerInitializer object</em>
+<a class="jxr_linenumber" name="L215" href="#L215">215</a> <em class="jxr_javadoccomment">	 * @return the ContainerManager object</em>
 <a class="jxr_linenumber" name="L216" href="#L216">216</a> <em class="jxr_javadoccomment">	 * </em>
 <a class="jxr_linenumber" name="L217" href="#L217">217</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L218" href="#L218">218</a> 	<strong class="jxr_keyword">public</strong> <a name="ContainerInitializer" href="../../org/gservlet/ContainerInitializer.html#ContainerInitializer">ContainerInitializer</a> getInitializer() {
-<a class="jxr_linenumber" name="L219" href="#L219">219</a> 		<strong class="jxr_keyword">return</strong> initializer;
+<a class="jxr_linenumber" name="L218" href="#L218">218</a> 	<strong class="jxr_keyword">public</strong> <a name="ContainerManager" href="../../org/gservlet/ContainerManager.html#ContainerManager">ContainerManager</a> getContainerManager() {
+<a class="jxr_linenumber" name="L219" href="#L219">219</a> 		<strong class="jxr_keyword">return</strong> containerManager;
 <a class="jxr_linenumber" name="L220" href="#L220">220</a> 	}
 <a class="jxr_linenumber" name="L221" href="#L221">221</a> 
 <a class="jxr_linenumber" name="L222" href="#L222">222</a> 	<em class="jxr_javadoccomment">/**</em>
