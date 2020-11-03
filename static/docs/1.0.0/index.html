@@ -4143,10 +4143,10 @@ class ProjectServlet {
 <div class="listingblock">
 <div class="title">gservlet.properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-plain hljs" data-lang="plain">db.driver : oracle.jdbc.driver.OracleDriver
-db.url : jdbc:oracle:thin:@10.0.0.85:1521:ssv8acs
-db.user : ACSQA
-db.password : acs
+<pre class="highlightjs highlight"><code class="language-plain hljs" data-lang="plain">db.driver : com.mysql.cj.jdbc.Driver
+db.url : jdbc:mysql://localhost:3306/gservlet_examples
+db.user : root
+db.password : changeit
 db.minPoolSize : 5
 db.maxPoolSize : 10</code></pre>
 </div>
@@ -4196,7 +4196,9 @@ class ProjectFilter {
 <div class="sect1">
 <h2 id="_unit_testing"><a class="anchor" href="#_unit_testing"></a><a class="link" href="#_unit_testing">11. Unit Testing</a></h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>Unit testing servlets is difficult, therefore it is recommended to move the main business logic in the servlet into a separate class which has no dependencies on the Servlet API. The Groovy programming language comes with great support for writing tests. In addition to the language features and test integration with state-of-the-art testing libraries and frameworks, the Groovy ecosystem has born a rich set of testing libraries and frameworks. In its <a href="https://groovy-lang.org/testing.html">testing guide</a>, you can take at a closer look at JUnit integration, Spock for specifications, and Geb for functional tests.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
