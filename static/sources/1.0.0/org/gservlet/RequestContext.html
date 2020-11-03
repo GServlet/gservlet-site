@@ -149,8 +149,8 @@
 <a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">	*/</em>
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> 	<strong class="jxr_keyword">public</strong> MarkupBuilder getHtml() <strong class="jxr_keyword">throws</strong> IOException {
 <a class="jxr_linenumber" name="L143" href="#L143">143</a> 		MarkupBuilder builder = <strong class="jxr_keyword">new</strong> MarkupBuilder(response.getWriter());
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> 		getResponse().setHeader(<span class="jxr_string">"Content-Type"</span>, <span class="jxr_string">"text/html"</span>);
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> 		getResponse().getWriter().println(<span class="jxr_string">"&lt;!DOCTYPE html&gt;"</span>);
+<a class="jxr_linenumber" name="L144" href="#L144">144</a> 		response.setHeader(<span class="jxr_string">"Content-Type"</span>, <span class="jxr_string">"text/html"</span>);
+<a class="jxr_linenumber" name="L145" href="#L145">145</a> 		response.getWriter().println(<span class="jxr_string">"&lt;!DOCTYPE html&gt;"</span>);
 <a class="jxr_linenumber" name="L146" href="#L146">146</a> 		<strong class="jxr_keyword">return</strong> builder;
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> 	}
 <a class="jxr_linenumber" name="L148" href="#L148">148</a> 	
