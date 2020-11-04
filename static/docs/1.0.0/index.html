@@ -4294,7 +4294,7 @@ class ProjectServlet {
 				&lt;configuration&gt;
 					&lt;sources&gt;
 						&lt;source&gt;
-							&lt;directory&gt;${project.basedir}/src/main/resources/groovy&lt;/directory&gt;
+							&lt;directory&gt;${project.basedir}/src/main/webapp/groovy&lt;/directory&gt;
 							&lt;includes&gt;
 								&lt;include&gt;**/*.groovy&lt;/include&gt;
 							&lt;/includes&gt;
@@ -4343,7 +4343,7 @@ apply plugin: 'groovy'
 sourceSets {
 	main {
 		groovy {
-			srcDirs = ['src/main/resources/groovy']
+			srcDirs = ['src/main/webapp/groovy']
 		}
 	}
 }
@@ -4522,7 +4522,7 @@ contributor(classContext) {
 <div class="sect2">
 <h3 id="_spring_boot"><a class="anchor" href="#_spring_boot"></a><a class="link" href="#_spring_boot">14.1. Spring Boot</a></h3>
 <div class="paragraph">
-<p>The <em>groovy</em> folder must be created inside the <em>src/main/resources</em> directory of your Spring Boot applications so it can be packaged inside the final jar and you just need this configuration below to leverage the GServlet API.</p>
+<p>You just need this configuration below to leverage the GServlet API in your Spring Boot applications.</p>
 </div>
 <div class="listingblock">
 <div class="title">SpringConfiguration.java</div>
