@@ -2243,7 +2243,7 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2020-11-03</span>
+<span id="revdate">2020-11-04</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2435,12 +2435,17 @@ dependencies {
 <h2 id="_getting_started"><a class="anchor" href="#_getting_started"></a><a class="link" href="#_getting_started">5. Getting Started</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Once your Java web server is installed and configured, you can put it to work. Five steps take you from writing your first Groovy servlet to running it. These steps are as follows:</p>
+<p>Once your Java web server is installed and configured, you can put it to work. Five steps take you from writing your first Groovy servlet to running it. Using Maven and the default directory layout, these steps are as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/maven-project.png" alt="Maven webapp project">
+</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a dynamic web project</p>
+<p>Create a Maven webapp <a href="https://maven.apache.org/archetypes/maven-archetype-webapp">project</a></p>
 </li>
 <li>
 <p>Create the <strong><em>groovy</em></strong> folder inside your webapp directory</p>
@@ -2460,7 +2465,7 @@ dependencies {
 <p>Below are some examples that you can try out.</p>
 </div>
 <div class="listingblock">
-<div class="title">ProjectServlet.java</div>
+<div class="title">ProjectServlet.groovy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
 
@@ -2502,7 +2507,7 @@ class ProjectServlet {
 </div>
 </div>
 <div class="listingblock">
-<div class="title">CorsFilter.java</div>
+<div class="title">CorsFilter.groovy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Filter
 
@@ -2523,7 +2528,7 @@ class CorsFilter {
 </div>
 </div>
 <div class="listingblock">
-<div class="title">ServletRequestListener.java</div>
+<div class="title">ServletRequestListener.groovy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.RequestListener
 
