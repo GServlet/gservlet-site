@@ -69,7 +69,7 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> File folder;
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">	 * The groovy script engine object</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">	 * The GroovyScriptEngine object</em>
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> GroovyScriptEngine engine;
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  	<em class="jxr_javadoccomment">/**</em>
@@ -89,7 +89,7 @@
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  		<strong class="jxr_keyword">this</strong>.folder = folder;
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  		engine = createScriptEngine();
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  	}
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  	
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">	 * </em>
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">	 * Loads and instantiates an object from a groovy script file</em>
@@ -146,66 +146,63 @@
 <a class="jxr_linenumber" name="L138" href="#L138">138</a> 
 <a class="jxr_linenumber" name="L139" href="#L139">139</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L140" href="#L140">140</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">	 * Creates a bytecodeProcessor for the given classPool</em>
+<a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">	 * Creates a BytecodeProcessor for the given ClassPool instance</em>
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment">	 * @param classPool the classPool object</em>
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> <em class="jxr_javadoccomment">	 * @return the bytecodeProcessor object</em>
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment">	 * @param classPool the ClassPool object</em>
+<a class="jxr_linenumber" name="L144" href="#L144">144</a> <em class="jxr_javadoccomment">	 * @return the BytecodeProcessor object</em>
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> 	<strong class="jxr_keyword">protected</strong> BytecodeProcessor createBytecodeProcessor(<strong class="jxr_keyword">final</strong> ClassPool classPool) {
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> 	<strong class="jxr_keyword">protected</strong> BytecodeProcessor createBytecodeProcessor(ClassPool classPool) {
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> 		<strong class="jxr_keyword">return</strong> (String name, byte[] original) -&gt; {
 <a class="jxr_linenumber" name="L148" href="#L148">148</a> 			ByteArrayInputStream stream = <strong class="jxr_keyword">new</strong> ByteArrayInputStream(original);
 <a class="jxr_linenumber" name="L149" href="#L149">149</a> 			<strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L150" href="#L150">150</a> 				CtClass ctClass = classPool.makeClass(stream);
 <a class="jxr_linenumber" name="L151" href="#L151">151</a> 				ctClass.detach();
-<a class="jxr_linenumber" name="L152" href="#L152">152</a> 				<strong class="jxr_keyword">for</strong> (Object annotation : ctClass.getAnnotations()) {
-<a class="jxr_linenumber" name="L153" href="#L153">153</a> 					processClass(classPool, ctClass, annotation.toString());
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> 				}
-<a class="jxr_linenumber" name="L155" href="#L155">155</a> 				<strong class="jxr_keyword">return</strong> ctClass.toBytecode();
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> 			} <strong class="jxr_keyword">catch</strong> (Exception e) {
-<a class="jxr_linenumber" name="L157" href="#L157">157</a> 				logger.log(Level.SEVERE, <span class="jxr_string">"exception during processBytecode method"</span>, e);
-<a class="jxr_linenumber" name="L158" href="#L158">158</a> 			}
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> 			<strong class="jxr_keyword">return</strong> original;
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> 		};
-<a class="jxr_linenumber" name="L161" href="#L161">161</a> 	}
-<a class="jxr_linenumber" name="L162" href="#L162">162</a> 
-<a class="jxr_linenumber" name="L163" href="#L163">163</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L152" href="#L152">152</a> 				processClass(classPool, ctClass);
+<a class="jxr_linenumber" name="L153" href="#L153">153</a> 				<strong class="jxr_keyword">return</strong> ctClass.toBytecode();
+<a class="jxr_linenumber" name="L154" href="#L154">154</a> 			} <strong class="jxr_keyword">catch</strong> (Exception e) {
+<a class="jxr_linenumber" name="L155" href="#L155">155</a> 				logger.log(Level.SEVERE, <span class="jxr_string">"exception during processBytecode method"</span>, e);
+<a class="jxr_linenumber" name="L156" href="#L156">156</a> 			}
+<a class="jxr_linenumber" name="L157" href="#L157">157</a> 			<strong class="jxr_keyword">return</strong> original;
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> 		};
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> 	}
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> 
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L162" href="#L162">162</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L163" href="#L163">163</a> <em class="jxr_javadoccomment">	 * Changes the bytecode of the given class based on the annotation</em>
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L165" href="#L165">165</a> <em class="jxr_javadoccomment">	 * Changes the bytecode of the given class based on the value of the annotation</em>
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L167" href="#L167">167</a> <em class="jxr_javadoccomment">	 * @param classPool  the classPool object</em>
-<a class="jxr_linenumber" name="L168" href="#L168">168</a> <em class="jxr_javadoccomment">	 * @param ctClass    the class</em>
-<a class="jxr_linenumber" name="L169" href="#L169">169</a> <em class="jxr_javadoccomment">	 * @param annotation the annotation</em>
-<a class="jxr_linenumber" name="L170" href="#L170">170</a> <em class="jxr_javadoccomment">	 * @throws CannotCompileException the CannotCompileException</em>
-<a class="jxr_linenumber" name="L171" href="#L171">171</a> <em class="jxr_javadoccomment">	 * @throws NotFoundException      the NotFoundException</em>
-<a class="jxr_linenumber" name="L172" href="#L172">172</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L173" href="#L173">173</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> processClass(ClassPool classPool, CtClass ctClass, String annotation)
-<a class="jxr_linenumber" name="L174" href="#L174">174</a> 			<strong class="jxr_keyword">throws</strong> CannotCompileException, NotFoundException {
-<a class="jxr_linenumber" name="L175" href="#L175">175</a> 		<strong class="jxr_keyword">if</strong> (annotation.indexOf(Servlet.<strong class="jxr_keyword">class</strong>.getName()) != -1) {
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> 			ctClass.setSuperclass(classPool.get(AbstractServlet.<strong class="jxr_keyword">class</strong>.getName()));
-<a class="jxr_linenumber" name="L177" href="#L177">177</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (annotation.indexOf(Filter.<strong class="jxr_keyword">class</strong>.getName()) != -1) {
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> 			ctClass.setSuperclass(classPool.get(AbstractFilter.<strong class="jxr_keyword">class</strong>.getName()));
-<a class="jxr_linenumber" name="L179" href="#L179">179</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (annotation.indexOf(ContextListener.<strong class="jxr_keyword">class</strong>.getName()) != -1) {
-<a class="jxr_linenumber" name="L180" href="#L180">180</a> 			ctClass.setSuperclass(classPool.get(AbstractContextListener.<strong class="jxr_keyword">class</strong>.getName()));
-<a class="jxr_linenumber" name="L181" href="#L181">181</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (annotation.indexOf(RequestListener.<strong class="jxr_keyword">class</strong>.getName()) != -1) {
-<a class="jxr_linenumber" name="L182" href="#L182">182</a> 			ctClass.setSuperclass(classPool.get(AbstractRequestListener.<strong class="jxr_keyword">class</strong>.getName()));
-<a class="jxr_linenumber" name="L183" href="#L183">183</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (annotation.indexOf(ContextAttributeListener.<strong class="jxr_keyword">class</strong>.getName()) != -1) {
-<a class="jxr_linenumber" name="L184" href="#L184">184</a> 			ctClass.setSuperclass(classPool.get(AbstractContextAttributeListener.<strong class="jxr_keyword">class</strong>.getName()));
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (annotation.indexOf(RequestAttributeListener.<strong class="jxr_keyword">class</strong>.getName()) != -1) {
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> 			ctClass.setSuperclass(classPool.get(AbstractRequestAttributeListener.<strong class="jxr_keyword">class</strong>.getName()));
-<a class="jxr_linenumber" name="L187" href="#L187">187</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (annotation.indexOf(SessionListener.<strong class="jxr_keyword">class</strong>.getName()) != -1) {
-<a class="jxr_linenumber" name="L188" href="#L188">188</a> 			ctClass.setSuperclass(classPool.get(AbstractSessionListener.<strong class="jxr_keyword">class</strong>.getName()));
-<a class="jxr_linenumber" name="L189" href="#L189">189</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (annotation.indexOf(SessionAttributeListener.<strong class="jxr_keyword">class</strong>.getName()) != -1) {
-<a class="jxr_linenumber" name="L190" href="#L190">190</a> 			ctClass.setSuperclass(classPool.get(AbstractSessionAttributeListener.<strong class="jxr_keyword">class</strong>.getName()));
-<a class="jxr_linenumber" name="L191" href="#L191">191</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (annotation.indexOf(SessionBindingListener.<strong class="jxr_keyword">class</strong>.getName()) != -1) {
-<a class="jxr_linenumber" name="L192" href="#L192">192</a> 			ctClass.setSuperclass(classPool.get(AbstractSessionBindingListener.<strong class="jxr_keyword">class</strong>.getName()));
-<a class="jxr_linenumber" name="L193" href="#L193">193</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (annotation.indexOf(SessionActivationListener.<strong class="jxr_keyword">class</strong>.getName()) != -1) {
-<a class="jxr_linenumber" name="L194" href="#L194">194</a> 			ctClass.setSuperclass(classPool.get(AbstractSessionActivationListener.<strong class="jxr_keyword">class</strong>.getName()));
-<a class="jxr_linenumber" name="L195" href="#L195">195</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (annotation.indexOf(SessionIdListener.<strong class="jxr_keyword">class</strong>.getName()) != -1) {
-<a class="jxr_linenumber" name="L196" href="#L196">196</a> 			ctClass.setSuperclass(classPool.get(AbstractSessionIdListener.<strong class="jxr_keyword">class</strong>.getName()));
-<a class="jxr_linenumber" name="L197" href="#L197">197</a> 		}
-<a class="jxr_linenumber" name="L198" href="#L198">198</a> 	}
-<a class="jxr_linenumber" name="L199" href="#L199">199</a> 
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> }
+<a class="jxr_linenumber" name="L165" href="#L165">165</a> <em class="jxr_javadoccomment">	 * @param classPool  the classPool object</em>
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> <em class="jxr_javadoccomment">	 * @param ctClass    the class</em>
+<a class="jxr_linenumber" name="L167" href="#L167">167</a> <em class="jxr_javadoccomment">	 * @throws CannotCompileException the CannotCompileException</em>
+<a class="jxr_linenumber" name="L168" href="#L168">168</a> <em class="jxr_javadoccomment">	 * @throws NotFoundException      the NotFoundException</em>
+<a class="jxr_linenumber" name="L169" href="#L169">169</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L170" href="#L170">170</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> processClass(ClassPool classPool, CtClass ctClass)
+<a class="jxr_linenumber" name="L171" href="#L171">171</a> 			<strong class="jxr_keyword">throws</strong> CannotCompileException, NotFoundException {
+<a class="jxr_linenumber" name="L172" href="#L172">172</a> 		<strong class="jxr_keyword">if</strong> (ctClass.hasAnnotation(Servlet.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L173" href="#L173">173</a> 			ctClass.setSuperclass(classPool.get(AbstractServlet.<strong class="jxr_keyword">class</strong>.getName()));
+<a class="jxr_linenumber" name="L174" href="#L174">174</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ctClass.hasAnnotation(Filter.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L175" href="#L175">175</a> 			ctClass.setSuperclass(classPool.get(AbstractFilter.<strong class="jxr_keyword">class</strong>.getName()));
+<a class="jxr_linenumber" name="L176" href="#L176">176</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ctClass.hasAnnotation(ContextListener.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L177" href="#L177">177</a> 			ctClass.setSuperclass(classPool.get(AbstractContextListener.<strong class="jxr_keyword">class</strong>.getName()));
+<a class="jxr_linenumber" name="L178" href="#L178">178</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ctClass.hasAnnotation(RequestListener.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L179" href="#L179">179</a> 			ctClass.setSuperclass(classPool.get(AbstractRequestListener.<strong class="jxr_keyword">class</strong>.getName()));
+<a class="jxr_linenumber" name="L180" href="#L180">180</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ctClass.hasAnnotation(ContextAttributeListener.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> 			ctClass.setSuperclass(classPool.get(AbstractContextAttributeListener.<strong class="jxr_keyword">class</strong>.getName()));
+<a class="jxr_linenumber" name="L182" href="#L182">182</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ctClass.hasAnnotation(RequestAttributeListener.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L183" href="#L183">183</a> 			ctClass.setSuperclass(classPool.get(AbstractRequestAttributeListener.<strong class="jxr_keyword">class</strong>.getName()));
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ctClass.hasAnnotation(SessionListener.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L185" href="#L185">185</a> 			ctClass.setSuperclass(classPool.get(AbstractSessionListener.<strong class="jxr_keyword">class</strong>.getName()));
+<a class="jxr_linenumber" name="L186" href="#L186">186</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ctClass.hasAnnotation(SessionAttributeListener.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L187" href="#L187">187</a> 			ctClass.setSuperclass(classPool.get(AbstractSessionAttributeListener.<strong class="jxr_keyword">class</strong>.getName()));
+<a class="jxr_linenumber" name="L188" href="#L188">188</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ctClass.hasAnnotation(SessionBindingListener.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L189" href="#L189">189</a> 			ctClass.setSuperclass(classPool.get(AbstractSessionBindingListener.<strong class="jxr_keyword">class</strong>.getName()));
+<a class="jxr_linenumber" name="L190" href="#L190">190</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ctClass.hasAnnotation(SessionActivationListener.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L191" href="#L191">191</a> 			ctClass.setSuperclass(classPool.get(AbstractSessionActivationListener.<strong class="jxr_keyword">class</strong>.getName()));
+<a class="jxr_linenumber" name="L192" href="#L192">192</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ctClass.hasAnnotation(SessionIdListener.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L193" href="#L193">193</a> 			ctClass.setSuperclass(classPool.get(AbstractSessionIdListener.<strong class="jxr_keyword">class</strong>.getName()));
+<a class="jxr_linenumber" name="L194" href="#L194">194</a> 		}
+<a class="jxr_linenumber" name="L195" href="#L195">195</a> 	}
+<a class="jxr_linenumber" name="L196" href="#L196">196</a> 
+<a class="jxr_linenumber" name="L197" href="#L197">197</a> }
 </pre>
 <hr/>
 <div id="footer">Use is subject to <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_top"> the Apache 2.0 license terms</a>.</div>

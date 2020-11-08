@@ -2242,7 +2242,7 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2020-11-04</span>
+<span id="revdate">2020-11-08</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2545,8 +2545,17 @@ class ServletRequestListener {
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>For a hot reloading of your source code, set the <strong>GSERVLET_RELOAD</strong> environment variable to true in your IDE.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The use of the default package is discouraged and for a hot reloading of your source code, set the <strong>GSERVLET_RELOAD</strong> environment variable to true in your IDE.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -4424,8 +4433,17 @@ contribute(currentType(annos: annotatedBy(Filter))) {
 <img src="images/groovy-dsl-eclipse.png" alt="Groovy DSL support">
 </div>
 </div>
-<div class="paragraph">
-<p>The use of the default package is discouraged and the example below illustrates a simple packaging practice to follow throughout your development for a cohesive structure of your project.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The use of the default package is discouraged and the example below illustrates a simple packaging practice to follow throughout your development for a cohesive structure of your project.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="title">ProjectDao.groovy</div>
@@ -4521,7 +4539,7 @@ contributor(classContext) {
 <div class="sect2">
 <h3 id="_spring_boot"><a class="anchor" href="#_spring_boot"></a><a class="link" href="#_spring_boot">14.1. Spring Boot</a></h3>
 <div class="paragraph">
-<p>You just need this configuration below to leverage the GServlet API in your Spring Boot applications.</p>
+<p>You just need this configuration below to leverage the GServlet API in your Spring Boot application.</p>
 </div>
 <div class="listingblock">
 <div class="title">SpringConfiguration.java</div>
@@ -4586,6 +4604,18 @@ public class SpringConfiguration implements ServletContextInitializer {
 
 }</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Your Groovy scripts must be created in the <strong><em>src/main/resources</em></strong> folder if your application is packaged as a jar.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
