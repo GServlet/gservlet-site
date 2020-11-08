@@ -4635,7 +4635,6 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class StartupListener implements ServletContextListener {
 
-
 	private GServletApplication application;
 
 	@Override
@@ -4643,8 +4642,6 @@ public class StartupListener implements ServletContextListener {
 		application = new GServletApplication(event.getServletContext());
 		application.start();
 	}
-
-
 
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
