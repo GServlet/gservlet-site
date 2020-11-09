@@ -1,6 +1,2 @@
 /*
- cache-control : public, max-age=7200, must-revalidate
- 
-/images/*
- cache-control : public, max-age=7200, must-revalidate
- 
+ cache-control : public, max-age=7200, must-revalidate 
