@@ -131,7 +131,7 @@
 <a class="jxr_linenumber" name="L123" href="#L123">123</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> init(String directory, List&lt;ScriptListener&gt; listeners) <strong class="jxr_keyword">throws</strong> ServletException, ScriptException {
 <a class="jxr_linenumber" name="L124" href="#L124">124</a> 		File folder = <strong class="jxr_keyword">new</strong> File(directory + File.separator + SCRIPTS_FOLDER);
 <a class="jxr_linenumber" name="L125" href="#L125">125</a> 		scriptManager = <strong class="jxr_keyword">new</strong> <a name="ScriptManager" href="../../org/gservlet/ScriptManager.html#ScriptManager">ScriptManager</a>(folder);
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> 		addScriptListeners(listeners);
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> 		scriptManager.addScriptListeners(listeners);
 <a class="jxr_linenumber" name="L127" href="#L127">127</a> 		loadScripts(folder);
 <a class="jxr_linenumber" name="L128" href="#L128">128</a> 	}
 <a class="jxr_linenumber" name="L129" href="#L129">129</a> 
@@ -150,7 +150,7 @@
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> 			<strong class="jxr_keyword">if</strong> (files != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L143" href="#L143">143</a> 				<strong class="jxr_keyword">for</strong> (File file : files) {
 <a class="jxr_linenumber" name="L144" href="#L144">144</a> 					<strong class="jxr_keyword">if</strong> (file.isFile()) {
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> 						register(scriptManager.loadObject(file));
+<a class="jxr_linenumber" name="L145" href="#L145">145</a> 						register(scriptManager.createObject(file));
 <a class="jxr_linenumber" name="L146" href="#L146">146</a> 					} <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> 						loadScripts(file);
 <a class="jxr_linenumber" name="L148" href="#L148">148</a> 					}
@@ -346,7 +346,7 @@
 <a class="jxr_linenumber" name="L338" href="#L338">338</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L339" href="#L339">339</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> process(File script) {
 <a class="jxr_linenumber" name="L340" href="#L340">340</a> 		<strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L341" href="#L341">341</a> 			Object object = scriptManager.loadObject(script);
+<a class="jxr_linenumber" name="L341" href="#L341">341</a> 			Object object = scriptManager.createObject(script);
 <a class="jxr_linenumber" name="L342" href="#L342">342</a> 			Annotation[] annotations = object.getClass().getAnnotations();
 <a class="jxr_linenumber" name="L343" href="#L343">343</a> 			<strong class="jxr_keyword">for</strong> (Annotation annotation : annotations) {
 <a class="jxr_linenumber" name="L344" href="#L344">344</a> 				<strong class="jxr_keyword">if</strong> (annotation instanceof <a name="RequestListener" href="../../org/gservlet/annotation/RequestListener.html#RequestListener">RequestListener</a> || annotation instanceof <a name="ContextAttributeListener" href="../../org/gservlet/annotation/ContextAttributeListener.html#ContextAttributeListener">ContextAttributeListener</a>
@@ -443,28 +443,20 @@
 <a class="jxr_linenumber" name="L435" href="#L435">435</a> 	<strong class="jxr_keyword">public</strong> Map&lt;String, DynamicInvocationHandler&gt; getHandlers() {
 <a class="jxr_linenumber" name="L436" href="#L436">436</a> 		<strong class="jxr_keyword">return</strong> handlers;
 <a class="jxr_linenumber" name="L437" href="#L437">437</a> 	}
-<a class="jxr_linenumber" name="L438" href="#L438">438</a> 		
-<a class="jxr_linenumber" name="L439" href="#L439">439</a> 	
+<a class="jxr_linenumber" name="L438" href="#L438">438</a> 
+<a class="jxr_linenumber" name="L439" href="#L439">439</a> 
 <a class="jxr_linenumber" name="L440" href="#L440">440</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">	 * Registers a new ScriptListener</em>
-<a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">	 * @param listener the ScriptListener object</em>
-<a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L445" href="#L445">445</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addScriptListener(<a name="ScriptListener" href="../../org/gservlet/ScriptListener.html#ScriptListener">ScriptListener</a> listener) {
-<a class="jxr_linenumber" name="L446" href="#L446">446</a> 		scriptManager.addScriptListener(listener);
-<a class="jxr_linenumber" name="L447" href="#L447">447</a> 	}
-<a class="jxr_linenumber" name="L448" href="#L448">448</a> 	
-<a class="jxr_linenumber" name="L449" href="#L449">449</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">	 *  Registers a ScriptListener list</em>
-<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">	 * @param listeners the ScriptListener list</em>
-<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L455" href="#L455">455</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addScriptListeners(List&lt;ScriptListener&gt; listeners) {
-<a class="jxr_linenumber" name="L456" href="#L456">456</a> 		scriptManager.addScriptListeners(listeners);
-<a class="jxr_linenumber" name="L457" href="#L457">457</a> 	}
-<a class="jxr_linenumber" name="L458" href="#L458">458</a> 
-<a class="jxr_linenumber" name="L459" href="#L459">459</a> }
+<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">	 * Returns the script manager</em>
+<a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">	 * @return the script manager</em>
+<a class="jxr_linenumber" name="L445" href="#L445">445</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L446" href="#L446">446</a> 	<strong class="jxr_keyword">public</strong> <a name="ScriptManager" href="../../org/gservlet/ScriptManager.html#ScriptManager">ScriptManager</a> getScriptManager() {
+<a class="jxr_linenumber" name="L447" href="#L447">447</a> 		<strong class="jxr_keyword">return</strong> scriptManager;
+<a class="jxr_linenumber" name="L448" href="#L448">448</a> 	}	
+<a class="jxr_linenumber" name="L449" href="#L449">449</a> 	
+<a class="jxr_linenumber" name="L450" href="#L450">450</a> 
+<a class="jxr_linenumber" name="L451" href="#L451">451</a> }
 </pre>
 <hr/>
 <div id="footer">Use is subject to <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_top"> the Apache 2.0 license terms</a>.</div>

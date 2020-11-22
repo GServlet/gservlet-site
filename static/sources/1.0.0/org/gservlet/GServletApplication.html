@@ -323,7 +323,7 @@
 <a class="jxr_linenumber" name="L315" href="#L315">315</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L316" href="#L316">316</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addScriptListener(<a name="ScriptListener" href="../../org/gservlet/ScriptListener.html#ScriptListener">ScriptListener</a> listener) {
 <a class="jxr_linenumber" name="L317" href="#L317">317</a> 		<strong class="jxr_keyword">if</strong>(containerManager != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L318" href="#L318">318</a> 			containerManager.addScriptListener(listener);
+<a class="jxr_linenumber" name="L318" href="#L318">318</a> 			containerManager.getScriptManager().addScriptListener(listener);
 <a class="jxr_linenumber" name="L319" href="#L319">319</a> 		} <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L320" href="#L320">320</a> 			listeners.add(listener);
 <a class="jxr_linenumber" name="L321" href="#L321">321</a> 		}
@@ -337,7 +337,7 @@
 <a class="jxr_linenumber" name="L329" href="#L329">329</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L330" href="#L330">330</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addScriptListeners(List&lt;ScriptListener&gt; listeners) {
 <a class="jxr_linenumber" name="L331" href="#L331">331</a> 		<strong class="jxr_keyword">if</strong>(containerManager != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L332" href="#L332">332</a> 			containerManager.addScriptListeners(listeners);
+<a class="jxr_linenumber" name="L332" href="#L332">332</a> 			containerManager.getScriptManager().addScriptListeners(listeners);
 <a class="jxr_linenumber" name="L333" href="#L333">333</a> 		} <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L334" href="#L334">334</a> 			<strong class="jxr_keyword">this</strong>.listeners.addAll(listeners);
 <a class="jxr_linenumber" name="L335" href="#L335">335</a> 		}
