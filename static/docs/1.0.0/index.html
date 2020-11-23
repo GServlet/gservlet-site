@@ -2583,7 +2583,7 @@ Keep a note that the use of the default package is discouraged and for a hot rel
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/diagram-classes.png" alt="diagram classes" width="947" height="722">
+<img src="images/servlet-diagram.png" alt="servlet diagram" width="1006" height="722">
 </div>
 </div>
 <div class="paragraph">
@@ -3055,8 +3055,13 @@ class ProjectServlet {
 <div class="paragraph">
 <p>A filter is an object that performs filtering tasks on either the request to a resource (a servlet or static content), or on the response from a resource, or both. The <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html">Filter</a> interface defines methods that all filters must implement. Filters perform filtering in the <em>doFilter()</em> method.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/filter-diagram.png" alt="filter diagram" width="1177" height="326">
+</div>
+</div>
 <div class="paragraph">
-<p>This is a Java class that implements this interface:</p>
+<p>Below is a Java class that implements the Filter interface:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyFilter.java</div>
@@ -3088,7 +3093,7 @@ public class MyFilter implements Filter {
 </div>
 </div>
 <div class="paragraph">
-<p>The Groovy version of this filter with the GServlet API looks like this:</p>
+<p>Its Groovy version with the GServlet API looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyFilter.groovy</div>
@@ -3371,6 +3376,14 @@ class LoggingFilter {
 <div class="paragraph">
 <p>This interface is for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> lifecycle changes. Implementations of this interface are invoked at their <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextListener.html#contextInitialized-javax.servlet.ServletContextEvent">contextInitialized</a> method in the order in which they have been declared, and at their <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextListener.html#contextDestroyed-javax.servlet.ServletContextEvent-">contextDestroyed</a> method in reverse order.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/servletcontextlistener-diagram.png" alt="servletcontextlistener diagram" width="482" height="515">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a Java class that implements the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextListener.html">ServletContextListener</a> interface:</p>
+</div>
 <div class="listingblock">
 <div class="title">MyServletContextListener.java</div>
 <div class="content">
@@ -3391,6 +3404,9 @@ public class MyServletContextListener implements ServletContextListener {
 
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Its Groovy version with the GServlet API looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyServletContextListener.groovy</div>
@@ -3446,6 +3462,14 @@ public class MyServletContextListener {
 <div class="paragraph">
 <p>This interface is for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> attribute changes. The order in which implementations of this interface are invoked is unspecified.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/servletcontextattributelistener-diagram.png" alt="servletcontextattributelistener diagram" width="854" height="421">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a Java class that implements the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextAttributeListener.html">ServletContextAttributeListener</a> interface:</p>
+</div>
 <div class="listingblock">
 <div class="title">MyServletContextAttributeListener.java</div>
 <div class="content">
@@ -3470,6 +3494,9 @@ public class MyServletContextAttributeListener implements ServletContextAttribut
 
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Its Groovy version with the GServlet API looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyServletContextAttributeListener.groovy</div>
@@ -3537,6 +3564,14 @@ public class MyServletContextAttributeListener {
 <div class="paragraph">
 <p>This interface is for receiving notification events about requests coming into and going out of scope of a web application. A request is defined as coming into scope of a web application when it is about to enter the first servlet or filter of the web application, and as going out of scope as it exits the last servlet or the first filter in the chain. Implementations of this interface are invoked at their <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestListener.html#requestInitialized-javax.servlet.ServletRequestEvent">requestInitialized</a> method in the order in which they have been declared, and at their <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestListener.html#requestDestroyed-javax.servlet.ServletRequestEvent-">requestDestroyed</a> method in reverse order.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/servletrequestlistener-diagram.png" alt="servletrequestlistener diagram" width="675" height="584">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a Java class that implements the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestListener.html">ServletRequestListener</a> interface:</p>
+</div>
 <div class="listingblock">
 <div class="title">MyServletRequestListener.java</div>
 <div class="content">
@@ -3557,6 +3592,9 @@ public class MyServletRequestListener implements ServletRequestListener {
 
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Its Groovy version with the GServlet API looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyServletRequestListener.groovy</div>
@@ -3621,6 +3659,14 @@ public class MyServletRequestListener {
 <p>This interface is for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequest.html">ServletRequest</a> attribute changes.
 Notifications will be generated while the request is within the scope of the web application. A ServletRequest is defined as coming into scope of a web application when it is about to enter the first servlet or filter of the web application, and as going out of scope when it exits the last servlet or the first filter in the chain. The order in which implementations of this interface are invoked is unspecified.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/servletrequestattributelistener-diagram.png" alt="servletrequestattributelistener diagram" width="977" height="421">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a Java class that implements the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequestAttributeListener.html">ServletRequestAttributeListener</a> interface:</p>
+</div>
 <div class="listingblock">
 <div class="title">MyServletRequestAttributeListener.java</div>
 <div class="content">
@@ -3645,6 +3691,9 @@ public class MyServletRequestAttributeListener implements ServletRequestAttribut
 
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Its Groovy version with the GServlet API looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyServletRequestAttributeListener.groovy</div>
@@ -3720,6 +3769,14 @@ public class MyServletRequestAttributeListener {
 <div class="paragraph">
 <p>This interface is for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> lifecycle changes. Implementations of this interface are invoked at their <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionListener.html#sessionCreated-javax.servlet.http.HttpSessionEvent">sessionCreated</a> method in the order in which they have been declared, and at their <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionListener.html#sessionDestroyed-javax.servlet.http.HttpSessionEvent">sessionDestroyed</a> method in reverse order.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/httpsessionlistener-diagram.png" alt="httpsessionlistener diagram" width="471" height="529">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a Java class that implements the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionListener.html">HttpSessionListener</a> interface:</p>
+</div>
 <div class="listingblock">
 <div class="title">MyHttpSessionListener.java</div>
 <div class="content">
@@ -3740,6 +3797,9 @@ public class MyHttpSessionListener implements HttpSessionListener {
 
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Its Groovy version with the GServlet API looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyHttpSessionListener.groovy</div>
@@ -3795,6 +3855,14 @@ public class MyHttpSessionListener {
 <div class="paragraph">
 <p>This interface is for receiving notification events about <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a> attribute changes. The order in which implementations of this interface are invoked is unspecified.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/httpsessionattributelistener-diagram.png" alt="httpsessionattributelistener diagram" width="740" height="462">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a Java class that implements the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionAttributeListener.html">HttpSessionAttributeListener</a> interface:</p>
+</div>
 <div class="listingblock">
 <div class="title">MyHttpSessionAttributeListener.java</div>
 <div class="content">
@@ -3819,6 +3887,9 @@ public class MyHttpSessionAttributeListener implements HttpSessionAttributeListe
 
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Its Groovy version with the GServlet API looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyHttpSessionAttributeListener.groovy</div>
@@ -3886,6 +3957,14 @@ public class MyHttpSessionAttributeListener {
 <div class="paragraph">
 <p>This interface is for receiving notification events about when an object is bound to or unbound from a session. This may be as a result of a servlet programmer explicitly unbinding an attribute from a session, due to a session being invalidated, or due to a session timing out.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/httpsessionbindinglistener-diagram.png" alt="httpsessionbindinglistener diagram" width="658" height="421">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a Java class that implements the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionBindingListener.html">HttpSessionBindingListener</a> interface:</p>
+</div>
 <div class="listingblock">
 <div class="title">MyHttpSessionBindingListener.java</div>
 <div class="content">
@@ -3906,6 +3985,9 @@ public class MyHttpSessionBindingListener implements HttpSessionBindingListener 
 
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Its Groovy version with the GServlet API looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyHttpSessionBindingListener.groovy</div>
@@ -3969,6 +4051,14 @@ public class MyHttpSessionBindingListener {
 <div class="paragraph">
 <p>Objects that are bound to a session may listen to container events notifying them that sessions will be passivated and activated. A container that migrates session between VMs or persists sessions is required to notify all attributes bound to sessions implementing this interface.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/httpsessionactivationlistener-diagram.png" alt="httpsessionactivationlistener diagram" width="484" height="529">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a Java class that implements the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionActivationListener.html">HttpSessionActivationListener</a> interface:</p>
+</div>
 <div class="listingblock">
 <div class="title">MyHttpSessionActivationListener.java</div>
 <div class="content">
@@ -3989,6 +4079,9 @@ public class MyHttpSessionActivationListener implements HttpSessionActivationLis
 
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Its Groovy version with the GServlet API looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyHttpSessionActivationListener.groovy</div>
@@ -4044,6 +4137,14 @@ public class MyHttpSessionActivationListener {
 <div class="paragraph">
 <p>This interface is for receiving notification events about HttpSession id changes. The order in which implementations of this interface are invoked is unspecified.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/httpsessionidlistener-diagram.png" alt="httpsessionidlistener diagram" width="570" height="529">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a Java class that implements the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionIdListener.html">HttpSessionIdListener</a> interface:</p>
+</div>
 <div class="listingblock">
 <div class="title">MyHttpSessionIdListener.java</div>
 <div class="content">
@@ -4060,6 +4161,9 @@ public class MyHttpSessionIdListener implements HttpSessionIdListener {
 
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Its Groovy version with the GServlet API looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">MyHttpSessionIdListener.groovy</div>
