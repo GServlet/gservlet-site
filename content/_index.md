@@ -55,7 +55,7 @@ session.counter = session.counter + 1
 
 * Servlet 3.1+ Support
 * Groovy Scripting and Hot Reloading
-* JSON, HTML and JDBC Support
+* JSON, XML, HTML and JDBC Support
 
 ## Requirements
 

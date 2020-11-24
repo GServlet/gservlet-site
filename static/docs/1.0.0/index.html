@@ -2245,7 +2245,7 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2020-11-23</span>
+<span id="revdate">2020-11-24</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2292,30 +2292,31 @@ p {
 </ul>
 </li>
 <li><a href="#_working_with_json">9. Working With JSON</a></li>
-<li><a href="#_working_with_rdbms">10. Working With RDBMS</a></li>
-<li><a href="#_unit_testing">11. Unit Testing</a></li>
-<li><a href="#_groovydocs_generation">12. Groovydocs Generation</a>
+<li><a href="#_working_with_xml">10. Working With XML</a></li>
+<li><a href="#_working_with_rdbms">11. Working With RDBMS</a></li>
+<li><a href="#_unit_testing">12. Unit Testing</a></li>
+<li><a href="#_groovydocs_generation">13. Groovydocs Generation</a>
 <ul class="sectlevel2">
-<li><a href="#_maven_2">12.1. Maven</a></li>
-<li><a href="#_gradle_2">12.2. Gradle</a></li>
+<li><a href="#_maven_2">13.1. Maven</a></li>
+<li><a href="#_gradle_2">13.2. Gradle</a></li>
 </ul>
 </li>
-<li><a href="#_ide_support">13. IDE Support</a>
+<li><a href="#_ide_support">14. IDE Support</a>
 <ul class="sectlevel2">
-<li><a href="#_eclipse">13.1. Eclipse</a></li>
-<li><a href="#_intellij_idea">13.2. IntelliJ IDEA</a></li>
+<li><a href="#_eclipse">14.1. Eclipse</a></li>
+<li><a href="#_intellij_idea">14.2. IntelliJ IDEA</a></li>
 </ul>
 </li>
-<li><a href="#_framework_support">14. Framework Support</a>
+<li><a href="#_framework_support">15. Framework Support</a>
 <ul class="sectlevel2">
-<li><a href="#_spring_boot">14.1. Spring Boot</a></li>
-<li><a href="#_other_java_web_frameworks">14.2. Other Java web frameworks</a></li>
+<li><a href="#_spring_boot">15.1. Spring Boot</a></li>
+<li><a href="#_other_java_web_frameworks">15.2. Other Java web frameworks</a></li>
 </ul>
 </li>
-<li><a href="#_code_examples">15. Code Examples</a></li>
-<li><a href="#_copyright_and_license">16. Copyright and License</a></li>
-<li><a href="#_authors">17. Authors</a></li>
-<li><a href="#_contributing">18. Contributing</a></li>
+<li><a href="#_code_examples">16. Code Examples</a></li>
+<li><a href="#_copyright_and_license">17. Copyright and License</a></li>
+<li><a href="#_authors">18. Authors</a></li>
+<li><a href="#_contributing">19. Contributing</a></li>
 </ul>
 </div>
 </div>
@@ -2373,7 +2374,7 @@ session.counter = session.counter + 1</code></pre>
 <p>Groovy Scripting and Hot Reloading</p>
 </li>
 <li>
-<p>JSON, HTML and JDBC Support</p>
+<p>JSON, XML, HTML and JDBC Support</p>
 </li>
 </ul>
 </div>
@@ -2798,6 +2799,10 @@ class HelloWordServlet {
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>html</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://docs.groovy-lang.org/latest/html/api/groovy/xml/MarkupBuilder.html">MarkupBuilder</a> object</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>xml</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://docs.groovy-lang.org/latest/html/api/groovy/xml/MarkupBuilder.html">MarkupBuilder</a> object</p></td>
 </tr>
 </tbody>
@@ -3251,6 +3256,10 @@ class MyFilter {
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>html</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://docs.groovy-lang.org/latest/html/api/groovy/xml/MarkupBuilder.html">MarkupBuilder</a> object</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>xml</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://docs.groovy-lang.org/latest/html/api/groovy/xml/MarkupBuilder.html">MarkupBuilder</a> object</p></td>
 </tr>
 </tbody>
@@ -4260,7 +4269,34 @@ class ProjectServlet {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_working_with_rdbms"><a class="anchor" href="#_working_with_rdbms"></a><a class="link" href="#_working_with_rdbms">10. Working With RDBMS</a></h2>
+<h2 id="_working_with_xml"><a class="anchor" href="#_working_with_xml"></a><a class="link" href="#_working_with_xml">10. Working With XML</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The most commonly used approach for creating XML with Groovy is to use a builder. An implicit <em>xml</em> variable bound to an instance of a MarkupBuilder has been made available to your servlets and filters for that purpose.</p>
+</div>
+<div class="listingblock">
+<div class="title">BookServlet.java</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
+
+@Servlet(value="/books")
+class BookServlet {
+
+  void get() {
+	 xml.books {
+		 book(id: "1", name : "Groovy in Action")
+		 book(id: "2", name : "Spring in Action")
+		 book(id: "3", name : "Maven in Action")
+	 }
+  }
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_working_with_rdbms"><a class="anchor" href="#_working_with_rdbms"></a><a class="link" href="#_working_with_rdbms">11. Working With RDBMS</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The <strong><em>groovy-sql</em></strong> module provides a higher-level abstraction over the current Java’s JDBC technology and it supports a wide variety of databases. To set up a database with the GServlet API is as simple as to create in the webapp directory, a file named <strong><em>gservlet.properties</em></strong>.</p>
@@ -4365,7 +4401,7 @@ class ProjectFilter {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_unit_testing"><a class="anchor" href="#_unit_testing"></a><a class="link" href="#_unit_testing">11. Unit Testing</a></h2>
+<h2 id="_unit_testing"><a class="anchor" href="#_unit_testing"></a><a class="link" href="#_unit_testing">12. Unit Testing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Unit testing servlets is difficult, therefore it is recommended to move the main business logic in the servlet into a separate class which has no dependencies on the Servlet API. The Groovy programming language comes with great support for writing tests. In addition to the language features and test integration with state-of-the-art testing libraries and frameworks, the Groovy ecosystem has born a rich set of testing libraries and frameworks. In its <a href="https://groovy-lang.org/testing.html">testing guide</a>, you can take at a closer look at JUnit integration, Spock for specifications, and Geb for functional tests.</p>
@@ -4373,7 +4409,7 @@ class ProjectFilter {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_groovydocs_generation"><a class="anchor" href="#_groovydocs_generation"></a><a class="link" href="#_groovydocs_generation">12. Groovydocs Generation</a></h2>
+<h2 id="_groovydocs_generation"><a class="anchor" href="#_groovydocs_generation"></a><a class="link" href="#_groovydocs_generation">13. Groovydocs Generation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="https://github.com/apache/groovy/blob/master/subprojects/groovy-groovydoc/src/spec/doc/groovydoc.adoc">Groovydoc</a> was introduced in 2007 to provide for Groovy what <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html">Javadoc</a> provides for Java. It is used to generate the API documentation for the Groovy and Java classes that compose your project.</p>
@@ -4426,7 +4462,7 @@ class ProjectServlet {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_maven_2"><a class="anchor" href="#_maven_2"></a><a class="link" href="#_maven_2">12.1. Maven</a></h3>
+<h3 id="_maven_2"><a class="anchor" href="#_maven_2"></a><a class="link" href="#_maven_2">13.1. Maven</a></h3>
 <div class="paragraph">
 <p><a href="https://github.com/groovy/GMavenPlus">GMavenPlus</a> is a rewrite of <a href="https://github.com/groovy/gmaven">GMaven</a>, a plugin that allows you to integrate Groovy into your Maven projects. This is the basic configuration to generate Groovydocs with this plugin.</p>
 </div>
@@ -4489,7 +4525,7 @@ class ProjectServlet {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_gradle_2"><a class="anchor" href="#_gradle_2"></a><a class="link" href="#_gradle_2">12.2. Gradle</a></h3>
+<h3 id="_gradle_2"><a class="anchor" href="#_gradle_2"></a><a class="link" href="#_gradle_2">13.2. Gradle</a></h3>
 <div class="paragraph">
 <p>With Gradle, You can use the <a href="https://github.com/apache/groovy/blob/master/subprojects/groovy-groovydoc/src/spec/doc/groovydoc.adoc">Groovydoc</a> tool to generate your project documentation, and the version that is used, is the one from the Groovy dependency defined in the build script.</p>
 </div>
@@ -4530,10 +4566,10 @@ groovydoc {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ide_support"><a class="anchor" href="#_ide_support"></a><a class="link" href="#_ide_support">13. IDE Support</a></h2>
+<h2 id="_ide_support"><a class="anchor" href="#_ide_support"></a><a class="link" href="#_ide_support">14. IDE Support</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_eclipse"><a class="anchor" href="#_eclipse"></a><a class="link" href="#_eclipse">13.1. Eclipse</a></h3>
+<h3 id="_eclipse"><a class="anchor" href="#_eclipse"></a><a class="link" href="#_eclipse">14.1. Eclipse</a></h3>
 <div class="paragraph">
 <p>To augment the editor features such as content assist, the GServlet API ships with a DSL Descriptor (DSLD) to describe the editing semantics in a way that can be interpreted by the <a href="https://marketplace.eclipse.org/content/groovy-development-tools">Groovy Development Tools (GDT)</a> which provides Eclipse support for the Groovy programming language.</p>
 </div>
@@ -4647,7 +4683,7 @@ class ProjectServlet {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_intellij_idea"><a class="anchor" href="#_intellij_idea"></a><a class="link" href="#_intellij_idea">13.2. IntelliJ IDEA</a></h3>
+<h3 id="_intellij_idea"><a class="anchor" href="#_intellij_idea"></a><a class="link" href="#_intellij_idea">14.2. IntelliJ IDEA</a></h3>
 <div class="paragraph">
 <p>In the other hand, in IntelliJ IDEA, we can write GDSL Files to have code completion on the injected methods/properties and closures. <a href="https://confluence.jetbrains.com/display/GRVY/Scripting+IDE+for+DSL+awareness">GroovyDSL</a> is a scripting framework with a domain-specific language designed to define the behavior of end-user DSLs as script files which are executed by the IDE on the fly, bringing new reference resolution and code completion logic into the scope of a project.</p>
 </div>
@@ -4692,10 +4728,10 @@ contributor(classContext) {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_framework_support"><a class="anchor" href="#_framework_support"></a><a class="link" href="#_framework_support">14. Framework Support</a></h2>
+<h2 id="_framework_support"><a class="anchor" href="#_framework_support"></a><a class="link" href="#_framework_support">15. Framework Support</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_spring_boot"><a class="anchor" href="#_spring_boot"></a><a class="link" href="#_spring_boot">14.1. Spring Boot</a></h3>
+<h3 id="_spring_boot"><a class="anchor" href="#_spring_boot"></a><a class="link" href="#_spring_boot">15.1. Spring Boot</a></h3>
 <div class="paragraph">
 <p>You just need this configuration below to leverage the GServlet API in your Spring Boot application.</p>
 </div>
@@ -4815,7 +4851,7 @@ Your Groovy scripts must be created in the <strong><em>src/main/resources</em></
 </div>
 </div>
 <div class="sect2">
-<h3 id="_other_java_web_frameworks"><a class="anchor" href="#_other_java_web_frameworks"></a><a class="link" href="#_other_java_web_frameworks">14.2. Other Java web frameworks</a></h3>
+<h3 id="_other_java_web_frameworks"><a class="anchor" href="#_other_java_web_frameworks"></a><a class="link" href="#_other_java_web_frameworks">15.2. Other Java web frameworks</a></h3>
 <div class="paragraph">
 <p>If the target framework supports the <em>@WebListener</em> annotation of the Servlet API, no configuration is required since we ship with a <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/ServletContextListener.html">ServletContextListener</a> which starts and stops the application. This statement is valid for frameworks like JSF, Apache Struts.</p>
 </div>
@@ -4851,7 +4887,7 @@ public class StartupListener implements ServletContextListener {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_code_examples"><a class="anchor" href="#_code_examples"></a><a class="link" href="#_code_examples">15. Code Examples</a></h2>
+<h2 id="_code_examples"><a class="anchor" href="#_code_examples"></a><a class="link" href="#_code_examples">16. Code Examples</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We have created several code examples on <a href="https://github.com/GServlet/gservlet-examples">GitHub</a> to help beginners to learn and gain expertise at GServlet. Checkout the appropriate branch for the version that you are using.</p>
@@ -4859,7 +4895,7 @@ public class StartupListener implements ServletContextListener {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_copyright_and_license"><a class="anchor" href="#_copyright_and_license"></a><a class="link" href="#_copyright_and_license">16. Copyright and License</a></h2>
+<h2 id="_copyright_and_license"><a class="anchor" href="#_copyright_and_license"></a><a class="link" href="#_copyright_and_license">17. Copyright and License</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Copyright @2020. Free use of this software is granted under the terms of the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> License.</p>
@@ -4867,7 +4903,7 @@ public class StartupListener implements ServletContextListener {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_authors"><a class="anchor" href="#_authors"></a><a class="link" href="#_authors">17. Authors</a></h2>
+<h2 id="_authors"><a class="anchor" href="#_authors"></a><a class="link" href="#_authors">18. Authors</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>GServlet was created by <a href="https://github.com/laminba2003">Mamadou Lamine Ba</a>.</p>
@@ -4875,7 +4911,7 @@ public class StartupListener implements ServletContextListener {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_contributing"><a class="anchor" href="#_contributing"></a><a class="link" href="#_contributing">18. Contributing</a></h2>
+<h2 id="_contributing"><a class="anchor" href="#_contributing"></a><a class="link" href="#_contributing">19. Contributing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Contributions of any type or any scope, drive the project forward. There are lot of ways to contribute, not just code. We provide more information about how to get involved in our <a href="/contribute">contribute</a> page.</p>
