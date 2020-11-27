@@ -83,8 +83,8 @@
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  		<strong class="jxr_keyword">if</strong> (name != <strong class="jxr_keyword">null</strong> &amp;&amp; name.equals(<span class="jxr_string">"body"</span>) &amp;&amp; getContentType().equalsIgnoreCase(<span class="jxr_string">"application/json"</span>)) {
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  			<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> JsonSlurper().parse(getInputStream());
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  		}
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		Object value = getParameter(name);
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  		value = value != <strong class="jxr_keyword">null</strong> ? value : getParameterValues(name);
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		Object value = getParameterValues(name);
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  		value = value != <strong class="jxr_keyword">null</strong> &amp;&amp; ((String[]) value).length &gt; 1 ? value : getParameter(name);
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  		<strong class="jxr_keyword">return</strong> value != <strong class="jxr_keyword">null</strong> ? value : getAttribute(name);
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  	}
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  	

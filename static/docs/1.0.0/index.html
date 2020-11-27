@@ -2245,7 +2245,7 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2020-11-24</span>
+<span id="revdate">2020-11-27</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2292,7 +2292,7 @@ p {
 </ul>
 </li>
 <li><a href="#_working_with_json">9. Working With JSON</a></li>
-<li><a href="#_working_with_xml">10. Working With XML</a></li>
+<li><a href="#_working_with_html_and_xml">10. Working With HTML and XML</a></li>
 <li><a href="#_working_with_rdbms">11. Working With RDBMS</a></li>
 <li><a href="#_unit_testing">12. Unit Testing</a></li>
 <li><a href="#_groovydocs_generation">13. Groovydocs Generation</a>
@@ -4269,18 +4269,37 @@ class ProjectServlet {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_working_with_xml"><a class="anchor" href="#_working_with_xml"></a><a class="link" href="#_working_with_xml">10. Working With XML</a></h2>
+<h2 id="_working_with_html_and_xml"><a class="anchor" href="#_working_with_html_and_xml"></a><a class="link" href="#_working_with_html_and_xml">10. Working With HTML and XML</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The most commonly used approach for creating XML with Groovy is to use a builder. An implicit <em>xml</em> variable bound to an instance of a MarkupBuilder has been made available to your servlets and filters for that purpose.</p>
+<p>The most commonly used approach for creating HTML and XML content with Groovy is to use a builder. Two implicits variables, <em>html</em> and <em>xml</em>, which are bound to an instance of a MarkupBuilder have been made available to your servlets and filters for that purpose.</p>
 </div>
 <div class="listingblock">
-<div class="title">BookServlet.groovy</div>
+<div class="title">HTML Generation</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
 
-@Servlet(value="/books")
-class BookServlet {
+@Servlet("/index.html")
+class HtmlServlet {
+
+  void get() {
+     html.html {
+       body {
+         p("Hello World!")
+       }
+     }
+  }
+
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">XML Generation</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
+
+@Servlet("/books")
+class XmlServlet {
 
   void get() {
 	 xml.books {
