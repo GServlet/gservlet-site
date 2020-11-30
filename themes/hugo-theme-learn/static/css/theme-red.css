@@ -98,6 +98,11 @@ a:hover {
 #sidebar ul.topics > li.parent, #sidebar ul.topics > li.active {
     background: #de5655;
 }
+
+#sidebar ul.topics > li.active  > a b {
+    color: #777 !important;
+}
+
 #sidebar .searchbox * {
     color: white;
 }
