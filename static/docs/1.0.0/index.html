@@ -2245,7 +2245,7 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2020-12-29</span>
+<span id="revdate">2021-01-02</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2319,6 +2319,7 @@ p {
 <li><a href="#_copyright_and_license">19. Copyright and License</a></li>
 <li><a href="#_authors">20. Authors</a></li>
 <li><a href="#_contributing">21. Contributing</a></li>
+<li><a href="#_reporting_or_fixing_issues">22. Reporting or Fixing Issues</a></li>
 </ul>
 </div>
 </div>
@@ -2350,7 +2351,36 @@ session.counter = session.counter + 1</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The same philosophy has been followed in the design of this API and if you have no prior experience with the Groovy language, there are several curated lists of online resources for learning it.</p>
+<p>The same philosophy has been followed in the design of this API while maintaining a class-based programming approach.</p>
+</div>
+<div class="listingblock">
+<div class="title">SessionCounterServlet.groovy</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.gservlet.annotation.Servlet
+
+@Servlet("/counter")
+class SessionCounterServlet {
+
+   void get() {
+		if (!session.counter) {
+		    session.counter = 1
+		}
+		html.html {
+		  head {
+		      title('Groovy Servlet')
+		  }
+		  body {
+		    p("Hello, ${request.remoteHost}: ${session.counter}! ${new Date()}")
+		  }
+		}
+		session.counter = session.counter + 1
+   }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you have no prior experience with the Groovy language, there are several curated lists of online resources for learning it.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2621,7 +2651,7 @@ public class HelloWordServlet extends HttpServlet {
 </div>
 </div>
 <div class="paragraph">
-<p>Now, we are going to write its Groovy counterpart with the GServlet API so you can perceive the difference in terms of simplicity and clarity. The name of the HTTP request method handlers are shortened to <em>get</em>, <em>post</em> and so on. They take no arguments since the request and the response are now implicit variables.</p>
+<p>We are going to write its Groovy counterpart with the GServlet API so you can perceive the difference in terms of simplicity and clarity. The name of the HTTP request method handlers are shortened to <em>get</em>, <em>post</em> and so on. They take no arguments since the request and the response are now implicit variables.</p>
 </div>
 <div class="listingblock">
 <div class="title">HelloWordServlet.groovy</div>
@@ -4434,7 +4464,7 @@ class XmlServlet {
 <h2 id="_working_with_rdbms"><a class="anchor" href="#_working_with_rdbms"></a><a class="link" href="#_working_with_rdbms">13. Working With RDBMS</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong><em>groovy-sql</em></strong> module provides a higher-level abstraction over the current Java’s JDBC technology and it supports a wide variety of databases. To set up a database with the GServlet API is as simple as to create in the webapp directory, a file named <strong><em>gservlet.properties</em></strong>.</p>
+<p>The <strong><em>groovy-sql</em></strong> module provides a higher-level abstraction over the current Java’s JDBC technology and it supports a wide variety of databases. To set up a database with the GServlet API, you have to create in the webapp directory, a file named <strong><em>gservlet.properties</em></strong>.</p>
 </div>
 <div class="listingblock">
 <div class="title">gservlet.properties</div>
@@ -4448,7 +4478,7 @@ db.maxPoolSize : 10</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For each request, an <a href="http://docs.groovy-lang.org/latest/html/api/groovy/sql/Sql.html">Sql</a> connection is automatically created from a data source and made available in your servlets and filters through the implicit <em>sql</em> variable as below:</p>
+<p>For each request, an <a href="http://docs.groovy-lang.org/latest/html/api/groovy/sql/Sql.html">Sql</a> connection is automatically created from a data source and made available to your servlets and filters through the implicit <em>sql</em> variable as below:</p>
 </div>
 <div class="listingblock">
 <div class="title">ProjectServlet.groovy</div>
@@ -5050,6 +5080,14 @@ public class StartupListener implements ServletContextListener {
 <div class="sectionbody">
 <div class="paragraph">
 <p>Contributions of any type or any scope, drive the project forward. There are lot of ways to contribute, not just code. We provide more information about how to get involved in our <a href="/contribute">contribute</a> page.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reporting_or_fixing_issues"><a class="anchor" href="#_reporting_or_fixing_issues"></a><a class="link" href="#_reporting_or_fixing_issues">22. Reporting or Fixing Issues</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can search for existing issues in order to fix them or to raise a new one. We use the <a href="https://github.com/GServlet/gservlet-api/issues">GitHub&#8217;s issue tracker</a> to keep a track of all our current issues.</p>
 </div>
 </div>
 </div>
