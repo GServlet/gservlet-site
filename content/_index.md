@@ -61,21 +61,21 @@ import org.gservlet.annotation.Servlet
 @Servlet("/counter")
 class SessionCounterServlet {
 
-   void get() {
-		if (!session.counter) {
-		    session.counter = 1
-		}
-		html.html {
-		  head {
-		      title('Groovy Servlet')
-		  }
-		  body {
-		    p("Hello, ${request.remoteHost}: ${session.counter}! ${new Date()}")
-		  }
-		}
-		session.counter = session.counter + 1		           
-   }
-	
+  void get() {
+    if (!session.counter) {
+      session.counter = 1
+    }
+    html.html {
+      head {
+        title('Groovy Servlet')
+      }
+      body {
+        p("Hello, ${request.remoteHost}: ${session.counter}! ${new Date()}")
+      }
+    }
+    session.counter = session.counter + 1
+  }
+
 }
 ```
 
