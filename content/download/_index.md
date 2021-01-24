@@ -7,7 +7,7 @@ pre : "<b>3. </b>"
 
 # Download
 
-The recommended way of getting GServlet is to declare a dependency on the _gservlet-api_ library using your favorite build tools but you can build it also from the latest source code in the GitHub [repository](https://github.com/GServlet/gservlet-api).
+The recommended way of getting GServlet is to declare a dependency on the _gservlet-api_ library using your favorite build tools but you can build it also from the latest source code in the GitHub [repository](https://github.com/GServlet/gservlet-api). You can search for previous releases on [Maven Central](https://mvnrepository.com/artifact/org.gservlet/gservlet-api).
 
 
 ## From your build tools
@@ -18,7 +18,7 @@ The recommended way of getting GServlet is to declare a dependency on the _gserv
 <dependency>
 	<groupId>org.gservlet</groupId>
 	<artifactId>gservlet-api</artifactId>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 </dependency>
 ```
 
@@ -30,11 +30,33 @@ repositories {
 }
 
 dependencies {
-    compile("org.gservlet:gservlet-api:1.0.0")
+    compile("org.gservlet:gservlet-api:2.0.0")
 }
 
 ```
 
+## Release Plan
+
+* 1.0.x : Java EE 7+ and Jakarta EE 8 support
+* 2.0.x : Jakarta EE 9 support
+* 3.0.x : Jakarta EE 10 support
+
+## Snapshot builds
+
+You can access snapshot builds from the sonatype snapshot repository by adding the following to your `repositories`:
+```xml
+<repository>
+	<id>sonatype-nexus-snapshots</id>
+	<name>Sonatype Nexus Snapshots</name>
+	<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+	<snapshots>
+		<enabled>true</enabled>
+	</snapshots>
+	<releases>
+		<enabled>false</enabled>
+	</releases>
+</repository>
+```
 
 ## Building from source
 

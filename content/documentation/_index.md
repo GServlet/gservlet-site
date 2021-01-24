@@ -26,13 +26,29 @@ The documentation of GServlet is split into three categories:
 
 ## Developer Guide
 
-* [Version 1.0.0](/docs/1.0.0) 
+* [Version 1.0.0](/docs/1.0.0)
+* [Version 2.0.0](/docs/2.0.0) 
 
 
 ## Javadocs
 
-* [Version 1.0.0](/javadocs/1.0.0) 
+* [Version 1.0.0](/javadocs/1.0.0)
+* [Version 2.0.0](/javadocs/2.0.0) 
 
 ## Source Code
 
 * [Version 1.0.0](/sources/1.0.0)
+* [Version 1.0.0](/sources/2.0.0)
+
+
+## Changelogs for Groovy
+
+You can find below the changelogs for the past GServlet releases.
+
+### GServlet 1.0.0
+
+* Changelog for [GServlet 1.0.0](/changelogs/1.0.0)  [Released: 2021-01-04]
+
+### GServlet 2.0.0
+
+* Changelog for [GServlet 2.0.0](/changelogs/2.0.0)  [Released: 2021-01-04]

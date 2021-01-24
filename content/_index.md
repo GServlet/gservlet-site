@@ -81,7 +81,7 @@ class SessionCounterServlet {
 
 ## Main Features
 
-* Servlet 3.1+ Support
+* Jakarta Servlet 5.0 Support
 * Groovy Scripting and Hot Reloading
 * JSON, XML, HTML and JDBC Support
 
@@ -89,7 +89,7 @@ class SessionCounterServlet {
 
 * Java 8+
 * Java IDE (Eclipse, IntelliJ IDEA, NetBeans..)
-* Java EE 7+ compliant WebServer (Tomcat, Wildfly, Glassfish, Payara..)
+* Jakarta EE 9 compliant WebServer (Tomcat, Wildfly, Glassfish, Payara..)
 
 ## Getting Started
 
@@ -101,7 +101,7 @@ In our [documentation](/documentation) page, you'll find all the documentation f
 
 ## Download
 
-If you want to download the artifact without a dependency management tool or want to build it from the source, we cover how to achieve it in our [download](/download) page.
+If you want to download the artifact without a dependency management tool or want to build it from the source, we cover how to achieve it in our [download](/download) page. The current version of GServlet is 2.0.0. You can search for previous releases on [Maven Central](https://mvnrepository.com/artifact/org.gservlet/gservlet-api).
 
 ## Support
 
