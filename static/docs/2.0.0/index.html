@@ -2245,7 +2245,7 @@ p {
 <span id="author" class="author">Mamadou Lamine Ba</span><br>
 <span id="email" class="email"><a href="https://github.com/laminba2003">@laminba2003</a></span><br>
 <span id="revnumber">version 2.0.0,</span>
-<span id="revdate">2021-01-24</span>
+<span id="revdate">2021-02-01</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -2309,12 +2309,7 @@ p {
 <li><a href="#_intellij_idea">16.2. IntelliJ IDEA</a></li>
 </ul>
 </li>
-<li><a href="#_framework_support">17. Framework Support</a>
-<ul class="sectlevel2">
-<li><a href="#_spring_boot">17.1. Spring Boot</a></li>
-<li><a href="#_other_java_web_frameworks">17.2. Other Java web frameworks</a></li>
-</ul>
-</li>
+<li><a href="#_framework_support">17. Framework Support</a></li>
 <li><a href="#_code_examples">18. Code Examples</a></li>
 <li><a href="#_copyright_and_license">19. Copyright and License</a></li>
 <li><a href="#_authors">20. Authors</a></li>
@@ -4895,130 +4890,8 @@ contributor(classContext) {
 <div class="sect1">
 <h2 id="_framework_support"><a class="anchor" href="#_framework_support"></a><a class="link" href="#_framework_support">17. Framework Support</a></h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_spring_boot"><a class="anchor" href="#_spring_boot"></a><a class="link" href="#_spring_boot">17.1. Spring Boot</a></h3>
 <div class="paragraph">
-<p>You just need this configuration below to leverage the GServlet API in your Spring Boot application.</p>
-</div>
-<div class="listingblock">
-<div class="title">SpringConfiguration.java</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletException;
-import org.gservlet.GServletApplication;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Bean;
-
-@Configuration
-public class SpringConfiguration implements ServletContextInitializer {
-
-	private GServletApplication application;
-
-	@Override
-	public void onStartup(ServletContext context) throws ServletException {
-		application = new GServletApplication(context);
-		application.startOnSpringBoot();
-
-	}
-
-	@Bean(destroyMethod = "stop")
-	public GServletApplication servletApplication() {
-		return application;
-	}
-
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you want to reuse the data source configured by Spring, this is how you must proceed:</p>
-</div>
-<div class="listingblock">
-<div class="title">SpringConfiguration.java</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletException;
-import javax.sql.DataSource;
-import org.gservlet.GServletApplication;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
-public class SpringConfiguration implements ServletContextInitializer {
-
-	private GServletApplication application;
-
-	@Override
-	public void onStartup(ServletContext context) throws ServletException {
-		application = new GServletApplication(context);
-		application.startOnSpringBoot();
-
-	}
-
-	@Bean(destroyMethod = "stop")
-	public GServletApplication servletApplication(DataSource dataSource) {
-		application.setDataSource(dataSource);
-		return application;
-	}
-
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>To enable Spring autowiring, you can use an implementation of the <a href="https://gservlet.org/javadocs/1.0.0/org/gservlet/scriptlistener">ScriptListener</a> interface like this:</p>
-</div>
-<div class="listingblock">
-<div class="title">SpringConfiguration.java</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletException;
-import javax.sql.DataSource;
-import org.gservlet.GServletApplication;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-
-@Configuration
-public class SpringConfiguration implements ServletContextInitializer {
-
-	private GServletApplication application;
-
-	@Override
-	public void onStartup(ServletContext context) throws ServletException {
-		application = new GServletApplication(context);
-		application.addScriptListener(bean -&gt; {
-			SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(bean, context);
-		});
-		application.startOnSpringBoot();
-	}
-
-	@Bean(destroyMethod = "stop")
-	public GServletApplication servletApplication(DataSource dataSource) {
-		application.setDataSource(dataSource);
-		return application;
-	}
-
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Your Groovy scripts must be created in the <strong><em>src/main/resources</em></strong> folder if your application is packaged as a jar.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_other_java_web_frameworks"><a class="anchor" href="#_other_java_web_frameworks"></a><a class="link" href="#_other_java_web_frameworks">17.2. Other Java web frameworks</a></h3>
-<div class="paragraph">
-<p>If the target framework supports the <em>@WebListener</em> annotation of the Servlet API, no configuration is required since we ship with a <a href="https://jakarta.ee/specifications/platform/9/apidocs/jakarta/servlet/ServletContextListener.html">ServletContextListener</a> which starts and stops the application. This statement is valid for frameworks like JSF, Apache Struts.</p>
+<p>If the target framework supports the <em>@WebListener</em> annotation of the Servlet API, no configuration is required since we ship with a <a href="https://jakarta.ee/specifications/platform/9/apidocs/jakarta/servlet/ServletContextListener.html">ServletContextListener</a> which starts and stops the application.</p>
 </div>
 <div class="listingblock">
 <div class="title">StartupListener.java</div>
@@ -5046,7 +4919,6 @@ public class StartupListener implements ServletContextListener {
 	}
 
 }</code></pre>
-</div>
 </div>
 </div>
 </div>
