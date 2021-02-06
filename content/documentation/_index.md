@@ -38,7 +38,7 @@ The documentation of GServlet is split into three categories:
 ## Source Code
 
 * [Version 1.0.0](/sources/1.0.0)
-* [Version 1.0.0](/sources/2.0.0)
+* [Version 2.0.0](/sources/2.0.0)
 
 
 ## Changelogs for Groovy
