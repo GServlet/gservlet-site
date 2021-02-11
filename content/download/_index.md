@@ -7,7 +7,7 @@ pre : "<b>3. </b>"
 
 # Download
 
-The recommended way of getting GServlet is to declare a dependency on the _gservlet-api_ library using your favorite build tools but you can build it also from the latest source code in the GitHub [repository](https://github.com/GServlet/gservlet-api). You can search for previous releases on [Maven Central](https://mvnrepository.com/artifact/org.gservlet/gservlet-api).
+The recommended way of getting GServlet is to declare a dependency on the _gservlet-api_ library using your favorite build tools but you can build it also from the latest source code in the GitHub [repository](https://github.com/GServlet/gservlet-api). YThe current release is 1.0.1. You can search for previous releases on [Maven Central](https://mvnrepository.com/artifact/org.gservlet/gservlet-api).
 
 
 ## From your build tools
@@ -18,7 +18,7 @@ The recommended way of getting GServlet is to declare a dependency on the _gserv
 <dependency>
 	<groupId>org.gservlet</groupId>
 	<artifactId>gservlet-api</artifactId>
-	<version>2.0.0</version>
+	<version>${gservlet.version}</version>
 </dependency>
 ```
 
@@ -30,7 +30,7 @@ repositories {
 }
 
 dependencies {
-    compile("org.gservlet:gservlet-api:2.0.0")
+    compile("org.gservlet:gservlet-api:${gservletVersion}")
 }
 
 ```
