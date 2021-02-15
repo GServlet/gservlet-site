@@ -9,6 +9,12 @@ pre : "<b>3. </b>"
 
 The recommended way of getting GServlet is to declare a dependency on the _gservlet-api_ library using your favorite build tools but you can build it also from the latest source code in the GitHub [repository](https://github.com/GServlet/gservlet-api). The current release is 1.0.1. You can search for previous releases on [Maven Central](https://mvnrepository.com/artifact/org.gservlet/gservlet-api).
 
+## Releases
+
+| Release     | Release Date    | Changelog                       |
+| ----------- | --------------- | -------------------------------
+| 1.0.1       | 4 January 2021  | [Changelog](/changelogs/1.0.1)  |
+| 1.0.0       | 4 January 2021  | [Changelog](/changelogs/1.0.0)  |
 
 ## From your build tools
 
