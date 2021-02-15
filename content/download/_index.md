@@ -18,9 +18,9 @@ The recommended way of getting GServlet is to declare a dependency on the _gserv
 
 ## Release Plan
 
-* 1.0.x : Java EE 7+ and Jakarta EE 8 support
-* 2.0.x : Jakarta EE 9 support
-* 3.0.x : Jakarta EE 10 support
+* 1.x.x : Java EE 7+ and Jakarta EE 8 support
+* 2.x.x : Jakarta EE 9 support
+* 3.x.x : Jakarta EE 10 support
 
 ## From your build tools
 
