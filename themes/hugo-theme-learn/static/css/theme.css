@@ -1094,10 +1094,10 @@ td {
    }
    
    pre code {
-    font-size: 10.5px;
+    font-size: 9.5px;
    }
    
-   ul, ol {
+   ul, ol, th, td {
     font-size: 0.9em !important;
    }
 	
