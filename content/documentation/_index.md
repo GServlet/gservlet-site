@@ -41,7 +41,7 @@ The documentation of GServlet is split into three categories:
 * [Version 1.0.1](/sources/1.0.1)
 
 
-## Changelogs for Groovy
+## Changelogs for GServlet
 
 You can find below the changelogs for the past GServlet releases.
 
