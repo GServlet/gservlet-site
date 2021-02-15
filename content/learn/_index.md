@@ -13,6 +13,19 @@ To get started with GServlet, you may want to begin by creating your first proje
 If you have a prior experience with the Servlet API, creating your first web application with GServlet will feel like a breeze.  
 {{% /notice %}}
 
+## Releases
+
+| Release     | Release Date    | Changelog                       |
+| ----------- | --------------- | -------------------------------
+| 1.0.1       | 4 January 2021  | [Changelog](/changelogs/1.0.1)  |
+| 1.0.0       | 4 January 2021  | [Changelog](/changelogs/1.0.0)  |
+
+## Release Plan
+
+* 1.x.x : Java EE 7+ and Jakarta EE 8 support
+* 2.x.x : Jakarta EE 9 support
+* 3.x.x : Jakarta EE 10 support
+
 
 ## Installation
 
