@@ -181,7 +181,7 @@
 <a class="jxr_linenumber" name="L173" href="#L173">173</a> 				processClass(ctClass);
 <a class="jxr_linenumber" name="L174" href="#L174">174</a> 				<strong class="jxr_keyword">return</strong> ctClass.toBytecode();
 <a class="jxr_linenumber" name="L175" href="#L175">175</a> 			} <strong class="jxr_keyword">catch</strong> (Exception e) {
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> 				logger.log(Level.SEVERE, <span class="jxr_string">"exception during processBytecode method"</span>, e);
+<a class="jxr_linenumber" name="L176" href="#L176">176</a> 				logger.log(Level.SEVERE, <span class="jxr_string">"exception when processing bytecode"</span>, e);
 <a class="jxr_linenumber" name="L177" href="#L177">177</a> 			}
 <a class="jxr_linenumber" name="L178" href="#L178">178</a> 			<strong class="jxr_keyword">return</strong> original;
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> 		};
@@ -245,7 +245,7 @@
 <a class="jxr_linenumber" name="L237" href="#L237">237</a> 	}
 <a class="jxr_linenumber" name="L238" href="#L238">238</a> 
 <a class="jxr_linenumber" name="L239" href="#L239">239</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L240" href="#L240">240</a> <em class="jxr_javadoccomment">	 * Registers a new ScriptListener</em>
+<a class="jxr_linenumber" name="L240" href="#L240">240</a> <em class="jxr_javadoccomment">	 * Registers a new script listener</em>
 <a class="jxr_linenumber" name="L241" href="#L241">241</a> <em class="jxr_javadoccomment">	 * </em>
 <a class="jxr_linenumber" name="L242" href="#L242">242</a> <em class="jxr_javadoccomment">	 * @param listener the ScriptListener object</em>
 <a class="jxr_linenumber" name="L243" href="#L243">243</a> <em class="jxr_javadoccomment">	 */</em>
@@ -254,9 +254,9 @@
 <a class="jxr_linenumber" name="L246" href="#L246">246</a> 	}
 <a class="jxr_linenumber" name="L247" href="#L247">247</a> 
 <a class="jxr_linenumber" name="L248" href="#L248">248</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L249" href="#L249">249</a> <em class="jxr_javadoccomment">	 * Registers a ScriptListener list</em>
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> <em class="jxr_javadoccomment">	 * Registers a list of script listeners</em>
 <a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L251" href="#L251">251</a> <em class="jxr_javadoccomment">	 * @param listeners the ScriptListener list</em>
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> <em class="jxr_javadoccomment">	 * @param listeners the list of script listeners</em>
 <a class="jxr_linenumber" name="L252" href="#L252">252</a> <em class="jxr_javadoccomment">	 * </em>
 <a class="jxr_linenumber" name="L253" href="#L253">253</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L254" href="#L254">254</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addScriptListeners(List&lt;ScriptListener&gt; listeners) {
