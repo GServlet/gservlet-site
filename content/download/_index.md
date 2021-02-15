@@ -16,6 +16,12 @@ The recommended way of getting GServlet is to declare a dependency on the _gserv
 | 1.0.1       | 4 January 2021  | [Changelog](/changelogs/1.0.1)  |
 | 1.0.0       | 4 January 2021  | [Changelog](/changelogs/1.0.0)  |
 
+## Release Plan
+
+* 1.0.x : Java EE 7+ and Jakarta EE 8 support
+* 2.0.x : Jakarta EE 9 support
+* 3.0.x : Jakarta EE 10 support
+
 ## From your build tools
 
 #### Maven
@@ -40,12 +46,6 @@ dependencies {
 }
 
 ```
-
-## Release Plan
-
-* 1.0.x : Java EE 7+ and Jakarta EE 8 support
-* 2.0.x : Jakarta EE 9 support
-* 3.0.x : Jakarta EE 10 support
 
 ## Snapshot builds
 
