@@ -70,7 +70,7 @@
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment"> * </em>
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment"> * Manages the registration and the reloading of</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment"> * The ContainerManager manages the registration and the reloading of</em>
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment"> * a servlet, filter or listener into the web container</em>
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment"> * </em>
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment"> * @author Mamadou Lamine Ba</em>
@@ -154,7 +154,7 @@
 <a class="jxr_linenumber" name="L146" href="#L146">146</a> 			}
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> 		}
 <a class="jxr_linenumber" name="L148" href="#L148">148</a> 	}
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> 
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> 	
 <a class="jxr_linenumber" name="L150" href="#L150">150</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">	 * </em>
 <a class="jxr_linenumber" name="L152" href="#L152">152</a> <em class="jxr_javadoccomment">	 * Registers a servlet, filter or listener into the web container</em>
@@ -251,7 +251,7 @@
 <a class="jxr_linenumber" name="L243" href="#L243">243</a> <em class="jxr_javadoccomment">	 * </em>
 <a class="jxr_linenumber" name="L244" href="#L244">244</a> <em class="jxr_javadoccomment">	 * Registers a listener into the web container</em>
 <a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L246" href="#L246">246</a> <em class="jxr_javadoccomment">	 * @param object  the listener object</em>
+<a class="jxr_linenumber" name="L246" href="#L246">246</a> <em class="jxr_javadoccomment">	 * @param object the listener object</em>
 <a class="jxr_linenumber" name="L247" href="#L247">247</a> <em class="jxr_javadoccomment">	 * </em>
 <a class="jxr_linenumber" name="L248" href="#L248">248</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L249" href="#L249">249</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> addListener(Object object) {
@@ -329,153 +329,195 @@
 <a class="jxr_linenumber" name="L321" href="#L321">321</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> process(File script) {
 <a class="jxr_linenumber" name="L322" href="#L322">322</a> 		<strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L323" href="#L323">323</a> 			logger.log(Level.INFO, <span class="jxr_string">"processing script {0}"</span>, script.getName());
-<a class="jxr_linenumber" name="L324" href="#L324">324</a> 			Object object = scriptManager.createObject(script);
-<a class="jxr_linenumber" name="L325" href="#L325">325</a> 			<strong class="jxr_keyword">if</strong>(isServlet(object)) {
-<a class="jxr_linenumber" name="L326" href="#L326">326</a> 				reloadServlet((<a name="AbstractServlet" href="../../org/gservlet/AbstractServlet.html#AbstractServlet">AbstractServlet</a>) object);
-<a class="jxr_linenumber" name="L327" href="#L327">327</a> 			} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong>(isFilter(object)) {
-<a class="jxr_linenumber" name="L328" href="#L328">328</a> 				reloadFilter((<a name="AbstractFilter" href="../../org/gservlet/AbstractFilter.html#AbstractFilter">AbstractFilter</a>) object);
-<a class="jxr_linenumber" name="L329" href="#L329">329</a> 			} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (isListener(object)) {
-<a class="jxr_linenumber" name="L330" href="#L330">330</a> 				reload(object);
-<a class="jxr_linenumber" name="L331" href="#L331">331</a> 				<strong class="jxr_keyword">if</strong> (object instanceof <a name="AbstractContextListener" href="../../org/gservlet/AbstractContextListener.html#AbstractContextListener">AbstractContextListener</a>) {
-<a class="jxr_linenumber" name="L332" href="#L332">332</a> 					AbstractContextListener contextListener = (<a name="AbstractContextListener" href="../../org/gservlet/AbstractContextListener.html#AbstractContextListener">AbstractContextListener</a>) object;
-<a class="jxr_linenumber" name="L333" href="#L333">333</a> 					contextListener.contextInitialized(<strong class="jxr_keyword">new</strong> ServletContextEvent(context));
-<a class="jxr_linenumber" name="L334" href="#L334">334</a> 				}
-<a class="jxr_linenumber" name="L335" href="#L335">335</a> 			}
-<a class="jxr_linenumber" name="L336" href="#L336">336</a> 		} <strong class="jxr_keyword">catch</strong> (Exception e) {
-<a class="jxr_linenumber" name="L337" href="#L337">337</a> 			logger.log(Level.SEVERE, <span class="jxr_string">"exception when reloading script"</span>, e);
-<a class="jxr_linenumber" name="L338" href="#L338">338</a> 		}
-<a class="jxr_linenumber" name="L339" href="#L339">339</a> 	}
-<a class="jxr_linenumber" name="L340" href="#L340">340</a> 
-<a class="jxr_linenumber" name="L341" href="#L341">341</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L342" href="#L342">342</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L343" href="#L343">343</a> <em class="jxr_javadoccomment">	 * Reloads a servlet, filter or a listener into the web container</em>
-<a class="jxr_linenumber" name="L344" href="#L344">344</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L345" href="#L345">345</a> <em class="jxr_javadoccomment">	 * @param object the object to be reloaded</em>
-<a class="jxr_linenumber" name="L346" href="#L346">346</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L347" href="#L347">347</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L348" href="#L348">348</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> reload(Object object) {
-<a class="jxr_linenumber" name="L349" href="#L349">349</a> 		DynamicInvocationHandler handler = handlers.get(object.getClass().getName());
-<a class="jxr_linenumber" name="L350" href="#L350">350</a> 		<strong class="jxr_keyword">if</strong> (handler != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L351" href="#L351">351</a> 			handler.setTarget(object);
+<a class="jxr_linenumber" name="L324" href="#L324">324</a> 			process(scriptManager.createObject(script));
+<a class="jxr_linenumber" name="L325" href="#L325">325</a> 		} <strong class="jxr_keyword">catch</strong> (Exception e) {
+<a class="jxr_linenumber" name="L326" href="#L326">326</a> 			logger.log(Level.SEVERE, <span class="jxr_string">"exception when reloading script"</span>, e);
+<a class="jxr_linenumber" name="L327" href="#L327">327</a> 		}
+<a class="jxr_linenumber" name="L328" href="#L328">328</a> 	}
+<a class="jxr_linenumber" name="L329" href="#L329">329</a> 	
+<a class="jxr_linenumber" name="L330" href="#L330">330</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L331" href="#L331">331</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L332" href="#L332">332</a> <em class="jxr_javadoccomment">	 * Processes an object</em>
+<a class="jxr_linenumber" name="L333" href="#L333">333</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L334" href="#L334">334</a> <em class="jxr_javadoccomment">	 * @param object the given object</em>
+<a class="jxr_linenumber" name="L335" href="#L335">335</a> <em class="jxr_javadoccomment">	 * @throws ServletException the ServletException</em>
+<a class="jxr_linenumber" name="L336" href="#L336">336</a> <em class="jxr_javadoccomment">	 * @throws ScriptException  the ScriptException</em>
+<a class="jxr_linenumber" name="L337" href="#L337">337</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L338" href="#L338">338</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L339" href="#L339">339</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> process(Object object) <strong class="jxr_keyword">throws</strong> ServletException, ScriptException {
+<a class="jxr_linenumber" name="L340" href="#L340">340</a> 		<strong class="jxr_keyword">if</strong>(isServlet(object)) {
+<a class="jxr_linenumber" name="L341" href="#L341">341</a> 			reloadServlet((<a name="AbstractServlet" href="../../org/gservlet/AbstractServlet.html#AbstractServlet">AbstractServlet</a>) object);
+<a class="jxr_linenumber" name="L342" href="#L342">342</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong>(isFilter(object)) {
+<a class="jxr_linenumber" name="L343" href="#L343">343</a> 			reloadFilter((<a name="AbstractFilter" href="../../org/gservlet/AbstractFilter.html#AbstractFilter">AbstractFilter</a>) object);
+<a class="jxr_linenumber" name="L344" href="#L344">344</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (isListener(object)) {
+<a class="jxr_linenumber" name="L345" href="#L345">345</a> 			reload(object);
+<a class="jxr_linenumber" name="L346" href="#L346">346</a> 			<strong class="jxr_keyword">if</strong> (object instanceof <a name="AbstractContextListener" href="../../org/gservlet/AbstractContextListener.html#AbstractContextListener">AbstractContextListener</a>) {
+<a class="jxr_linenumber" name="L347" href="#L347">347</a> 				AbstractContextListener contextListener = (<a name="AbstractContextListener" href="../../org/gservlet/AbstractContextListener.html#AbstractContextListener">AbstractContextListener</a>) object;
+<a class="jxr_linenumber" name="L348" href="#L348">348</a> 				contextListener.contextInitialized(<strong class="jxr_keyword">new</strong> ServletContextEvent(context));
+<a class="jxr_linenumber" name="L349" href="#L349">349</a> 			}
+<a class="jxr_linenumber" name="L350" href="#L350">350</a> 		} <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L351" href="#L351">351</a> 			reloadScripts(scriptManager.getFolder());
 <a class="jxr_linenumber" name="L352" href="#L352">352</a> 		}
 <a class="jxr_linenumber" name="L353" href="#L353">353</a> 	}
-<a class="jxr_linenumber" name="L354" href="#L354">354</a> 	
+<a class="jxr_linenumber" name="L354" href="#L354">354</a> 
 <a class="jxr_linenumber" name="L355" href="#L355">355</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L356" href="#L356">356</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L357" href="#L357">357</a> <em class="jxr_javadoccomment">	 * Reloads a servlet</em>
+<a class="jxr_linenumber" name="L357" href="#L357">357</a> <em class="jxr_javadoccomment">	 * Reloads a servlet, filter or a listener into the web container</em>
 <a class="jxr_linenumber" name="L358" href="#L358">358</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L359" href="#L359">359</a> <em class="jxr_javadoccomment">	 * @param servlet the servlet to be reloaded</em>
-<a class="jxr_linenumber" name="L360" href="#L360">360</a> <em class="jxr_javadoccomment">	 * @throws ServletException the ServletException</em>
-<a class="jxr_linenumber" name="L361" href="#L361">361</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L362" href="#L362">362</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L363" href="#L363">363</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> reloadServlet(<a name="AbstractServlet" href="../../org/gservlet/AbstractServlet.html#AbstractServlet">AbstractServlet</a> servlet) <strong class="jxr_keyword">throws</strong> ServletException {
-<a class="jxr_linenumber" name="L364" href="#L364">364</a> 		reload(servlet);
-<a class="jxr_linenumber" name="L365" href="#L365">365</a> 		DefaultServletConfig config = <strong class="jxr_keyword">new</strong> <a name="DefaultServletConfig" href="../../org/gservlet/DefaultServletConfig.html#DefaultServletConfig">DefaultServletConfig</a>();
-<a class="jxr_linenumber" name="L366" href="#L366">366</a> 		config.setServletContext(context);
-<a class="jxr_linenumber" name="L367" href="#L367">367</a> 		Servlet annotation = servlet.getClass().getAnnotation(Servlet.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L368" href="#L368">368</a> 		Arrays.stream(annotation.initParams()).forEach(param -&gt; config.addInitParameter(param.name(), param.value()));
-<a class="jxr_linenumber" name="L369" href="#L369">369</a> 		servlet.init(config);
-<a class="jxr_linenumber" name="L370" href="#L370">370</a> 	}
-<a class="jxr_linenumber" name="L371" href="#L371">371</a> 	
-<a class="jxr_linenumber" name="L372" href="#L372">372</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L374" href="#L374">374</a> <em class="jxr_javadoccomment">	 * Reloads a filter</em>
+<a class="jxr_linenumber" name="L359" href="#L359">359</a> <em class="jxr_javadoccomment">	 * @param object the object to be reloaded</em>
+<a class="jxr_linenumber" name="L360" href="#L360">360</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L361" href="#L361">361</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L362" href="#L362">362</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> reload(Object object) {
+<a class="jxr_linenumber" name="L363" href="#L363">363</a> 		DynamicInvocationHandler handler = handlers.get(object.getClass().getName());
+<a class="jxr_linenumber" name="L364" href="#L364">364</a> 		<strong class="jxr_keyword">if</strong> (handler != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L365" href="#L365">365</a> 			handler.setTarget(object);
+<a class="jxr_linenumber" name="L366" href="#L366">366</a> 		}
+<a class="jxr_linenumber" name="L367" href="#L367">367</a> 	}
+<a class="jxr_linenumber" name="L368" href="#L368">368</a> 	
+<a class="jxr_linenumber" name="L369" href="#L369">369</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L370" href="#L370">370</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L371" href="#L371">371</a> <em class="jxr_javadoccomment">	 * Reloads a servlet</em>
+<a class="jxr_linenumber" name="L372" href="#L372">372</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">	 * @param servlet the servlet to be reloaded</em>
+<a class="jxr_linenumber" name="L374" href="#L374">374</a> <em class="jxr_javadoccomment">	 * @throws ServletException the ServletException</em>
 <a class="jxr_linenumber" name="L375" href="#L375">375</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L376" href="#L376">376</a> <em class="jxr_javadoccomment">	 * @param filter the filter to be reloaded</em>
-<a class="jxr_linenumber" name="L377" href="#L377">377</a> <em class="jxr_javadoccomment">	 * @throws ServletException the ServletException</em>
-<a class="jxr_linenumber" name="L378" href="#L378">378</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L379" href="#L379">379</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L380" href="#L380">380</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> reloadFilter(<a name="AbstractFilter" href="../../org/gservlet/AbstractFilter.html#AbstractFilter">AbstractFilter</a> filter) <strong class="jxr_keyword">throws</strong> ServletException {
-<a class="jxr_linenumber" name="L381" href="#L381">381</a> 		reload(filter);
-<a class="jxr_linenumber" name="L382" href="#L382">382</a> 		DefaultFilterConfig config = <strong class="jxr_keyword">new</strong> <a name="DefaultFilterConfig" href="../../org/gservlet/DefaultFilterConfig.html#DefaultFilterConfig">DefaultFilterConfig</a>();
-<a class="jxr_linenumber" name="L383" href="#L383">383</a> 		config.setServletContext(context);
-<a class="jxr_linenumber" name="L384" href="#L384">384</a> 		Filter annotation = filter.getClass().getAnnotation(Filter.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L385" href="#L385">385</a> 		Arrays.stream(annotation.initParams()).forEach(param -&gt; config.addInitParameter(param.name(), param.value()));
-<a class="jxr_linenumber" name="L386" href="#L386">386</a> 		filter.init(config);
-<a class="jxr_linenumber" name="L387" href="#L387">387</a> 	}
-<a class="jxr_linenumber" name="L388" href="#L388">388</a> 
-<a class="jxr_linenumber" name="L389" href="#L389">389</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L390" href="#L390">390</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L391" href="#L391">391</a> <em class="jxr_javadoccomment">	 * Calls the destroy method of the ServletContextListener objects when the</em>
-<a class="jxr_linenumber" name="L392" href="#L392">392</a> <em class="jxr_javadoccomment">	 * ServletContext is about to be shutdown</em>
-<a class="jxr_linenumber" name="L393" href="#L393">393</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L394" href="#L394">394</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L395" href="#L395">395</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> stop() {
-<a class="jxr_linenumber" name="L396" href="#L396">396</a> 		handlers.values().forEach(handler -&gt; {
-<a class="jxr_linenumber" name="L397" href="#L397">397</a> 			Object target = handler.getTarget();
-<a class="jxr_linenumber" name="L398" href="#L398">398</a> 			<strong class="jxr_keyword">if</strong> (target instanceof <a name="AbstractContextListener" href="../../org/gservlet/AbstractContextListener.html#AbstractContextListener">AbstractContextListener</a>) {
-<a class="jxr_linenumber" name="L399" href="#L399">399</a> 				AbstractContextListener contextListener = (<a name="AbstractContextListener" href="../../org/gservlet/AbstractContextListener.html#AbstractContextListener">AbstractContextListener</a>) target;
-<a class="jxr_linenumber" name="L400" href="#L400">400</a> 				contextListener.contextDestroyed(<strong class="jxr_keyword">new</strong> ServletContextEvent(context));
-<a class="jxr_linenumber" name="L401" href="#L401">401</a> 			}
-<a class="jxr_linenumber" name="L402" href="#L402">402</a> 		});
-<a class="jxr_linenumber" name="L403" href="#L403">403</a> 		handlers.clear();
-<a class="jxr_linenumber" name="L404" href="#L404">404</a> 	}
-<a class="jxr_linenumber" name="L405" href="#L405">405</a> 
-<a class="jxr_linenumber" name="L406" href="#L406">406</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L376" href="#L376">376</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L377" href="#L377">377</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> reloadServlet(<a name="AbstractServlet" href="../../org/gservlet/AbstractServlet.html#AbstractServlet">AbstractServlet</a> servlet) <strong class="jxr_keyword">throws</strong> ServletException {
+<a class="jxr_linenumber" name="L378" href="#L378">378</a> 		reload(servlet);
+<a class="jxr_linenumber" name="L379" href="#L379">379</a> 		DefaultServletConfig config = <strong class="jxr_keyword">new</strong> <a name="DefaultServletConfig" href="../../org/gservlet/DefaultServletConfig.html#DefaultServletConfig">DefaultServletConfig</a>();
+<a class="jxr_linenumber" name="L380" href="#L380">380</a> 		config.setServletContext(context);
+<a class="jxr_linenumber" name="L381" href="#L381">381</a> 		Servlet annotation = servlet.getClass().getAnnotation(Servlet.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L382" href="#L382">382</a> 		Arrays.stream(annotation.initParams()).forEach(param -&gt; config.addInitParameter(param.name(), param.value()));
+<a class="jxr_linenumber" name="L383" href="#L383">383</a> 		servlet.init(config);
+<a class="jxr_linenumber" name="L384" href="#L384">384</a> 	}
+<a class="jxr_linenumber" name="L385" href="#L385">385</a> 	
+<a class="jxr_linenumber" name="L386" href="#L386">386</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L387" href="#L387">387</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L388" href="#L388">388</a> <em class="jxr_javadoccomment">	 * Reloads a filter</em>
+<a class="jxr_linenumber" name="L389" href="#L389">389</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L390" href="#L390">390</a> <em class="jxr_javadoccomment">	 * @param filter the filter to be reloaded</em>
+<a class="jxr_linenumber" name="L391" href="#L391">391</a> <em class="jxr_javadoccomment">	 * @throws ServletException the ServletException</em>
+<a class="jxr_linenumber" name="L392" href="#L392">392</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L393" href="#L393">393</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L394" href="#L394">394</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> reloadFilter(<a name="AbstractFilter" href="../../org/gservlet/AbstractFilter.html#AbstractFilter">AbstractFilter</a> filter) <strong class="jxr_keyword">throws</strong> ServletException {
+<a class="jxr_linenumber" name="L395" href="#L395">395</a> 		reload(filter);
+<a class="jxr_linenumber" name="L396" href="#L396">396</a> 		DefaultFilterConfig config = <strong class="jxr_keyword">new</strong> <a name="DefaultFilterConfig" href="../../org/gservlet/DefaultFilterConfig.html#DefaultFilterConfig">DefaultFilterConfig</a>();
+<a class="jxr_linenumber" name="L397" href="#L397">397</a> 		config.setServletContext(context);
+<a class="jxr_linenumber" name="L398" href="#L398">398</a> 		Filter annotation = filter.getClass().getAnnotation(Filter.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L399" href="#L399">399</a> 		Arrays.stream(annotation.initParams()).forEach(param -&gt; config.addInitParameter(param.name(), param.value()));
+<a class="jxr_linenumber" name="L400" href="#L400">400</a> 		filter.init(config);
+<a class="jxr_linenumber" name="L401" href="#L401">401</a> 	}
+<a class="jxr_linenumber" name="L402" href="#L402">402</a> 	
+<a class="jxr_linenumber" name="L403" href="#L403">403</a> 
+<a class="jxr_linenumber" name="L404" href="#L404">404</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L405" href="#L405">405</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L406" href="#L406">406</a> <em class="jxr_javadoccomment">	 * Reloads the servlets, filters or listeners</em>
 <a class="jxr_linenumber" name="L407" href="#L407">407</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_javadoccomment">	 * Returns the map of dynamic invocation handlers</em>
-<a class="jxr_linenumber" name="L409" href="#L409">409</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L410" href="#L410">410</a> <em class="jxr_javadoccomment">	 * @return the map of dynamic invocation handlers</em>
-<a class="jxr_linenumber" name="L411" href="#L411">411</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L412" href="#L412">412</a> 	<strong class="jxr_keyword">public</strong> Map&lt;String, DynamicInvocationHandler&gt; getHandlers() {
-<a class="jxr_linenumber" name="L413" href="#L413">413</a> 		<strong class="jxr_keyword">return</strong> Collections.unmodifiableMap(handlers);
-<a class="jxr_linenumber" name="L414" href="#L414">414</a> 	}
-<a class="jxr_linenumber" name="L415" href="#L415">415</a> 
-<a class="jxr_linenumber" name="L416" href="#L416">416</a> 
-<a class="jxr_linenumber" name="L417" href="#L417">417</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L418" href="#L418">418</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L419" href="#L419">419</a> <em class="jxr_javadoccomment">	 * Returns the script manager</em>
-<a class="jxr_linenumber" name="L420" href="#L420">420</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L421" href="#L421">421</a> <em class="jxr_javadoccomment">	 * @return the script manager</em>
-<a class="jxr_linenumber" name="L422" href="#L422">422</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L423" href="#L423">423</a> 	<strong class="jxr_keyword">public</strong> <a name="ScriptManager" href="../../org/gservlet/ScriptManager.html#ScriptManager">ScriptManager</a> getScriptManager() {
-<a class="jxr_linenumber" name="L424" href="#L424">424</a> 		<strong class="jxr_keyword">return</strong> scriptManager;
-<a class="jxr_linenumber" name="L425" href="#L425">425</a> 	}
-<a class="jxr_linenumber" name="L426" href="#L426">426</a> 	
-<a class="jxr_linenumber" name="L427" href="#L427">427</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L428" href="#L428">428</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L429" href="#L429">429</a> <em class="jxr_javadoccomment">	 * Checks if the given object is a servlet</em>
-<a class="jxr_linenumber" name="L430" href="#L430">430</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L431" href="#L431">431</a> <em class="jxr_javadoccomment">	 * @param object the given object</em>
+<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_javadoccomment">	 * @param folder the scripts folder</em>
+<a class="jxr_linenumber" name="L409" href="#L409">409</a> <em class="jxr_javadoccomment">	 * @throws ServletException the ServletException</em>
+<a class="jxr_linenumber" name="L410" href="#L410">410</a> <em class="jxr_javadoccomment">	 * @throws ScriptException  the ScriptException</em>
+<a class="jxr_linenumber" name="L411" href="#L411">411</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L412" href="#L412">412</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L413" href="#L413">413</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> reloadScripts(File folder) <strong class="jxr_keyword">throws</strong> ServletException, ScriptException {
+<a class="jxr_linenumber" name="L414" href="#L414">414</a> 		<strong class="jxr_keyword">if</strong> (folder.exists()) {
+<a class="jxr_linenumber" name="L415" href="#L415">415</a> 			File[] files = folder.listFiles();
+<a class="jxr_linenumber" name="L416" href="#L416">416</a> 			<strong class="jxr_keyword">if</strong> (files != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L417" href="#L417">417</a> 				<strong class="jxr_keyword">for</strong> (File file : files) {
+<a class="jxr_linenumber" name="L418" href="#L418">418</a> 					<strong class="jxr_keyword">if</strong> (file.isFile()) {
+<a class="jxr_linenumber" name="L419" href="#L419">419</a> 						Object object = scriptManager.createObject(file);
+<a class="jxr_linenumber" name="L420" href="#L420">420</a> 						<strong class="jxr_keyword">if</strong>(isServlet(object) || isFilter(object) || isListener(object)) {
+<a class="jxr_linenumber" name="L421" href="#L421">421</a> 							process(object);
+<a class="jxr_linenumber" name="L422" href="#L422">422</a> 						}
+<a class="jxr_linenumber" name="L423" href="#L423">423</a> 					} <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L424" href="#L424">424</a> 						reloadScripts(file);
+<a class="jxr_linenumber" name="L425" href="#L425">425</a> 					}
+<a class="jxr_linenumber" name="L426" href="#L426">426</a> 				}
+<a class="jxr_linenumber" name="L427" href="#L427">427</a> 			}
+<a class="jxr_linenumber" name="L428" href="#L428">428</a> 		}
+<a class="jxr_linenumber" name="L429" href="#L429">429</a> 	}
+<a class="jxr_linenumber" name="L430" href="#L430">430</a> 
+<a class="jxr_linenumber" name="L431" href="#L431">431</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L432" href="#L432">432</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L433" href="#L433">433</a> <em class="jxr_javadoccomment">	 * @return true if the given object is a servlet</em>
-<a class="jxr_linenumber" name="L434" href="#L434">434</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L435" href="#L435">435</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> isServlet(Object object) {
-<a class="jxr_linenumber" name="L436" href="#L436">436</a> 		<strong class="jxr_keyword">return</strong> object.getClass().isAnnotationPresent(Servlet.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L437" href="#L437">437</a> 	}
-<a class="jxr_linenumber" name="L438" href="#L438">438</a> 	
-<a class="jxr_linenumber" name="L439" href="#L439">439</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L440" href="#L440">440</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">	 * Checks if the given object is a filter</em>
-<a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">	 * @param object the given object</em>
-<a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L445" href="#L445">445</a> <em class="jxr_javadoccomment">	 * @return true if the given object is a filter</em>
-<a class="jxr_linenumber" name="L446" href="#L446">446</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L447" href="#L447">447</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> isFilter(Object object) {
-<a class="jxr_linenumber" name="L448" href="#L448">448</a> 		<strong class="jxr_keyword">return</strong> object.getClass().isAnnotationPresent(Filter.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L449" href="#L449">449</a> 	}
-<a class="jxr_linenumber" name="L450" href="#L450">450</a> 	
-<a class="jxr_linenumber" name="L451" href="#L451">451</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">	 * Checks if the given object is a listener</em>
-<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">	 * @param object the given object</em>
-<a class="jxr_linenumber" name="L456" href="#L456">456</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="L457" href="#L457">457</a> <em class="jxr_javadoccomment">	 * @return true if the given object is a listener</em>
-<a class="jxr_linenumber" name="L458" href="#L458">458</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L459" href="#L459">459</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> isListener(Object object) {
-<a class="jxr_linenumber" name="L460" href="#L460">460</a> 		Class&lt;?&gt; clazz = object.getClass(); 
-<a class="jxr_linenumber" name="L461" href="#L461">461</a> 		<strong class="jxr_keyword">return</strong> clazz.isAnnotationPresent(ContextListener.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L462" href="#L462">462</a> 		|| clazz.isAnnotationPresent(ContextAttributeListener.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L463" href="#L463">463</a> 		|| clazz.isAnnotationPresent(RequestListener.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L464" href="#L464">464</a> 		|| clazz.isAnnotationPresent(RequestAttributeListener.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L465" href="#L465">465</a> 		|| clazz.isAnnotationPresent(SessionListener.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L466" href="#L466">466</a> 		|| clazz.isAnnotationPresent(SessionAttributeListener.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L467" href="#L467">467</a> 		|| clazz.isAnnotationPresent(SessionIdListener.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L468" href="#L468">468</a> 	}
-<a class="jxr_linenumber" name="L469" href="#L469">469</a> 	
-<a class="jxr_linenumber" name="L470" href="#L470">470</a> }
+<a class="jxr_linenumber" name="L433" href="#L433">433</a> <em class="jxr_javadoccomment">	 * Calls the destroy method of the ServletContextListener objects when the</em>
+<a class="jxr_linenumber" name="L434" href="#L434">434</a> <em class="jxr_javadoccomment">	 * ServletContext is about to be shutdown</em>
+<a class="jxr_linenumber" name="L435" href="#L435">435</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L436" href="#L436">436</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L437" href="#L437">437</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> stop() {
+<a class="jxr_linenumber" name="L438" href="#L438">438</a> 		handlers.values().forEach(handler -&gt; {
+<a class="jxr_linenumber" name="L439" href="#L439">439</a> 			Object target = handler.getTarget();
+<a class="jxr_linenumber" name="L440" href="#L440">440</a> 			<strong class="jxr_keyword">if</strong> (target instanceof <a name="AbstractContextListener" href="../../org/gservlet/AbstractContextListener.html#AbstractContextListener">AbstractContextListener</a>) {
+<a class="jxr_linenumber" name="L441" href="#L441">441</a> 				AbstractContextListener contextListener = (<a name="AbstractContextListener" href="../../org/gservlet/AbstractContextListener.html#AbstractContextListener">AbstractContextListener</a>) target;
+<a class="jxr_linenumber" name="L442" href="#L442">442</a> 				contextListener.contextDestroyed(<strong class="jxr_keyword">new</strong> ServletContextEvent(context));
+<a class="jxr_linenumber" name="L443" href="#L443">443</a> 			}
+<a class="jxr_linenumber" name="L444" href="#L444">444</a> 		});
+<a class="jxr_linenumber" name="L445" href="#L445">445</a> 		handlers.clear();
+<a class="jxr_linenumber" name="L446" href="#L446">446</a> 	}
+<a class="jxr_linenumber" name="L447" href="#L447">447</a> 
+<a class="jxr_linenumber" name="L448" href="#L448">448</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L449" href="#L449">449</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">	 * Returns the map of dynamic invocation handlers</em>
+<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">	 * @return the map of dynamic invocation handlers</em>
+<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L454" href="#L454">454</a> 	<strong class="jxr_keyword">public</strong> Map&lt;String, DynamicInvocationHandler&gt; getHandlers() {
+<a class="jxr_linenumber" name="L455" href="#L455">455</a> 		<strong class="jxr_keyword">return</strong> Collections.unmodifiableMap(handlers);
+<a class="jxr_linenumber" name="L456" href="#L456">456</a> 	}
+<a class="jxr_linenumber" name="L457" href="#L457">457</a> 
+<a class="jxr_linenumber" name="L458" href="#L458">458</a> 
+<a class="jxr_linenumber" name="L459" href="#L459">459</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L460" href="#L460">460</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L461" href="#L461">461</a> <em class="jxr_javadoccomment">	 * Returns the script manager</em>
+<a class="jxr_linenumber" name="L462" href="#L462">462</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L463" href="#L463">463</a> <em class="jxr_javadoccomment">	 * @return the script manager</em>
+<a class="jxr_linenumber" name="L464" href="#L464">464</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L465" href="#L465">465</a> 	<strong class="jxr_keyword">public</strong> <a name="ScriptManager" href="../../org/gservlet/ScriptManager.html#ScriptManager">ScriptManager</a> getScriptManager() {
+<a class="jxr_linenumber" name="L466" href="#L466">466</a> 		<strong class="jxr_keyword">return</strong> scriptManager;
+<a class="jxr_linenumber" name="L467" href="#L467">467</a> 	}
+<a class="jxr_linenumber" name="L468" href="#L468">468</a> 	
+<a class="jxr_linenumber" name="L469" href="#L469">469</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L470" href="#L470">470</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L471" href="#L471">471</a> <em class="jxr_javadoccomment">	 * Checks if the given object is a servlet</em>
+<a class="jxr_linenumber" name="L472" href="#L472">472</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L473" href="#L473">473</a> <em class="jxr_javadoccomment">	 * @param object the given object</em>
+<a class="jxr_linenumber" name="L474" href="#L474">474</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L475" href="#L475">475</a> <em class="jxr_javadoccomment">	 * @return true if the given object is a servlet</em>
+<a class="jxr_linenumber" name="L476" href="#L476">476</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L477" href="#L477">477</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> isServlet(Object object) {
+<a class="jxr_linenumber" name="L478" href="#L478">478</a> 		<strong class="jxr_keyword">return</strong> object.getClass().isAnnotationPresent(Servlet.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L479" href="#L479">479</a> 	}
+<a class="jxr_linenumber" name="L480" href="#L480">480</a> 	
+<a class="jxr_linenumber" name="L481" href="#L481">481</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L482" href="#L482">482</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L483" href="#L483">483</a> <em class="jxr_javadoccomment">	 * Checks if the given object is a filter</em>
+<a class="jxr_linenumber" name="L484" href="#L484">484</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L485" href="#L485">485</a> <em class="jxr_javadoccomment">	 * @param object the given object</em>
+<a class="jxr_linenumber" name="L486" href="#L486">486</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L487" href="#L487">487</a> <em class="jxr_javadoccomment">	 * @return true if the given object is a filter</em>
+<a class="jxr_linenumber" name="L488" href="#L488">488</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L489" href="#L489">489</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> isFilter(Object object) {
+<a class="jxr_linenumber" name="L490" href="#L490">490</a> 		<strong class="jxr_keyword">return</strong> object.getClass().isAnnotationPresent(Filter.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L491" href="#L491">491</a> 	}
+<a class="jxr_linenumber" name="L492" href="#L492">492</a> 	
+<a class="jxr_linenumber" name="L493" href="#L493">493</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L494" href="#L494">494</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L495" href="#L495">495</a> <em class="jxr_javadoccomment">	 * Checks if the given object is a listener</em>
+<a class="jxr_linenumber" name="L496" href="#L496">496</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L497" href="#L497">497</a> <em class="jxr_javadoccomment">	 * @param object the given object</em>
+<a class="jxr_linenumber" name="L498" href="#L498">498</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="L499" href="#L499">499</a> <em class="jxr_javadoccomment">	 * @return true if the given object is a listener</em>
+<a class="jxr_linenumber" name="L500" href="#L500">500</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L501" href="#L501">501</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> isListener(Object object) {
+<a class="jxr_linenumber" name="L502" href="#L502">502</a> 		Class&lt;?&gt; clazz = object.getClass(); 
+<a class="jxr_linenumber" name="L503" href="#L503">503</a> 		<strong class="jxr_keyword">return</strong> clazz.isAnnotationPresent(ContextListener.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L504" href="#L504">504</a> 		|| clazz.isAnnotationPresent(ContextAttributeListener.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L505" href="#L505">505</a> 		|| clazz.isAnnotationPresent(RequestListener.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L506" href="#L506">506</a> 		|| clazz.isAnnotationPresent(RequestAttributeListener.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L507" href="#L507">507</a> 		|| clazz.isAnnotationPresent(SessionListener.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L508" href="#L508">508</a> 		|| clazz.isAnnotationPresent(SessionAttributeListener.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L509" href="#L509">509</a> 		|| clazz.isAnnotationPresent(SessionIdListener.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L510" href="#L510">510</a> 	}
+<a class="jxr_linenumber" name="L511" href="#L511">511</a> 	
+<a class="jxr_linenumber" name="L512" href="#L512">512</a> }
 </pre>
 <hr/>
 <div id="footer">Use is subject to <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_top"> the Apache 2.0 license terms</a>.</div>
