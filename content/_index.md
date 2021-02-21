@@ -86,7 +86,7 @@ In our [documentation](/documentation) page, you'll find all the documentation f
 
 ## Download
 
-If you want to download the artifact without a dependency management tool or want to build it from the source, we cover how to achieve it in our [download](/download) page. The current version of GServlet is [1.0.1](https://mvnrepository.com/artifact/org.gservlet/gservlet-api/1.0.0). You can search for previous releases on [Maven Central](https://mvnrepository.com/artifact/org.gservlet/gservlet-api).
+If you want to download the artifact without a dependency management tool or want to build it from the source, we cover how to achieve it in our [download](/download) page. The current version of GServlet is [1.0.1](https://mvnrepository.com/artifact/org.gservlet/gservlet-api/1.0.1). You can search for previous releases on [Maven Central](https://mvnrepository.com/artifact/org.gservlet/gservlet-api).
 
 ## Support
 
