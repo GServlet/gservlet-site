@@ -135,11 +135,11 @@ import org.gservlet.annotation.RequestListener
 @RequestListener
 class ServletRequestListener {
 
-   void init() {
+   void requestInitialized() {
      println "request initialized"
    }
 
-   void destroy() {
+   void requestDestroyed() {
      println "request destroyed"
    }
 
