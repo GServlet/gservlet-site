@@ -17,8 +17,6 @@ title: "GServlet API"
 ## Table of Contents
 
 1. [Introduction](#introduction)
-*  [Main Features](#main-features)
-*  [Requirements](#requirements)
 *  [Getting Started](#getting-started)
 *  [Documentation](#documentation)
 *  [Download](#download)
@@ -28,8 +26,7 @@ title: "GServlet API"
 ## Introduction
 
 [GServlet](https://github.com/GServlet/gservlet-api) is an open source project inspired from the [Groovlets](http://docs.groovy-lang.org/latest/html/documentation/servlet-userguide.html), which aims to use the Groovy language and its provided modules to simplify Servlet API web development.
-Groovlets are Groovy scripts executed by a servlet. They are run on request, having the whole web context (request, response, etc.) bound to the evaluation context. They are much more suitable for smaller web applications. 
-Compared to Java Servlets, coding in Groovy can be much simpler. It has a couple of implicit variables we can use, for example, _request_, _response_ to access the [HttpServletRequest](https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletRequest.html), and [HttpServletResponse](https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletResponse.html) objects. We have access to the [HttpSession](https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpSession.html) with the _session_ variable. If we want to output data, we can use _out_, _sout_, and _html_. This is more like a script as it does not have a class wrapper.
+Groovlets are Groovy scripts executed by a servlet. They are run on request, having the whole web context (request, response, etc.) bound to the evaluation context. They are much more suitable for smaller web applications. Compared to Java Servlets, coding in Groovy can be much simpler. It has a couple of implicit variables we can use, for example, _request_, _response_ to access the **HttpServletRequest**, and **HttpServletResponse** objects. We have access to the **HttpSession** with the _session_ variable. If we want to output data, we can use _out_, _sout_, and _html_. This is more like a script as it does not have a class wrapper.
 
 #### Groovlet
 
@@ -79,29 +76,17 @@ class SessionCounterServlet {
 }
 ```
 
-## Main Features
-
-* Servlet 3.1+ Support
-* Groovy Scripting and Hot Reloading
-* JSON, XML, HTML and JDBC Support
-
-## Requirements
-
-* Java 8+
-* Java IDE (Eclipse, IntelliJ IDEA, NetBeans..)
-* Java EE 7+ compliant WebServer (Tomcat, Wildfly, Glassfish, Payara..)
-
 ## Getting Started
 
 Get ready to get started and running in less than 5 minutes. We provide in our [getting started](/learn) page a step-by-step guide. 
 
 ## Documentation
 
-In our [documentation](/documentation) page, you'll find all the documentation for in-depth knowledge of this project. The Javadocs for a particular version can be found as well.  
+In our [documentation](/documentation) page, you'll find all the documentation for in-depth knowledge of this project. The javadocs for a particular release can be found as well.  
 
 ## Download
 
-If you want to download the artifact without a dependency management tool or want to build it from the source, we cover how to achieve it in our [download](/download) page.
+If you want to download the artifact without a dependency management tool or want to build it from the source, we cover how to achieve it in our [download](/download) page. The current version of GServlet is [1.0.1](https://mvnrepository.com/artifact/org.gservlet/gservlet-api/1.0.1). You can search for previous releases on [Maven Central](https://mvnrepository.com/artifact/org.gservlet/gservlet-api).
 
 ## Support
 

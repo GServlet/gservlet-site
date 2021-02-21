@@ -26,13 +26,22 @@ The documentation of GServlet is split into three categories:
 
 ## Developer Guide
 
-* [Version 1.0.0](/docs/1.0.0) 
-
+* [Version 1.0.1](/docs/1.0.1) 
+* [Version 1.0.0](/docs/1.0.0)
 
 ## Javadocs
 
-* [Version 1.0.0](/javadocs/1.0.0) 
+* [Version 1.0.1](/javadocs/1.0.1) 
+* [Version 1.0.0](/javadocs/1.0.0)
 
 ## Source Code
 
+* [Version 1.0.1](/sources/1.0.1)
 * [Version 1.0.0](/sources/1.0.0)
+
+## Changelogs for GServlet
+
+You can find below the changelogs for the past GServlet releases.
+
+* [Version 1.0.1](/changelogs/1.0.1)
+* [Version 1.0.0](/changelogs/1.0.0)

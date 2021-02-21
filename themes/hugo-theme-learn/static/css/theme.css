@@ -260,7 +260,6 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 }
 #sidebar ul.topics ul {
     display: none;
-    padding-bottom: 1rem;
 }
 #sidebar ul.topics ul ul {
     padding-bottom: 0;
@@ -1095,10 +1094,10 @@ td {
    }
    
    pre code {
-    font-size: 10.5px;
+    font-size: 9.5px;
    }
    
-   ul, ol {
+   ul, ol, th, td {
     font-size: 0.9em !important;
    }
 	
