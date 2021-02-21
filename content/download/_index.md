@@ -14,7 +14,7 @@ The recommended way of getting GServlet is to declare a dependency on the _gserv
 | Release     | Release Date      | Changelog                       |
 | ----------- | ----------------- | -------------------------------
 | 1.0.1       | 21 February 2021  | [Changelog](/changelogs/1.0.1)  |
-| 1.0.0       | 4 January 2021    | [Changelog](/changelogs/1.0.0)  |
+| 1.0.0       | 2 January 2021    | [Changelog](/changelogs/1.0.0)  |
 
 ## From your build tools
 

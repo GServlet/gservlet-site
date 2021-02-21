@@ -14,7 +14,7 @@ To get started with GServlet, you may want to begin by creating your first proje
 | Release     | Release Date      | Changelog                       |
 | ----------- | ----------------- | -------------------------------
 | 1.0.1       | 21 February 2021  | [Changelog](/changelogs/1.0.1)  |
-| 1.0.0       | 4 January 2021    | [Changelog](/changelogs/1.0.0)  |
+| 1.0.0       | 2 January 2021    | [Changelog](/changelogs/1.0.0)  |
 
 ## Release Plan
 
