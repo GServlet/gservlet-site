@@ -4,14 +4,14 @@ title: "GServlet API"
 
 # GServlet API
 
-[![Build Status @ Travis](https://api.travis-ci.com/GServlet/gservlet-api.png?branch=master)](https://travis-ci.com/GServlet/gservlet-api)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=GServlet_gservlet-api&metric=alert_status)](https://sonarcloud.io/dashboard?id=GServlet_gservlet-api)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=GServlet_gservlet-api&metric=bugs)](https://sonarcloud.io/dashboard?id=GServlet_gservlet-api)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=GServlet_gservlet-api&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=GServlet_gservlet-api)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=GServlet_gservlet-api&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=GServlet_gservlet-api)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=GServlet_gservlet-api&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=GServlet_gservlet-api)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=GServlet_gservlet-api&metric=security_rating)](https://sonarcloud.io/dashboard?id=GServlet_gservlet-api)
 [![Coverage Status](https://coveralls.io/repos/github/GServlet/gservlet-api/badge.png?branch=master)](https://coveralls.io/github/GServlet/gservlet-api?branch=master)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.gservlet/gservlet-api/badge.png)](https://maven-badges.herokuapp.com/maven-central/org.gservlet/gservlet-api/)
+[![Javadocs](https://javadoc.io/badge/org.gservlet/gservlet-api.png)](https://javadoc.io/doc/org.gservlet/gservlet-api)
 [![follow on Twitter](https://img.shields.io/twitter/follow/gservlet?style=social)](https://twitter.com/intent/follow?screen_name=gservlet)
 
 ## Table of Contents
@@ -20,6 +20,7 @@ title: "GServlet API"
 *  [Getting Started](#getting-started)
 *  [Documentation](#documentation)
 *  [Download](#download)
+*  [Changelogs](#changelogs)
 *  [Support](#support)
 *  [Contribute](#contribute)
 
@@ -87,6 +88,10 @@ In our [documentation](/documentation) page, you'll find all the documentation f
 ## Download
 
 If you want to download the artifact without a dependency management tool or want to build it from the source, we cover how to achieve it in our [download](/download) page. The current version of GServlet is [1.0.1](https://mvnrepository.com/artifact/org.gservlet/gservlet-api/1.0.1). You can search for previous releases on [Maven Central](https://mvnrepository.com/artifact/org.gservlet/gservlet-api).
+
+## Changelogs
+
+[Here](/changelogs) you can find the changelogs for the past GServlet releases.
 
 ## Support
 
