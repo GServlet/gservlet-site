@@ -4015,9 +4015,7 @@ class MyHttpSessionAttributeListener {
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.io.Serializable;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
-import javax.servlet.annotation.WebListener;
 
-@WebListener
 public class MyHttpSessionBindingListener implements HttpSessionBindingListener, Serializable {
 
     public void valueBound(HttpSessionBindingEvent event) {
@@ -4110,9 +4108,7 @@ class MyHttpSessionBindingListener {
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.io.Serializable;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionActivationListener;
-import javax.servlet.annotation.WebListener;
 
-@WebListener
 public class MyHttpSessionActivationListener implements HttpSessionActivationListener, Serializable {
 
     public void sessionDidActivate(HttpSessionEvent event) {
