@@ -39,7 +39,7 @@ The documentation of GServlet is split into three categories:
 * [Version 1.0.1](/sources/1.0.1)
 * [Version 1.0.0](/sources/1.0.0)
 
-## Changelogs for GServlet
+## Changelogs
 
 You can find below the changelogs for the past GServlet releases.
 
